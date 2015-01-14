@@ -43,9 +43,7 @@
     cursor: default;
 }
 
-.rating-disabled {
-    cursor: not-allowed;
-}
+
 
 .rating-uni {
     font-size: 1.2em;

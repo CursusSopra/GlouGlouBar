@@ -1,0 +1,40 @@
+.handPointer{
+	cursor: pointer !important;
+}
+
+.vignetteImage {
+	width:300px;
+	height:200px;
+}
+
+.vignette{
+	background-color: white;
+}
+
+vignette,
+.lead:hover{
+		font-style:italic;
+}
+vignette,
+.description:hover{
+		font-style:italic;
+}
+
+
+.linkStyle:link {
+	color: #000;
+}
+
+.linkStyle:visited {
+	color: #000;
+}
+
+.linkStyle:active {
+	color: #000;
+}
+
+.linkStyle:hover {
+	color: #000;
+	text-decoration: none;
+}
+

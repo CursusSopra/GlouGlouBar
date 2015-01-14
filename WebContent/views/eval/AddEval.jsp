@@ -23,7 +23,6 @@
 <body>
 	<a href="<s:url action='formAddEval' />">Ajouter une evaluation</a>
 
-	<!-- <legend>Evaluation</legend> -->
 
 	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 col-sm-offset-3 col-sm-6">
@@ -42,7 +41,7 @@
 
 					</s:iterator>
 
-					<input type="hidden" name="idBar" id="ididBar" value="1" /> <input
+					<input type="hidden" name="idBar" id="ididBar" value='<s:property value="idBar" />' /> <input
 						type="hidden" name="idLib" id="idLib" />
 
 					<fieldset>
