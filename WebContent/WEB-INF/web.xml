@@ -23,5 +23,14 @@
 	<listener>
 		<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
 	</listener>
+	
+	<context-param>
+        <param-name>
+          org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG
+        </param-name>
+		<param-value>
+			/WEB-INF/tiles/tiles.xml,/WEB-INF/tiles/tiles-bar.xml
+		</param-value>
+    </context-param>
 
 </web-app>

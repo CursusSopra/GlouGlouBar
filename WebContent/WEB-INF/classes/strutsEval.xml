@@ -5,6 +5,9 @@
 
 <struts>
 	<package name="eval" extends="struts-default">
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
 
 		<action name="addEval" class="fr.cursusSopra.action.AddEvalAction"
 			method="execute">
