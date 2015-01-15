@@ -91,6 +91,6 @@
 	<div class="col-md-1"></div>
 </div>
 <div class="row">
-	<a href="<s:url action='retourIndex' />" class="col-md-offset-1">Retour
+	<a href="<s:url action='' />" class="col-md-offset-1">Retour
 		à l'index</a>
 </div>

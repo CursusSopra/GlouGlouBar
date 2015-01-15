@@ -81,7 +81,7 @@ body {
 							</table>
 						</s:if>
 					</div>
-					<a href="<s:url action='retourIndex' />">Retour aux bars</a>
+					<a href="<s:url action='' />">Retour aux bars</a>
 
 					<s:url action="formAddEval" var="GoToformEval">
 						<s:param name="idBar">

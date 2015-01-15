@@ -12,6 +12,13 @@
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
 	rel="stylesheet">
+	
+<tiles:useAttribute name="moreStyles" scope="request" ignore="true" />
+<c:if test="${not empty moreStyles}">
+	<c:forEach items="${moreStyles}" var="cssFile">
+		<link href="./${cssFile}" media="all" rel="stylesheet" type="text/css" />
+	</c:forEach>
+</c:if>
 <title><tiles:getAsString name="title" /></title>
 </head>
 <body>
@@ -25,7 +32,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="<s:url action='retourIndex' />">Les
+				<a class="navbar-brand" href="<s:url action='' />">Les
 					Bars</a>
 			</div>
 
@@ -75,13 +82,13 @@
 		<!-- /.container-fluid -->
 	</nav>
 	<tiles:insertAttribute name="body" />
-	
+
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-	
-	<tiles:useAttribute name="moreScripts" scope="request" ignore="true" />  
+
+	<tiles:useAttribute name="moreScripts" scope="request" ignore="true" />
 	<c:if test="${not empty moreScripts}">
-		<c:forEach items="${moreScripts}" var="item">
-			 <script type="text/javascript" src="./${item}"></script>
+		<c:forEach items="${moreScripts}" var="jsFile">
+			<script type="text/javascript" src="./${jsFile}"></script>
 		</c:forEach>
 	</c:if>
 </body>
