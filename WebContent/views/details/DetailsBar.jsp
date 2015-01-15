@@ -35,24 +35,6 @@ body {
 
 	<div class="row" style="margin-top: 25px;">
 		<div class="col-md-2">
-			<div class="panel panel-info" style="margin-left: 20px;">
-				<div class="panel-heading" style="text-align: center">
-					<font size="4px"><b>Caractéristiques</b> </font>
-				</div>
-
-				<div class="panel-body">
-					<ul>
-						<s:iterator value="leBar.lstCategorie">
-							<li><s:property value="categorieBar" /></li>
-						</s:iterator>
-
-						<s:iterator value="leBar.lstCritere">
-							<li><s:property value="critere" /></li>
-						</s:iterator>
-
-					</ul>
-				</div>
-			</div>
 
 		</div>
 		<div class="col-md-7">
@@ -143,9 +125,29 @@ body {
 				<s:property value="leBar.site" />
 				<br />
 			</div>
+			
+			<div class="panel panel-info" style="margin-right: 20px;">
+				<div class="panel-heading" style="text-align: center">
+					<font size="4px"><b>Caractéristiques</b> </font>
+				</div>
+
+				<div class="panel-body">
+					<ul>
+						<s:iterator value="leBar.lstCategorie">
+							<li><s:property value="categorieBar" /></li>
+						</s:iterator>
+
+						<s:iterator value="leBar.lstCritere">
+							<li><s:property value="critere" /></li>
+						</s:iterator>
+
+					</ul>
+				</div>
+			</div>
+			
 		</div>
 	</div>
-	</div>
+
 
 
 	<!-- Partie Ajout Evaluation -->
