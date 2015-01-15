@@ -65,5 +65,6 @@
 	
 	</div>
 	<a href="<s:url action='creationBar' />">Création d'un nouveau bar</a>
+	<a href="<s:url action='formSearchBar' />">Recherche</a>
 </body>
 </html>
