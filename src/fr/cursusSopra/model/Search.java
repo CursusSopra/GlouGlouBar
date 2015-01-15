@@ -187,8 +187,7 @@ public class Search {
 	public Search() {
 		lstCP = new ArrayList<String>();
 		lstcat = new ArrayList<CategorieBar>();
-		CategorieBar catBar = new CategorieBar();
-		lstcat = catBar.getListeCategoriesBar();
+		lstcat = CategorieBar.getListeCategoriesBar();
 
 		Connection cnx = PostgresConnection.GetConnexion();
 		// requete pour selectionner tous les codes postaux

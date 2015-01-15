@@ -1,21 +1,14 @@
 package fr.cursusSopra.action;
 
-import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import fr.cursusSopra.model.CategorieBar;
 import fr.cursusSopra.model.Search;
 
 public class FormSearchBarAction extends ActionSupport {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Search searchElt;
-
 
 	public String execute() {
 		setSearchElt(new Search());
