@@ -5,9 +5,13 @@
 
 <struts>
 	<package name="creation" extends="struts-default">
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+		
 		<action name="creationBar" class="fr.cursusSopra.action.CreationBarAction"
 			method="accessFormCreation">
-			<result name="success">views/creation/CreationBar.jsp</result>
+			<result name="success" type="tiles">creationBar</result>
 		</action>
 		<action name="addBar" class="fr.cursusSopra.action.CreationBarAction"
 			method="execute">

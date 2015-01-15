@@ -5,8 +5,13 @@
 "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-    <definition name="/welcome" template="/layouts/layout.jsp">
-        <put-attribute name="title" value="Welcome Page"/>
+    <definition name="index" template="/layouts/layoutmanager.jsp">
+        <put-attribute name="title" value="Index"/>
         <put-attribute name="body" value="/views/index.jsp"/>
     </definition>
+
+	<definition name="creationBar" extends="index">
+		<put-attribute name="title"  value="Création d'un Bar"/>
+		<put-attribute name="body"   value="/views/creation/CreationBar.jsp"/>     
+	</definition>
 </tiles-definitions>
