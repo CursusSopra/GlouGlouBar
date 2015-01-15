@@ -79,11 +79,10 @@
 			</section>
 		</div>
 	</div>
-
 	<script>
-	
 		$(function() {
 			$('#addEval').submit(function() {
+				
 				var str1 = "";
 				$.each($('.rating'), function(index, elt) {
 					str1 += $(elt).val() + ',';
@@ -98,7 +97,6 @@
 				$('#idCriteres').val(str2);
 			});
 		});
-		
 	</script>
 </body>
 </html>
