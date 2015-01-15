@@ -119,18 +119,13 @@ body {
 				</div>
 				<div class="panel-body">
 					<div>
-						<s:iterator value="leBar.lstNotes" status="idx">
+						<s:iterator value="leBar.lstEvals">
 							<input disabled="true" type="number" class="rating " min=0 max=5
-								step=0.1 data-size="sm" data-rtl="false" value="<s:property />"
+								step=0.1 data-size="sm" data-rtl="false" value="<s:property value="leBar.lstEvals.note"/>"
 								data-show-caption="false" data-show-clear="false"
 								data-read-only="true" data-hover-enabled="false" />
 
-							<s:property value="lstCriteresEval[1].libcourt" />
-							<s:property value="%{#idx.index}" />
-
-							<s:property value="lstCriteresEval[%{#idx.index}].libcourt" />
-							<s:property
-								value="getText('lstCriteresEval[',%{#idx.index},'].libcourt')" />
+							<s:property value="leBar.lstEvals.libcourt" />
 						</s:iterator>
 					</div>
 

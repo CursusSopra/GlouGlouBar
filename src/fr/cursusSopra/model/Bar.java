@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.cursusSopra.tech.BarEvaluation;
 import fr.cursusSopra.tech.PostgresConnection;
 
 public class Bar {
@@ -26,22 +27,48 @@ public class Bar {
 	private List<Horaire> lstHoraires;
 	private List<CategorieBar> lstCategorie;
 	private List<Critere> lstCritere;
+	
+	private List<BarEvaluation> lstEvals;
 
 	public List<Horaire> getLstHoraires() {
 		return lstHoraires;
 	}
-	
-public List<Double> getLstNotes() {
-		
+
+	public List<BarEvaluation> getLstEvals() {
+		List<BarEvaluation> lstEval = new ArrayList<BarEvaluation>();
+
+		Connection cnx = PostgresConnection.GetConnexion();
+		String query = "SELECT AVG(note) as note, libcourt FROM critiques INNER JOIN evaluations USING (idcritique)     INNER JOIN critereseval USING (idcriteval) WHERE idbar = ? GROUP BY libcourt";
+		PreparedStatement ps;
+		try {
+			ps = cnx.prepareStatement(query);
+			ps.setInt(1, idBar);
+			ResultSet rs = ps.executeQuery();
+
+			// remplissage de l'objet si le bar est trouvé
+			while (rs.next()) {
+				BarEvaluation be = new BarEvaluation();
+				be.setLibCourt(rs.getString("libcourt"));
+				be.setNote(rs.getDouble("note"));
+				lstEval.add(be);
+			}
+		} catch (SQLException e) {
+		}
+
+		return lstEval;
+	}
+
+	public List<Double> getLstNotes() {
+
 		double globalNote;
 		List<Double> lst = new ArrayList<>();
-		
+
 		Connection cnx = PostgresConnection.GetConnexion();
 		// requete de selection du bar d'idbar = id
 		String query = "SELECT SUM (note) as total, count (*) as idx FROM evaluations INNER JOIN critiques USING (idcritique) WHERE (idbar = ? and idcriteval=?)";
 		int i;
-		for (i=1;i<=5;i++){
-			globalNote=0;
+		for (i = 1; i <= 5; i++) {
+			globalNote = 0;
 			try {
 				PreparedStatement ps = cnx.prepareStatement(query);
 				ps.setInt(1, idBar);
@@ -50,7 +77,8 @@ public List<Double> getLstNotes() {
 
 				// remplissage de l'objet si le bar est trouvé
 				if (rs.next()) {
-					globalNote =  (double) rs.getInt("total")/ (double) rs.getInt("idx");
+					globalNote = (double) rs.getInt("total")
+							/ (double) rs.getInt("idx");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -71,20 +99,20 @@ public List<Double> getLstNotes() {
 	public String getLienImage() {
 		return ("content/images/" + String.valueOf(idBar) + ".jpg");
 	}
-	
+
 	public String getShortDescription() {
 		int len = this.description.length();
 		int maxlength = 40;
-		if (len < maxlength){
+		if (len < maxlength) {
 			return description;
-		}else{
+		} else {
 			int index = this.description.indexOf(" ", maxlength);
-			return this.description.substring(0, index)+" [...]";
+			return this.description.substring(0, index) + " [...]";
 		}
 	}
 
 	public void setShortDescription(String shortDescription) {
-		
+
 	}
 
 	public Bar() {
@@ -137,7 +165,7 @@ public List<Double> getLstNotes() {
 	public void setIdBar(int idBar) {
 		this.idBar = idBar;
 	}
-	
+
 	public int getIdBar() {
 		return idBar;
 	}
@@ -241,7 +269,7 @@ public List<Double> getLstNotes() {
 		} catch (SQLException e) {
 		}
 	}
-	
+
 	private void buildAdresse() {
 		Connection cnx = PostgresConnection.GetConnexion();
 
@@ -254,7 +282,7 @@ public List<Double> getLstNotes() {
 			ResultSet rs = ps.executeQuery();
 
 			// remplissage de l'objet si le bar est trouvé
-			if (rs.next()) {			
+			if (rs.next()) {
 				setVoie(rs.getString("voie"));
 				setCp(rs.getString("cp"));
 				setVille(rs.getString("ville"));
@@ -291,7 +319,7 @@ public List<Double> getLstNotes() {
 			ResultSet rsAdresse = psAdresse.executeQuery();
 			rsAdresse.next();
 			return rsAdresse.getInt(1);
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
@@ -303,7 +331,7 @@ public List<Double> getLstNotes() {
 	 * 
 	 * @return
 	 */
-	public int CreateCriteres(int idBar){
+	public int CreateCriteres(int idBar) {
 		Connection cnx = PostgresConnection.GetConnexion();
 
 		String queryCriteres = "INSERT INTO criteresbars (idbar, idcritere) VALUES (?, ?)";
@@ -313,9 +341,9 @@ public List<Double> getLstNotes() {
 			PreparedStatement psCriteres = cnx.prepareStatement(queryCriteres);
 			int i;
 			int retour = 1;
-			for (i=0;i<tabCriteres.length;i++){
+			for (i = 0; i < tabCriteres.length; i++) {
 				psCriteres.setInt(1, idBar);
-				psCriteres.setInt(2,tabCriteres[i]);
+				psCriteres.setInt(2, tabCriteres[i]);
 				retour = psCriteres.executeUpdate();
 			}
 			return retour;
@@ -324,25 +352,26 @@ public List<Double> getLstNotes() {
 			return 0;
 		}
 	}
-	
+
 	/**
 	 * Ajoute des catégories à un bar. Appelée dans la méthode Create()
 	 * 
 	 * @return
 	 */
-	public int CreateCategories(int idBar){
+	public int CreateCategories(int idBar) {
 		Connection cnx = PostgresConnection.GetConnexion();
 
 		String queryCategories = "INSERT INTO categoriesbars (idbar, idcategorie) VALUES (?, ?)";
 
 		try {
 			// Récupération du code postal de la ville sélectionnée
-			PreparedStatement psCategories = cnx.prepareStatement(queryCategories);
+			PreparedStatement psCategories = cnx
+					.prepareStatement(queryCategories);
 			int i;
 			int retour = 1;
-			for (i=0;i<tabCategories.length;i++){
+			for (i = 0; i < tabCategories.length; i++) {
 				psCategories.setInt(1, idBar);
-				psCategories.setInt(2,tabCategories[i]);
+				psCategories.setInt(2, tabCategories[i]);
 				retour = psCategories.executeUpdate();
 			}
 			return retour;
@@ -351,7 +380,7 @@ public List<Double> getLstNotes() {
 			return 0;
 		}
 	}
-	
+
 	/**
 	 * Ajoute un bar dans la base de données à partir des données connues dans
 	 * l'objet ci-présent
@@ -372,17 +401,17 @@ public List<Double> getLstNotes() {
 			ps.setString(3, site);
 			ps.setString(4, description);
 			ps.setInt(5, idAdresse);
-			
+
 			ResultSet rs = ps.executeQuery();
 			rs.next();
-			//L'id du bar créé automatiquement est récupéré
+			// L'id du bar créé automatiquement est récupéré
 			int idBar = rs.getInt(1);
-			//On remplit la table "criteresbars"
-			if(tabCriteres.length!=0){
+			// On remplit la table "criteresbars"
+			if (tabCriteres.length != 0) {
 				CreateCriteres(idBar);
 			}
-			//On remplit la table "categoriesbars"
-			if(tabCategories.length!=0){
+			// On remplit la table "categoriesbars"
+			if (tabCategories.length != 0) {
 				CreateCategories(idBar);
 			}
 			return 1;
