@@ -1,11 +1,13 @@
 package fr.cursusSopra.action;
 
+import java.sql.Time;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.cursusSopra.model.Bar;
 import fr.cursusSopra.model.Horaire;
+import fr.cursusSopra.model.Jour;
 import fr.cursusSopra.model.Ville;
 import fr.cursusSopra.model.CategorieBar;
 import fr.cursusSopra.model.Critere;
@@ -26,7 +28,10 @@ public class CreationBarAction extends ActionSupport {
 	private List<CategorieBar> lstCategories;
 	private List<Critere> lstCriteres;
 	private List<String> champVille;
-	private List<String> lstJours;
+	private List<Jour> lstJours;
+	private String idJour;
+	private String idHeureDebut;
+	private String idHeureFin;
 
 	private int[] checkboxCritere;
 	private int[] checkboxCategorie;
@@ -42,6 +47,14 @@ public class CreationBarAction extends ActionSupport {
 		leBar.setTabCriteres(checkboxCritere);
 		leBar.setTabCategories(checkboxCategorie);
 		
+		String[] tabJoursOuvert = idJour.split(",");
+		String[] tabHeureDebutOuvert = idHeureDebut.split(",");
+		String[] tabHeureFinOuvert = idHeureFin.split(",");
+		
+		leBar.setTabJoursOuvert(tabJoursOuvert);
+		leBar.setTabHeureDebutOuvert(tabHeureDebutOuvert);
+		leBar.setTabHeureFinOuvert(tabHeureFinOuvert);
+		
 		int result = leBar.Create();
 		
 		return result == 0 ? ERROR : SUCCESS;
@@ -51,7 +64,7 @@ public class CreationBarAction extends ActionSupport {
 		setChampVille(Ville.getLstChampVille());
 		lstCategories = CategorieBar.getListeCategoriesBar();
 		lstCriteres = Critere.getListeCriteres();
-		lstJours = Horaire.getLstJours();
+		lstJours = Jour.getLstJours();
 		return SUCCESS;
 	}
 
@@ -103,7 +116,19 @@ public class CreationBarAction extends ActionSupport {
 		this.checkboxCategorie = checkboxCategorie;
 	}
 	
-	public List<String> getLstJours() {
+	public void setIdJour(String idJour) {
+		this.idJour = idJour;
+	}
+
+	public void setIdHeureDebut(String idHeureDebut) {
+		this.idHeureDebut = idHeureDebut;
+	}
+
+	public void setIdHeureFin(String idHeureFin) {
+		this.idHeureFin = idHeureFin;
+	}
+
+	public List<Jour> getLstJours() {
 		return lstJours;
 	}
 }

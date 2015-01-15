@@ -69,25 +69,25 @@
 
 			<fieldset>
 				<legend>Horaires</legend>
-			<div class="form-group">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Jours</th>
-							<th>Heure d'ouverture</th>
-							<th>Heure de fermeture</th>
-							<th>Ajouter</th>
-							<th>Fermé</th>
-						</tr>
-					</thead>
-					<tbody id="inputHoraires">
-					</tbody>
-				</table>
-				<input type="hidden" name="idJour" id="idJour"/>
-				<input type="hidden" name="idHeureDebut" id="idHeureDebut"/>
-				<input type="hidden" name="idHeureFin" id="idHeureFin"/>
-			</div>
-			<div class="form-group" id="boutonPlusHoraires"></div>
+				<div class="form-group">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Jours</th>
+								<th>Heure d'ouverture</th>
+								<th>Heure de fermeture</th>
+								<th>Ajouter</th>
+								<th>Fermé</th>
+							</tr>
+						</thead>
+						<tbody id="inputHoraires">
+						</tbody>
+					</table>
+					<input type="hidden" name="idJour" id="idJour" /> <input
+						type="hidden" name="idHeureDebut" id="idHeureDebut" /> <input
+						type="hidden" name="idHeureFin" id="idHeureFin" />
+				</div>
+				<div class="form-group" id="boutonPlusHoraires"></div>
 			</fieldset>
 
 			<div class="form-group">
@@ -136,7 +136,7 @@
 		var boutonPlus = '<input type="button" class="boutonPlusHoraires" value="+" />';
 		var boutonMoins = '<input type="button" class="boutonMoinsHoraires" value="-" />';
 
-		var inputHoraire = '<s:iterator var="i" status="idx" value="lstJours"><tr><td><input type="hidden" class="jour" value="<s:property />"/><s:property /></td><td>'
+		var inputHoraire = '<s:iterator value="lstJours"><tr><td><input type="hidden" class="jour" value="<s:property value="idJour"/>"/><span><s:property value="jour"/></span></td><td>'
 				+ selectHoraireDebut
 				+ '</td><td>'
 				+ selectHoraireFin
@@ -179,7 +179,7 @@
 				});
 				alert(szJour);
 			});
-			
+
 			$('#idJour').val(szJour);
 			$('#idHeureDebut').val(szHeureDebut);
 			$('#idHeureFin').val(szHeureFin);
@@ -230,7 +230,7 @@
 				cloneFin = $(this).parent().parent().children(":nth-child(3)")
 						.children();
 				cloneJour = $(this).parent().parent().children(":nth-child(1)")
-						.children();
+						.children("input");
 			}
 
 			cloneDebut.parent().append('<br />');
@@ -246,10 +246,12 @@
 			var nbChampsHoraire = $(this).parent().parent().children(
 					":nth-child(2)").children("select").length;
 			if (nbChampsHoraire != 1) {
+				idJour = $(this).parent().parent().children(":nth-child(1)")
+						.children(":nth-child(1)").val();
 				leJour = $(this).parent().parent().children(":nth-child(1)")
-						.children().val();
-				hiddenJour = '<input type="hidden" class="jour" value="'+leJour+'"/>'
-						+ leJour;
+						.children(":nth-child(2)").html();
+				hiddenJour = '<input type="hidden" class="jour" value="'+idJour+'"/><span>'
+						+ leJour + '</span>';
 				$(this).parent().parent().children(":nth-child(1)").html(
 						hiddenJour);
 				$(this).parent().parent().children(":nth-child(2)").html(
