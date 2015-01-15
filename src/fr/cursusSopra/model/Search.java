@@ -14,6 +14,7 @@ public class Search {
 	
 	private String evaluation;
 	private List<String >lstCP;
+	private List<CategorieBar> lstcat;
 	private List<Bar> lstbar;
 	
 	public List<Bar> getLstbar() {
@@ -89,9 +90,39 @@ public class Search {
 		}
 	}
 	
+	public void SearchIdBarByCat(int[] tabcat) {
+		Connection cnx = PostgresConnection.GetConnexion();
+		lstbar= new ArrayList<Bar>();
+		lstcat= CategorieBar.getListeCategoriesBar();
+		String query = "SELECT distinct idbar FROM categoriesbars WHERE idcategorie IN (";
+		for(int i=0;i<tabcat.length;i++){
+			query+="'"+ tabcat[i]+ "'";
+			if(i<tabcat.length-1){
+				query+=",";
+			}
+		}
+		query+=")";
+		try {
+			PreparedStatement ps = cnx.prepareStatement(query);
+			ResultSet rs= ps.executeQuery();
+			//remplissage tant qu'on trouve des catégories
+			while (rs.next())
+			{
+				Bar LeBar = new Bar(rs.getInt("idbar"));
+				lstbar.add(LeBar);
+			}		
+			rs.close();		
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
 	
 	public Search(){
 		lstCP = new ArrayList<String>();
+		lstcat= new ArrayList<CategorieBar>();
+		CategorieBar catBar= new CategorieBar();
+		lstcat=catBar.getListeCategoriesBar();
+		
 
 		Connection cnx = PostgresConnection.GetConnexion();
 		//requete pour selectionner tous les codes postaux
@@ -137,6 +168,14 @@ public class Search {
 	}
 	public void setEvaluation(String evaluation) {
 		this.evaluation = evaluation;
+	}
+
+	public List<CategorieBar> getLstcat() {
+		return lstcat;
+	}
+
+	public void setLstcat(List<CategorieBar> lstcat) {
+		this.lstcat = lstcat;
 	}
 	
 }

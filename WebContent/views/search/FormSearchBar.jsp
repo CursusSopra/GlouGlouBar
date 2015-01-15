@@ -26,10 +26,22 @@
 				<input type="checkbox" name="cpSelected" value="<s:property />" />
 				<s:property />
 			</s:iterator>
+			
+			<p>
+				<em>Type de bar</em>
+			</p>
 
+			<s:iterator value="searchElt.lstcat">
+				<input type="checkbox" name="catSelected" value="<s:property value="idCategorie" />" />
+				<s:property value="categorieBar" />
+			</s:iterator>
+	<p>
+		<em>Adresse</em>
+	</p>
 			<input class="form-control" id="idAdresse" name="adresse" /> <input
 				class="form-control" id="idNom" name="nom" />
-
+	
+			<br><br><br><br>
 			<div class="col-lg-4">
 				<button type="submit" id="test" class="btn btn-primary btn-center">
 					<span class="glyphicon glyphicon-ok"></span> Rechercher

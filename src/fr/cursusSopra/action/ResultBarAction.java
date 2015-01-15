@@ -17,8 +17,19 @@ public class ResultBarAction extends ActionSupport {
 
 	private Search searchElt;
 	private String[] cpSelected;
+	private int[] catSelected;
+
+	public int[] getCatSelected() {
+		return catSelected;
+	}
+
+	public void setCatSelected(int[] catSelected) {
+		this.catSelected = catSelected;
+	}
+
 	private List<Bar> lstBars;
 	private String adresse;
+
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
@@ -38,18 +49,23 @@ public class ResultBarAction extends ActionSupport {
 	}
 
 	public String execute() {
-
-		if (adresse.isEmpty() && nom.isEmpty() && cpSelected != null) {
-			ExecuteSearchByCP();
-		}
-		if (!adresse.isEmpty() && nom.isEmpty() && cpSelected == null) {
-			ExecuteSearchByAdresse();
-		}
 		
+		  ExecuteSearchByCat();
+		/* 
+		 * if (adresse.isEmpty() && nom.isEmpty() && cpSelected != null{// &&
+		 * catSelected.length == 0) { ExecuteSearchByCP(); } if
+		 * (!adresse.isEmpty() && nom.isEmpty() && cpSelected == null){// &&
+		 * catSelected.length == 0) { ExecuteSearchByAdresse(); }
+		 */
+		/*
+		 * if (adresse.isEmpty() && nom.isEmpty()){ //&& catSelected.length > 0)
+		 * { ExecuteSearchByCat(); }
+		 */
 
 		return SUCCESS;
 
 	}
+
 	private void ExecuteSearchByCP() {
 		setLstBars(new ArrayList<Bar>());
 		searchElt = new Search();
@@ -57,10 +73,17 @@ public class ResultBarAction extends ActionSupport {
 		setLstBars(searchElt.getLstbar());
 	}
 
+	private void ExecuteSearchByCat() {
+		setLstBars(new ArrayList<Bar>());
+		searchElt = new Search();
+		searchElt.SearchIdBarByCat(catSelected);
+		setLstBars(searchElt.getLstbar());
+	}
+
 	private void ExecuteSearchByAdresse() {
 		setLstBars(new ArrayList<Bar>());
 		searchElt = new Search();
-		searchElt.SearchByAdresse(adresse); 
+		searchElt.SearchByAdresse(adresse);
 		setLstBars(searchElt.getLstbar());
 	}
 
