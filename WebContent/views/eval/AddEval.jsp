@@ -9,12 +9,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="css/bootstrap.css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-<script src="js/star-rating.min.js" type="text/javascript"></script>
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
-	rel="stylesheet">
+	rel="stylesheet" />
 <link href="css/star-rating.min.css" media="all" rel="stylesheet"
 	type="text/css" />
 
@@ -27,24 +24,25 @@
 	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 col-sm-offset-3 col-sm-6">
 			<section class="content-wrapper main-content clear-fix">
-				<form id="addEval" class="form-horizontal" method="post" 
-										action="<s:url action='addEval'/>">
+				<form id="addEval" class="form-horizontal" method="post"
+					action="<s:url action='addEval'/>">
 
 					<s:iterator value="lstCriteresEval" status="idx">
 
 						<label class="col-lg-4 control-label"> <s:property
 								value="libcourt" />
 						</label>
-					<input class="critnumber" type="hidden" value='<s:property value="idcriteval" />' /> 
-						<input type="number" id='"<s:property value="libcourt" />" '  
-						 class="rating" min=0 max=5 step=1
-							data-size="sm" data-rtl="false" />
+						<input class="critnumber" type="hidden"
+							value='<s:property value="idcriteval" />' />
+						<input type="number" id='"<s:property value="libcourt" />" '
+							class="rating" min=0 max=5 step=1 data-size="sm" data-rtl="false" />
 
 					</s:iterator>
 
-					<input type="hidden" name="idBar" id="ididBar" value='<s:property value="idBar" />' /> 
-					<input type="hidden" name="idNotes" id="idNotes" />
-					<input type="hidden" name="idCriteres" id="idCriteres" />
+					<input type="hidden" name="idBar" id="ididBar"
+						value='<s:property value="idBar" />' /> <input type="hidden"
+						name="idNotes" id="idNotes" /> <input type="hidden"
+						name="idCriteres" id="idCriteres" />
 
 					<fieldset>
 						<div class="form-group">
@@ -52,8 +50,7 @@
 								<div class="row">
 									<div class="col-lg-6">
 										<br> <br> <label for="idCommentaire"
-											class="col-lg-4 control-label">Commentaire</label> 
-											<input
+											class="col-lg-4 control-label">Commentaire</label> <input
 											class="form-control" id="idCommentaire" name="commentaire" />
 									</div>
 									<div class="col-lg-6">&nbsp;</div>
@@ -79,15 +76,17 @@
 			</section>
 		</div>
 	</div>
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script src="js/star-rating.min.js" type="text/javascript"></script>
 	<script>
 		$(function() {
 			$('#addEval').submit(function() {
-				
+
 				var str1 = "";
 				$.each($('.rating'), function(index, elt) {
 					str1 += $(elt).val() + ',';
 				});
-				
+
 				var str2 = "";
 				$.each($('.critnumber'), function(index, elt) {
 					str2 += $(elt).val() + ',';

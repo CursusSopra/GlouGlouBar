@@ -19,14 +19,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="css/glouglouStyle.css" type="text/css" rel="stylesheet"/>
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="css/maps.css" type="text/css" rel="stylesheet"/>
 
 <link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" />
+	
+<link href="_css/glouglouStyle.css" type="text/css" rel="stylesheet"/>
+<link href="_css/maps.css" type="text/css" rel="stylesheet"/>
 <link href="css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
-
 
 <title>Index</title>
 
@@ -70,9 +69,9 @@
 	
 </body>
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIXm3hVBQgLwOmmsORoaxue1ZSqYx4rc0	"></script>
-<script src="js/maps.js" type="text/javascript"></script>
 
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIXm3hVBQgLwOmmsORoaxue1ZSqYx4rc0	"></script>
+<script src="_js/maps.js" type="text/javascript"></script>
 <script src="js/star-rating.min.js" type="text/javascript"></script>
 </html>

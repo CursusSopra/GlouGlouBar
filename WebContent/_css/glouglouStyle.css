@@ -1,26 +1,23 @@
-
-.handPointer{
+.handPointer {
 	cursor: pointer !important;
 }
 
 .vignetteImage {
-	width:300px;
-	height:200px;
+	width: 300px;
+	height: 200px;
 }
 
-.vignette{
+.vignette {
 	background-color: white;
 }
 
-vignette,
-.lead:hover{
-		font-style:italic;
-}
-vignette,
-.description:hover{
-		font-style:italic;
+vignette, .lead:hover {
+	font-style: italic;
 }
 
+vignette, .description:hover {
+	font-style: italic;
+}
 
 .linkStyle:link {
 	color: #000;
@@ -38,4 +35,3 @@ vignette,
 	color: #000;
 	text-decoration: none;
 }
-

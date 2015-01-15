@@ -13,7 +13,7 @@
 <script src="js/star-rating.min.js" type="text/javascript"></script>
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
-	rel="stylesheet">
+	rel="stylesheet" />
 <link href="css/star-rating.min.css" media="all" rel="stylesheet"
 	type="text/css" />
 
