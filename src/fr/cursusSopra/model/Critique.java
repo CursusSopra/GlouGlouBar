@@ -23,7 +23,7 @@ public class Critique {
 	}
 
 	//Ajout critique et evaluations correpsondante dans la BDD
-	public int AddCritique(List<Integer> Listnotes, String commentaire, int idbarfromAction) {
+	public int AddCritique(List<Integer> listnotes, List<Integer> listcriteres, String commentaire, int idbarfromAction) {
 		Connection cnx = PostgresConnection.GetConnexion();
 		String queryAddCrit = "INSERT INTO critiques (idbar,comm,datecomm ) VALUES (?,?, NOW() ) RETURNING idcritique";
 		PreparedStatement psAddCrit;
@@ -39,9 +39,9 @@ public class Critique {
 			int result = 0;
 			
 			//Ajout des evaluation correspondant a cette critique
-			for (int i = 0; i < Listnotes.size(); i++) {
+			for (int i = 0; i < listnotes.size(); i++) {
 
-				Evaluation evalTest = new Evaluation(rs.getInt("idcritique"),	i + 1, Listnotes.get(i) );
+				Evaluation evalTest = new Evaluation(rs.getInt("idcritique"),listcriteres.get(i), listnotes.get(i) );
 				result=evalTest.AddEval();
 			}
 			rs.close();
