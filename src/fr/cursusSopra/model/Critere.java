@@ -9,6 +9,7 @@ import fr.cursusSopra.tech.PostgresConnection;
 public class Critere {
 	private int idCritere;
 	private String critere;
+	private int idBar;
 
 	public Critere(){}
 
@@ -18,6 +19,14 @@ public class Critere {
 
 	public String getCritere() {
 		return critere;
+	}
+	
+	public int getIdBar() {
+		return idBar;
+	}
+
+	public void setIdBar(int idBar) {
+		this.idBar = idBar;
 	}
 
 	/**
@@ -49,5 +58,34 @@ public class Critere {
 		}
 		
 		return lstCritereBar;
+	}
+	
+	public static List<Critere> listeCritere(int idBar){
+		List<Critere> lstCritere = new ArrayList<Critere>();
+		
+		Connection cnx = PostgresConnection.GetConnexion();
+		
+		//requete de selection de tous les bars
+		String query = "SELECT idcritere, critere FROM criteresbars inner join bars using (idbar) inner join criteresspeciaux using (idcritere) WHERE idbar =?";
+		
+		try {
+			PreparedStatement ps = cnx.prepareStatement(query);
+			ps.setInt(1, idBar);
+			ResultSet rs = ps.executeQuery();
+			
+			//remplissage tant qu'on trouve des criteres
+			while (rs.next())
+			{
+				Critere critere = new Critere();
+				critere.critere = rs.getString("critere");	
+				critere.idCritere = rs.getInt("idcritere");
+				lstCritere.add(critere);
+			}		
+			rs.close();		
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		return lstCritere;
 	}
 }

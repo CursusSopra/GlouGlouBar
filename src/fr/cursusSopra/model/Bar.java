@@ -1,3 +1,5 @@
+//Virgile
+
 package fr.cursusSopra.model;
 
 import java.sql.*;
@@ -19,34 +21,43 @@ public class Bar {
 	private String shortDescription;
 	private int[] tabCriteres;
 	private int[] tabCategories;
-	private Double globalNote;
+	private List<Double> lstNotes;
 
 	private List<Horaire> lstHoraires;
+	private List<CategorieBar> lstCategorie;
+	private List<Critere> lstCritere;
 
 	public List<Horaire> getLstHoraires() {
 		return lstHoraires;
 	}
 	
-	public Double getGlobalNote() {
-		globalNote = (double) 0;
+public List<Double> getLstNotes() {
+		
+		double globalNote;
+		List<Double> lst = new ArrayList<>();
+		
 		Connection cnx = PostgresConnection.GetConnexion();
 		// requete de selection du bar d'idbar = id
-		String query = "SELECT SUM (note) as total, count (*) as idx FROM evaluations INNER JOIN critiques USING (idcritique) WHERE idbar = ?";
+		String query = "SELECT SUM (note) as total, count (*) as idx FROM evaluations INNER JOIN critiques USING (idcritique) WHERE (idbar = ? and idcriteval=?)";
+		int i;
+		for (i=1;i<=5;i++){
+			globalNote=0;
+			try {
+				PreparedStatement ps = cnx.prepareStatement(query);
+				ps.setInt(1, idBar);
+				ps.setInt(2, i);
+				ResultSet rs = ps.executeQuery();
 
-		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
-			ps.setInt(1, idBar);
-			ResultSet rs = ps.executeQuery();
-
-			// remplissage de l'objet si le bar est trouvé
-			if (rs.next()) {
-				globalNote =  (double) rs.getInt("total")/ (double) rs.getInt("idx");
+				// remplissage de l'objet si le bar est trouvé
+				if (rs.next()) {
+					globalNote =  (double) rs.getInt("total")/ (double) rs.getInt("idx");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+			lst.add(globalNote);
 		}
-		
-		return globalNote;
+		return lst;
 	}
 
 	public void setTabCategories(int[] tabCategories) {
@@ -123,8 +134,32 @@ public class Bar {
 		this.cp = cp;
 	}
 
+	public void setIdBar(int idBar) {
+		this.idBar = idBar;
+	}
+	
 	public int getIdBar() {
 		return idBar;
+	}
+
+	public List<CategorieBar> getLstCategorie() {
+		return lstCategorie;
+	}
+
+	public List<Critere> getLstCritere() {
+		return lstCritere;
+	}
+
+	public String getVoie() {
+		return voie;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public String getCp() {
+		return cp;
 	}
 
 	/**
@@ -137,6 +172,8 @@ public class Bar {
 		Connection cnx = PostgresConnection.GetConnexion();
 		idBar = id;
 		lstHoraires = Horaire.getListeHoraires(idBar);
+		lstCategorie = CategorieBar.listeCategorie(idBar);
+		lstCritere = Critere.listeCritere(idBar);
 		// requete de selection du bar d'idbar = id
 		String query = "SELECT nom, numtel, site, description FROM bars WHERE idbar = ?";
 
@@ -148,6 +185,7 @@ public class Bar {
 			// remplissage de l'objet si le bar est trouvé
 			if (rs.next()) {
 				fillBar(this, rs);
+				buildAdresse();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -201,6 +239,28 @@ public class Bar {
 			thisBar.site = rs.getString("site");
 			thisBar.description = rs.getString("description");
 		} catch (SQLException e) {
+		}
+	}
+	
+	private void buildAdresse() {
+		Connection cnx = PostgresConnection.GetConnexion();
+
+		// requete de selection du bar d'idbar = id
+		String query = "SELECT voie, cp, ville from adresses inner join bars using(idadresse) inner join villes using (cp) where idbar = ?";
+
+		try {
+			PreparedStatement ps = cnx.prepareStatement(query);
+			ps.setInt(1, idBar);
+			ResultSet rs = ps.executeQuery();
+
+			// remplissage de l'objet si le bar est trouvé
+			if (rs.next()) {			
+				setVoie(rs.getString("voie"));
+				setCp(rs.getString("cp"));
+				setVille(rs.getString("ville"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 

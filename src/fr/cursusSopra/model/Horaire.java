@@ -1,3 +1,7 @@
+/**
+ * Pierre Peclet
+ */
+ 
 package fr.cursusSopra.model;
 
 import java.sql.*;
@@ -14,6 +18,32 @@ public class Horaire {
 	private Time heureFin;
 
 	public Horaire(){}
+	
+	/**
+	 * Récupère la liste des jours
+	 * @return
+	 */
+	
+	public static List<String> getLstJours(){
+		List<String> lstJours = new ArrayList<String>();
+		Connection cnx = PostgresConnection.GetConnexion();
+
+		String queryJour = "SELECT jour FROM jours";
+		
+		Statement state;
+		try {
+			state = cnx.createStatement();
+			ResultSet rsLstJours = state.executeQuery(queryJour);
+			while(rsLstJours.next()){
+				lstJours.add(rsLstJours.getString("jour"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+				
+		return lstJours;
+	}
 	
 	public int getIdHoraire() {
 		return idHoraire;

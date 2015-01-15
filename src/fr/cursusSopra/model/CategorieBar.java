@@ -9,6 +9,7 @@ import fr.cursusSopra.tech.PostgresConnection;
 public class CategorieBar {
 	private int idCategorie;
 	private String categorieBar;
+	private int idBar;
 
 	public CategorieBar(){}
 
@@ -18,6 +19,14 @@ public class CategorieBar {
 
 	public String getCategorieBar() {
 		return categorieBar;
+	}
+	
+	public int getIdBar() {
+		return idBar;
+	}
+
+	public void setIdBar(int idBar) {
+		this.idBar = idBar;
 	}
 
 	/**
@@ -49,5 +58,34 @@ public class CategorieBar {
 		}
 		
 		return lstCategorieBar;
+	}
+	
+	public static List<CategorieBar> listeCategorie(int idBar){
+		List<CategorieBar> lstCategorie = new ArrayList<CategorieBar>();
+		
+		Connection cnx = PostgresConnection.GetConnexion();
+		
+		//requete de selection de tous les bars
+		String query = "SELECT idcategorie, categoriebar FROM categoriesbars inner join bars using (idbar) inner join categories using (idcategorie) WHERE idbar = ?";
+		
+		try {
+			PreparedStatement ps = cnx.prepareStatement(query);
+			ps.setInt(1, idBar);
+			ResultSet rs = ps.executeQuery();
+			
+			//remplissage tant qu'on trouve des catégories
+			while (rs.next())
+			{
+				CategorieBar categorieBar = new CategorieBar();
+				categorieBar.categorieBar = rs.getString("categoriebar");
+				categorieBar.idCategorie = rs.getInt("idcategorie");
+				lstCategorie.add(categorieBar);
+			}		
+			rs.close();		
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		return lstCategorie;
 	}
 }

@@ -1,29 +1,38 @@
+//Propriete de Florian et Adeline
+
 package fr.cursusSopra.model;
 
 import java.sql.*;
-import java.util.*;
 
 import fr.cursusSopra.tech.PostgresConnection;
 
 public class Evaluation {
 
-	private int ideval;
+	//private int ideval;  //Propriété de la table Evaluation mais jamais utilisé dans cette classe, donc commenter
 	private int idcritique;
 	private int idcriteval;
 	private int note;
-	private int nombreCriteres;
-	private List<String> nomCritere;
 
-	public int AddEval(int idcritiqueF, int idcritevalF, int noteF) {
-		this.idcriteval = idcriteval;
+	// Constructeur vide
+	public Evaluation() {}
+	
+	//Constructeur 
+	public Evaluation(int idcritiqueExt, int idcritevalExt, int noteExt) {
+		idcriteval = idcritevalExt;
+		idcritique = idcritiqueExt;
+		note = noteExt;
+	}
+
+	//Ajoute l'evaluation dans la BDD
+	public int AddEval() {
 		Connection cnx = PostgresConnection.GetConnexion();
-		String queryAddEval = "INSERT INTO evaluations (idcritique,idcriteval,note ) VALUES (?,?, ? )";
+		String queryAddEval = "INSERT INTO evaluations (idcritique,idcriteval,note ) VALUES (?,?, ?)";
 		PreparedStatement psAddEval;
 		try {
 			psAddEval = cnx.prepareStatement(queryAddEval);
-			psAddEval.setInt(1, idcritiqueF);
-			psAddEval.setInt(2, idcritevalF);
-			psAddEval.setInt(3, noteF);
+			psAddEval.setInt(1, idcritique);
+			psAddEval.setInt(2, idcriteval);
+			psAddEval.setInt(3, note);
 
 			int result = psAddEval.executeUpdate();
 
@@ -35,8 +44,5 @@ public class Evaluation {
 		}
 	}
 
-	// Constructeur
-	public Evaluation() {
 
-	}
 }
