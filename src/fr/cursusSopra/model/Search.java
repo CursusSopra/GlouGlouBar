@@ -38,7 +38,7 @@ public class Search {
 		//requete de selection de tous les bars
 		//String query = "SELECT idbar FROM bars WHERE idadresse=(SELECT idadresse FROM adresses WHERE cp IN (?))";
 		
-		String query = "SELECT idbar FROM bars WHERE idadresse=(SELECT idadresse FROM adresses WHERE cp IN (";
+		String query = "SELECT idbar FROM bars WHERE idadresse IN (SELECT idadresse FROM adresses WHERE cp IN (";
 		for(int i=0;i<tabcp.length;i++){
 			query+="'"+ tabcp[i]+ "'";
 			if(i<tabcp.length-1){
@@ -63,6 +63,32 @@ public class Search {
 			e.printStackTrace();
 		}
 	}
+	
+	public void SearchByAdresse(String strElt){
+		Connection cnx = PostgresConnection.GetConnexion();
+		lstbar= new ArrayList<Bar>();
+		
+		strElt="%"+strElt+"%";
+		
+		String query = "SELECT idbar FROM adresses INNER JOIN bars ON adresses.idadresse=bars.idadresse WHERE LOWER(voie) LIKE LOWER(?)";
+		
+		
+		try {
+			PreparedStatement ps = cnx.prepareStatement(query);
+			ps.setString(1, strElt);
+			ResultSet rs= ps.executeQuery();
+			//remplissage tant qu'on trouve des catégories
+			while (rs.next())
+			{
+				Bar LeBar = new Bar(rs.getInt("idbar"));
+				lstbar.add(LeBar);
+			}		
+			rs.close();		
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public Search(){
 		lstCP = new ArrayList<String>();
