@@ -121,11 +121,11 @@ body {
 					<div>
 						<s:iterator value="leBar.lstEvals">
 							<input disabled="true" type="number" class="rating " min=0 max=5
-								step=0.1 data-size="sm" data-rtl="false" value="<s:property value="leBar.lstEvals.note"/>"
-								data-show-caption="false" data-show-clear="false"
-								data-read-only="true" data-hover-enabled="false" />
-
-							<s:property value="leBar.lstEvals.libcourt" />
+								step=0.1 data-size="sm" data-rtl="false"
+								value="<s:property value="note"/>" data-show-caption="false"
+								data-show-clear="false" data-read-only="true"
+								data-hover-enabled="false" />
+							<s:property value="libCourt" />
 						</s:iterator>
 					</div>
 
