@@ -21,9 +21,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/glouglouStyle.css" type="text/css" rel="stylesheet"/>
 <link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/maps.css" type="text/css" rel="stylesheet"/>
 
-<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-<script src="js/star-rating.min.js" type="text/javascript"></script>
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
@@ -66,5 +65,13 @@
 	</div>
 	<a href="<s:url action='creationBar' />">Création d'un nouveau bar</a>
 	<a href="<s:url action='formSearchBar' />">Recherche</a>
+	<div id="map-canvas" style="width: 20%; height: 20%; height: 40%; "></div>
+	
 </body>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIXm3hVBQgLwOmmsORoaxue1ZSqYx4rc0	"></script>
+<script src="js/maps.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script src="js/star-rating.min.js" type="text/javascript"></script>
 </html>
