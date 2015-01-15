@@ -31,6 +31,7 @@ var inputHoraireTousLesJours = '<tr><td>Tous les jours</td><td id="selectDebutTo
 
 $(function() {
 	$.getJSON('/Glougloubar/getJSONJours.action', function(data) {
+		$('#inputHoraires').html(inputHoraireTousLesJours);
 		$.each(data.listeDesJours, function(index, elt) {
 			$('#inputHoraires').append('<tr><td><input type="hidden" class="jour" value="'
 					+ elt.idJour + '"/><span>' + elt.jour + '</span></td><td>'
@@ -38,17 +39,17 @@ $(function() {
 					+ '</td><td>' + boutonPlus + boutonMoins + '</td><td>'
 					+ checkboxFerme + '</td></tr>');
 		});
-	}).fail(function() {console.log("KO");});
-
-//	var str = inputHoraire + inputHoraireTousLesJours;
+		
+		$('.boutonPlusHoraires').click(plusHoraires);
+		$('.boutonMoinsHoraires').click(moinsHoraires);
+		$('.boutonFerme').click(fermeAction);
+		$('#selectDebutTousLesJours').children().change(changeTousLesHorairesDebut);
+		$('#selectFinTousLesJours').children().change(changeTousLesHorairesFin);
+	});
 	
-	$('#inputHoraires').html(inputHoraireTousLesJours);
+	
 
-	$('.boutonPlusHoraires').click(plusHoraires);
-	$('.boutonMoinsHoraires').click(moinsHoraires);
-	$('.boutonFerme').click(fermeAction);
-	$('#selectDebutTousLesJours').children().change(changeTousLesHorairesDebut);
-	$('#selectFinTousLesJours').children().change(changeTousLesHorairesFin);
+	
 
 	$('#addBar').submit(function() {
 		var szJour = '';
