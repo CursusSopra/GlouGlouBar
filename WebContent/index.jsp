@@ -1,15 +1,3 @@
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -53,7 +41,7 @@
 					</p>
 					<input id="<s:property value="idBar" />" disabled="true"
 					type="number" class="handPointer rating " min=0 max=5 step=0.1 data-size="sm"
-					data-rtl="false" value="<s:property value="lstEvals[4].note" />"
+					data-rtl="false" value="<s:property value="lstNotes[4]" />"
 					data-show-caption="false" data-show-clear="false"
 					data-read-only="true" data-hover-enabled="false" />
 					<span class="description">
@@ -61,6 +49,7 @@
 					</span>
 				</a>
 			</div>
+
 		</s:iterator>
 	
 	</div>
