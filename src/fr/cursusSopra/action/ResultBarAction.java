@@ -1,6 +1,5 @@
 package fr.cursusSopra.action;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +7,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import fr.cursusSopra.model.Search;
 import fr.cursusSopra.model.Bar;
-
 
 public class ResultBarAction extends ActionSupport {
 
@@ -20,7 +18,17 @@ public class ResultBarAction extends ActionSupport {
 	private Search searchElt;
 	private String[] cpSelected;
 	private List<Bar> lstBars;
-	
+	private String adresse;
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	private String nom;
+
 	public Search getSearchElt() {
 		return searchElt;
 	}
@@ -30,11 +38,30 @@ public class ResultBarAction extends ActionSupport {
 	}
 
 	public String execute() {
+
+		if (adresse.isEmpty() && nom.isEmpty() && cpSelected != null) {
+			ExecuteSearchByCP();
+		}
+		if (!adresse.isEmpty() && nom.isEmpty() && cpSelected == null) {
+			ExecuteSearchByAdresse();
+		}
+		
+
+		return SUCCESS;
+
+	}
+	private void ExecuteSearchByCP() {
 		setLstBars(new ArrayList<Bar>());
-		searchElt= new Search();
+		searchElt = new Search();
 		searchElt.SearchIdBarByCp(cpSelected);
 		setLstBars(searchElt.getLstbar());
-		return SUCCESS;
+	}
+
+	private void ExecuteSearchByAdresse() {
+		setLstBars(new ArrayList<Bar>());
+		searchElt = new Search();
+		searchElt.SearchByAdresse(adresse); 
+		setLstBars(searchElt.getLstbar());
 	}
 
 	public String[] getCpSelected() {
@@ -52,5 +79,5 @@ public class ResultBarAction extends ActionSupport {
 	public void setLstBars(List<Bar> lstBars) {
 		this.lstBars = lstBars;
 	}
-	
+
 }
