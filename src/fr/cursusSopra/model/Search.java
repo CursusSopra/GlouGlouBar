@@ -40,14 +40,9 @@ public class Search {
 		// String query =
 		// "SELECT idbar FROM bars WHERE idadresse=(SELECT idadresse FROM adresses WHERE cp IN (?))";
 
-		String query = "SELECT idbar FROM bars WHERE idadresse IN (SELECT idadresse FROM adresses WHERE cp IN (";
-		for (int i = 0; i < tabcp.length; i++) {
-			query += "'" + tabcp[i] + "'";
-			if (i < tabcp.length - 1) {
-				query += ",";
-			}
-		}
-		query += "))";
+		String query = "SELECT idbar FROM bars WHERE idadresse IN (SELECT idadresse FROM adresses WHERE cp IN ";
+		query+=RequeteFromStringTab(tabcp);
+		query += ")";
 
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
@@ -86,7 +81,30 @@ public class Search {
 			e.printStackTrace();
 		}
 	}
+	
+	public String RequeteFromStringTab(String[] tabcp){
+		String query="(";
+		for (int i = 0; i < tabcp.length; i++) {
+			query += "'" + tabcp[i] + "'";
+			if (i < tabcp.length - 1) {
+				query += ",";
+			}}
+		query += ")";
+		return query;
+	}
 
+	public String RequeteFromIntTab(int[] tabcat){
+		String query="(";
+		for (int i = 0; i < tabcat.length; i++) {
+			query += "'" + tabcat[i] + "'";
+			if (i < tabcat.length - 1) {
+				query += ",";
+			}
+		}
+		query += ")";
+		return query;
+	}
+	
 	public void MultiSearch(String strNom, String strAdr, int[] tabcat,
 			String[] tabcp) {
 		Connection cnx = PostgresConnection.GetConnexion();
@@ -101,26 +119,13 @@ public class Search {
 
 		if (tabcat != null) {
 
-			query += " AND idcategorie IN (";
-			for (int i = 0; i < tabcat.length; i++) {
-				query += "'" + tabcat[i] + "'";
-				if (i < tabcat.length - 1) {
-					query += ",";
-				}
-			}
-			query += ") ";
-
+			query += " AND idcategorie IN ";
+			query += RequeteFromIntTab(tabcat);
 		}
 		if (tabcp != null) {
-			query += "AND cp IN (";
-			for (int i = 0; i < tabcp.length; i++) {
-				query += "'" + tabcp[i] + "'";
-				if (i < tabcp.length - 1) {
-					query += ",";
-				}
-			}
+			query += " AND cp IN ";
+			query+= RequeteFromStringTab(tabcp);
 		}
-		query += ")";
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
 			ps.setString(1, strAdr);
@@ -163,14 +168,8 @@ public class Search {
 	public void SearchIdBarByCat(int[] tabcat) {
 		Connection cnx = PostgresConnection.GetConnexion();
 		lstbar = new ArrayList<Bar>();
-		String query = "SELECT distinct idbar FROM categoriesbars WHERE idcategorie IN (";
-		for (int i = 0; i < tabcat.length; i++) {
-			query += "'" + tabcat[i] + "'";
-			if (i < tabcat.length - 1) {
-				query += ",";
-			}
-		}
-		query += ")";
+		String query = "SELECT distinct idbar FROM categoriesbars WHERE idcategorie IN ";
+		query+=RequeteFromIntTab(tabcat);
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
