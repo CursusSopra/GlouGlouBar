@@ -15,6 +15,21 @@ public class AddEvalAction extends ActionSupport {
 	private List<Integer> notes;
 	private String commentaire;
 
+	public String execute() {
+		notes = new ArrayList<Integer>();
+		String[] party = idLib.split(",");
+
+		for (int i = 0; i < party.length ; i++) {
+			notes.add(  Integer.parseInt( party[i] ) );
+		}
+
+		Critique critTest = new Critique();
+		critTest.AddCritique(notes, commentaire, idBar);
+
+		return SUCCESS;
+	}
+	
+
 	public void setCommentaire(String commentaire) {
 		this.commentaire = commentaire;
 	}
@@ -27,19 +42,5 @@ public class AddEvalAction extends ActionSupport {
 		this.idLib = idLib;
 	}
 
-	public String execute() {
-		notes = new ArrayList<Integer>();
-		String[] party = idLib.split(",");
-
-		// partsss =Arrays.asList( idLib.split(",") );
-		for (int i = 0; i < party.length ; i++) {
-			notes.add(  Integer.parseInt( party[i] ) );
-		}
-
-		Critique critTest = new Critique();
-		critTest.AddCritique(notes, commentaire, idBar);
-
-		return SUCCESS;
-	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.cursusSopra.model.Bar;
+import fr.cursusSopra.model.Horaire;
 import fr.cursusSopra.model.Ville;
 import fr.cursusSopra.model.CategorieBar;
 import fr.cursusSopra.model.Critere;
@@ -25,6 +26,8 @@ public class CreationBarAction extends ActionSupport {
 	private List<CategorieBar> lstCategories;
 	private List<Critere> lstCriteres;
 	private List<String> champVille;
+	private List<String> lstJours;
+
 	private int[] checkboxCritere;
 	private int[] checkboxCategorie;
 
@@ -48,6 +51,7 @@ public class CreationBarAction extends ActionSupport {
 		setChampVille(Ville.getLstChampVille());
 		lstCategories = CategorieBar.getListeCategoriesBar();
 		lstCriteres = Critere.getListeCriteres();
+		lstJours = Horaire.getLstJours();
 		return SUCCESS;
 	}
 
@@ -97,5 +101,9 @@ public class CreationBarAction extends ActionSupport {
 	
 	public void setCheckboxCategorie(int[] checkboxCategorie) {
 		this.checkboxCategorie = checkboxCategorie;
+	}
+	
+	public List<String> getLstJours() {
+		return lstJours;
 	}
 }

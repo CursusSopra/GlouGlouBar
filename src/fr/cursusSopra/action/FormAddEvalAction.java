@@ -13,6 +13,7 @@ public class FormAddEvalAction extends ActionSupport  {
 	
 
 	private List<CriteresEval> lstCriteresEval;
+	private int idBar;
 	
 	public String execute() {
 		lstCriteresEval = CriteresEval.lstCriteresEval();
@@ -26,6 +27,14 @@ public class FormAddEvalAction extends ActionSupport  {
 
 	public void setLstCriteresEval(List<CriteresEval> lstCriteresEval) {
 		this.lstCriteresEval = lstCriteresEval;
+	}
+
+	public int getIdBar() {
+		return idBar;
+	}
+
+	public void setIdBar(int idBar) {
+		this.idBar = idBar;
 	}
 
 }
