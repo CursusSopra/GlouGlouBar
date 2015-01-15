@@ -35,10 +35,10 @@
 				<input type="checkbox" name="catSelected" value="<s:property value="idCategorie" />" />
 				<s:property value="categorieBar" />
 			</s:iterator>
-	<p>
-		<em>Adresse</em>
-	</p>
-			<input class="form-control" id="idAdresse" name="adresse" /> <input
+			<br/>
+			Adresse:<input class="form-control" id="idAdresse" name="adresse" /> 
+			<br/>
+			Nom<input
 				class="form-control" id="idNom" name="nom" />
 	
 			<br><br><br><br>
