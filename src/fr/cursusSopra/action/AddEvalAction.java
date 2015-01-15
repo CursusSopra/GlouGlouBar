@@ -1,3 +1,5 @@
+//Propriete Adeline Et Florian
+
 package fr.cursusSopra.action;
 
 import java.util.*;
@@ -11,20 +13,25 @@ public class AddEvalAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 
 	private int idBar;
-	private String idLib;
+	private String idNotes;
+	private String idCriteres;
 	private List<Integer> notes;
+	private List<Integer> criteres;
 	private String commentaire;
 
 	public String execute() {
 		notes = new ArrayList<Integer>();
-		String[] party = idLib.split(",");
+		criteres = new ArrayList<Integer>();
+		String[] party = idNotes.split(",");
+		String[] critTab= idCriteres.split(",");
 
 		for (int i = 0; i < party.length ; i++) {
 			notes.add(  Integer.parseInt( party[i] ) );
+			criteres.add(  Integer.parseInt( critTab[i] )  );
 		}
 
 		Critique critTest = new Critique();
-		critTest.AddCritique(notes, commentaire, idBar);
+		critTest.AddCritique(notes,criteres, commentaire, idBar);
 
 		return SUCCESS;
 	}
@@ -38,9 +45,13 @@ public class AddEvalAction extends ActionSupport {
 		this.idBar = idBar;
 	}
 
-	public void setIdLib(String idLib) {
-		this.idLib = idLib;
+	public void setIdNotes(String idNotes) {
+		this.idNotes = idNotes;
 	}
 
+
+	public void setIdCriteres(String idCriteres) {
+		this.idCriteres = idCriteres;
+	}
 
 }

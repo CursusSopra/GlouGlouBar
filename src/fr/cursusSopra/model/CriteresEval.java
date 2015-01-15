@@ -1,3 +1,5 @@
+//Florian Et Adeline
+
 package fr.cursusSopra.model;
 
 import java.sql.*;

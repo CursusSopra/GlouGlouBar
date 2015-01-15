@@ -35,14 +35,16 @@
 						<label class="col-lg-4 control-label"> <s:property
 								value="libcourt" />
 						</label>
+					<input class="critnumber" type="hidden" value='<s:property value="idcriteval" />' /> 
 						<input type="number" id='"<s:property value="libcourt" />" '  
 						 class="rating" min=0 max=5 step=1
 							data-size="sm" data-rtl="false" />
 
 					</s:iterator>
 
-					<input type="hidden" name="idBar" id="ididBar" value='<s:property value="idBar" />' /> <input
-						type="hidden" name="idLib" id="idLib" />
+					<input type="hidden" name="idBar" id="ididBar" value='<s:property value="idBar" />' /> 
+					<input type="hidden" name="idNotes" id="idNotes" />
+					<input type="hidden" name="idCriteres" id="idCriteres" />
 
 					<fieldset>
 						<div class="form-group">
@@ -82,11 +84,18 @@
 	
 		$(function() {
 			$('#addEval').submit(function() {
-				var sz = "";
+				var str1 = "";
 				$.each($('.rating'), function(index, elt) {
-					sz += $(elt).val() + ',';
+					str1 += $(elt).val() + ',';
 				});
-				$('#idLib').val(sz);
+				
+				var str2 = "";
+				$.each($('.critnumber'), function(index, elt) {
+					str2 += $(elt).val() + ',';
+				});
+
+				$('#idNotes').val(str1);
+				$('#idCriteres').val(str2);
 			});
 		});
 		
