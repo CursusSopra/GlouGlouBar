@@ -65,6 +65,7 @@
 	</div>
 	<a href="<s:url action='creationBar' />">Création d'un nouveau bar</a>
 	<a href="<s:url action='formSearchBar' />">Recherche</a>
+	
 	<div id="map-canvas" style="width: 20%; height: 20%; height: 40%; "></div>
 	
 </body>
