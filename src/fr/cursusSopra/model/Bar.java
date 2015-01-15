@@ -23,6 +23,10 @@ public class Bar {
 	private int[] tabCriteres;
 	private int[] tabCategories;
 	private List<Double> lstNotes;
+	
+	private String[] tabJoursOuvert;
+	private String[] tabHeureDebutOuvert;
+	private String[] tabHeureFinOuvert;
 
 	private List<Horaire> lstHoraires;
 	private List<CategorieBar> lstCategorie;
@@ -32,6 +36,18 @@ public class Bar {
 
 	public List<Horaire> getLstHoraires() {
 		return lstHoraires;
+	}
+	
+	public void setTabJoursOuvert(String[] tabJoursOuvert) {
+		this.tabJoursOuvert = tabJoursOuvert;
+	}
+
+	public void setTabHeureDebutOuvert(String[] tabHeureDebutOuvert) {
+		this.tabHeureDebutOuvert = tabHeureDebutOuvert;
+	}
+
+	public void setTabHeureFinOuvert(String[] tabHeureFinOuvert) {
+		this.tabHeureFinOuvert = tabHeureFinOuvert;
 	}
 
 	public List<BarEvaluation> getLstEvals() {
@@ -380,6 +396,31 @@ public class Bar {
 			return 0;
 		}
 	}
+	
+	public int CreateHoraires(int idBar){
+		Connection cnx = PostgresConnection.GetConnexion();
+
+		String queryHoraires = "INSERT INTO horaires (idbar, idjour, heuredebut, heurefin) VALUES (?, ?, TIME ?, TIME ?)";
+
+		try {
+			// Récupération du code postal de la ville sélectionnée
+			PreparedStatement psHoraires = cnx.prepareStatement(queryHoraires);
+			int i;
+			int retour = 1;
+			for (i=0;i<tabJoursOuvert.length;i++){
+				psHoraires.setInt(1, idBar);
+				psHoraires.setInt(2,Integer.parseInt(tabJoursOuvert[i]));
+				psHoraires.setString(3, tabHeureDebutOuvert[i]);
+				psHoraires.setString(4, tabHeureFinOuvert[i]);
+				
+				retour = psHoraires.executeUpdate();
+			}
+			return retour;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
 
 	/**
 	 * Ajoute un bar dans la base de données à partir des données connues dans
@@ -406,6 +447,10 @@ public class Bar {
 			rs.next();
 			// L'id du bar créé automatiquement est récupéré
 			int idBar = rs.getInt(1);
+			//On remplit la liste des horaires
+			for (int i=0; i<tabJoursOuvert.length; i++){
+				CreateHoraires(idBar);
+			}
 			// On remplit la table "criteresbars"
 			if (tabCriteres.length != 0) {
 				CreateCriteres(idBar);
