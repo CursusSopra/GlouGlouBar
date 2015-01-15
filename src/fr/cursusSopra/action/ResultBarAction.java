@@ -49,21 +49,33 @@ public class ResultBarAction extends ActionSupport {
 	}
 
 	public String execute() {
-		
-		  ExecuteSearchByCat();
-		/* 
-		 * if (adresse.isEmpty() && nom.isEmpty() && cpSelected != null{// &&
-		 * catSelected.length == 0) { ExecuteSearchByCP(); } if
-		 * (!adresse.isEmpty() && nom.isEmpty() && cpSelected == null){// &&
-		 * catSelected.length == 0) { ExecuteSearchByAdresse(); }
-		 */
-		/*
-		 * if (adresse.isEmpty() && nom.isEmpty()){ //&& catSelected.length > 0)
-		 * { ExecuteSearchByCat(); }
-		 */
 
+
+		if (adresse.isEmpty() && nom.isEmpty() && cpSelected != null && catSelected == null) {
+			ExecuteSearchByCP();
+		}
+		if (!adresse.isEmpty() && nom.isEmpty() && cpSelected == null && catSelected == null) {
+			ExecuteSearchByAdresse();
+		}
+		if (adresse.isEmpty() && !nom.isEmpty() && cpSelected == null && catSelected == null) {
+			ExecuteSearchByName();
+		}
+		
+		if (adresse.isEmpty() && nom.isEmpty() && cpSelected == null && catSelected.length > 0) {
+			ExecuteSearchByCat();
+		}else{
+			ExecuteMultiSearch();
+		}
+	
 		return SUCCESS;
 
+	}
+	
+	private void ExecuteMultiSearch() {
+		setLstBars(new ArrayList<Bar>());
+		searchElt = new Search();
+		searchElt.MultiSearch(nom, adresse,catSelected , cpSelected);
+		setLstBars(searchElt.getLstbar());
 	}
 
 	private void ExecuteSearchByCP() {
@@ -72,6 +84,14 @@ public class ResultBarAction extends ActionSupport {
 		searchElt.SearchIdBarByCp(cpSelected);
 		setLstBars(searchElt.getLstbar());
 	}
+	
+	private void ExecuteSearchByName() {
+		setLstBars(new ArrayList<Bar>());
+		searchElt = new Search();
+		searchElt.SearchByName(nom);
+		setLstBars(searchElt.getLstbar());
+	}
+
 
 	private void ExecuteSearchByCat() {
 		setLstBars(new ArrayList<Bar>());
