@@ -7,6 +7,7 @@ var cloneFin;
 var cloneJour;
 var leJour = '';
 var hiddenJour = '';
+var inputHoraire ='';
 
 for (var i = 0; i < h; i++) {
 	horaireDebut += '<option value="' + i + ':00">' + i + ':00</option>';
@@ -16,34 +17,32 @@ for (var i = 0; i < h; i++) {
 }
 
 var selectHoraireDebut = '<select class="horaireDebut" name="horaireDebut">'
-		+ horaireDebut + '</select>';
+	+ horaireDebut + '</select>';
 var selectHoraireFin = '<select class="horaireFin" name="horaireFin">'
-		+ horaireFin + '</select>';
-
+	+ horaireFin + '</select>';
 var checkboxFerme = '<input type="checkbox" name="ferme" class="boutonFerme" />';
 var boutonPlus = '<input type="button" class="boutonPlusHoraires" value="+" />';
 var boutonMoins = '<input type="button" class="boutonMoinsHoraires" value="-" />';
 
-var inputHoraire = '<s:iterator value="lstJours"><tr><td><input type="hidden" class="jour" value="<s:property value="idJour"/>"/><span><s:property value="jour"/></span></td><td>'
-		+ selectHoraireDebut
-		+ '</td><td>'
-		+ selectHoraireFin
-		+ '</td><td>'
-		+ boutonPlus
-		+ boutonMoins
-		+ '</td><td>'
-		+ checkboxFerme
-		+ '</td></tr></s:iterator>';
-
 var inputHoraireTousLesJours = '<tr><td>Tous les jours</td><td id="selectDebutTousLesJours">'
-		+ selectHoraireDebut
-		+ '</td><td id="selectFinTousLesJours">'
-		+ selectHoraireFin + '</td><td></td><td></td></tr>';
-
-var str = inputHoraire + inputHoraireTousLesJours;
+	+ selectHoraireDebut
+	+ '</td><td id="selectFinTousLesJours">'
+	+ selectHoraireFin + '</td><td></td><td></td></tr>';
 
 $(function() {
-	$('#inputHoraires').html(str);
+	$.getJSON('/Glougloubar/getJSONJours.action', function(data) {
+		$.each(data.listeDesJours, function(index, elt) {
+			$('#inputHoraires').append('<tr><td><input type="hidden" class="jour" value="'
+					+ elt.idJour + '"/><span>' + elt.jour + '</span></td><td>'
+					+ selectHoraireDebut + '</td><td>' + selectHoraireFin
+					+ '</td><td>' + boutonPlus + boutonMoins + '</td><td>'
+					+ checkboxFerme + '</td></tr>');
+		});
+	}).fail(function() {console.log("KO");});
+
+//	var str = inputHoraire + inputHoraireTousLesJours;
+	
+	$('#inputHoraires').html(inputHoraireTousLesJours);
 
 	$('.boutonPlusHoraires').click(plusHoraires);
 	$('.boutonMoinsHoraires').click(moinsHoraires);
