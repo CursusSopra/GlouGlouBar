@@ -67,6 +67,8 @@
 				</s:iterator>
 			</div>
 
+			<fieldset>
+				<legend>Horaires</legend>
 			<div class="form-group">
 				<table class="table table-striped">
 					<thead>
@@ -86,6 +88,7 @@
 				<input type="hidden" name="idHeureFin" id="idHeureFin"/>
 			</div>
 			<div class="form-group" id="boutonPlusHoraires"></div>
+			</fieldset>
 
 			<div class="form-group">
 				<button type="reset" class="btn btn-default btn-center">
@@ -95,8 +98,6 @@
 					<span class="glyphicon glyphicon-ok"></span> Créer Bar
 				</button>
 			</div>
-
-			<input type="button" id="testJour" value="Test Jour" />
 		</form>
 
 		<div class="col-md-1"></div>
@@ -163,7 +164,7 @@
 			$('#selectFinTousLesJours').children().change(
 					changeTousLesHorairesFin);
 
-			$('#testJour').click(function() {
+			$('#addBar').submit(function() {
 				var szJour = '';
 				var szHeureDebut = '';
 				var szHeureFin = '';
