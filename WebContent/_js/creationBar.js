@@ -20,14 +20,18 @@ var selectHoraireDebut = '<select class="horaireDebut" name="horaireDebut">'
 	+ horaireDebut + '</select>';
 var selectHoraireFin = '<select class="horaireFin" name="horaireFin">'
 	+ horaireFin + '</select>';
+var selectHoraireDebutTousLesJours = '<select>'
+	+ horaireDebut + '</select>';
+var selectHoraireFinTousLesJours = '<select>'
+	+ horaireFin + '</select>';
 var checkboxFerme = '<input type="checkbox" name="ferme" class="boutonFerme" />';
 var boutonPlus = '<input type="button" class="boutonPlusHoraires" value="+" />';
 var boutonMoins = '<input type="button" class="boutonMoinsHoraires" value="-" />';
 
 var inputHoraireTousLesJours = '<tr><td>Tous les jours</td><td id="selectDebutTousLesJours">'
-	+ selectHoraireDebut
+	+ selectHoraireDebutTousLesJours
 	+ '</td><td id="selectFinTousLesJours">'
-	+ selectHoraireFin + '</td><td></td><td></td></tr>';
+	+ selectHoraireFinTousLesJours + '</td><td></td><td></td></tr>';
 
 $(function() {
 	$.getJSON('/Glougloubar/getJSONJours.action', function(data) {
@@ -68,7 +72,7 @@ $(function() {
 		$('#idJour').val(szJour);
 		$('#idHeureDebut').val(szHeureDebut);
 		$('#idHeureFin').val(szHeureFin);
-	});
+		});
 });
 
 function fermeAction() {

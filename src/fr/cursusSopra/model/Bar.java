@@ -51,7 +51,7 @@ public class Bar {
 			// remplissage de l'objet si le bar est trouvé
 			while (rs.next()) {
 				BarCommentaire bc = new BarCommentaire();
-				bc.setComm (rs.getString("comm"));
+				bc.setComm(rs.getString("comm"));
 				bc.setDateComm(rs.getDate("datecomm"));
 				bc.setNote(rs.getInt("note"));
 				lstComms.add(bc);
@@ -375,7 +375,7 @@ public class Bar {
 	 * 
 	 * @return
 	 */
-	public int CreateCriteres(int idBar) {
+	public int CreateCriteres() {
 		Connection cnx = PostgresConnection.GetConnexion();
 
 		String queryCriteres = "INSERT INTO criteresbars (idbar, idcritere) VALUES (?, ?)";
@@ -402,7 +402,7 @@ public class Bar {
 	 * 
 	 * @return
 	 */
-	public int CreateCategories(int idBar) {
+	public int CreateCategories() {
 		Connection cnx = PostgresConnection.GetConnexion();
 
 		String queryCategories = "INSERT INTO categoriesbars (idbar, idcategorie) VALUES (?, ?)";
@@ -425,21 +425,23 @@ public class Bar {
 		}
 	}
 
-	public int CreateHoraires(int idBar) {
+	public int CreateHoraires() {
 		Connection cnx = PostgresConnection.GetConnexion();
+		Statement state;
 
 		String queryHoraires = "INSERT INTO horaires (idbar, idjour, heuredebut, heurefin) VALUES (?, ?, TIME ?, TIME ?)";
 
 		try {
 			// Récupération du code postal de la ville sélectionnée
 			PreparedStatement psHoraires = cnx.prepareStatement(queryHoraires);
-			int i;
 			int retour = 1;
-			for (i = 0; i < tabJoursOuvert.length; i++) {
+			for (int i = 0; i < tabJoursOuvert.length; i++) {
 				psHoraires.setInt(1, idBar);
 				psHoraires.setInt(2, Integer.parseInt(tabJoursOuvert[i]));
 				psHoraires.setString(3, tabHeureDebutOuvert[i]);
 				psHoraires.setString(4, tabHeureFinOuvert[i]);
+
+				System.out.println(psHoraires);
 
 				retour = psHoraires.executeUpdate();
 			}
@@ -475,17 +477,18 @@ public class Bar {
 			rs.next();
 			// L'id du bar créé automatiquement est récupéré
 			int idBar = rs.getInt(1);
+			this.idBar = idBar;
+
 			// On remplit la liste des horaires
-			for (int i = 0; i < tabJoursOuvert.length; i++) {
-				CreateHoraires(idBar);
-			}
+			CreateHoraires();
+
 			// On remplit la table "criteresbars"
 			if (tabCriteres.length != 0) {
-				CreateCriteres(idBar);
+				CreateCriteres();
 			}
 			// On remplit la table "categoriesbars"
 			if (tabCategories.length != 0) {
-				CreateCategories(idBar);
+				CreateCategories();
 			}
 			return 1;
 		} catch (SQLException e) {

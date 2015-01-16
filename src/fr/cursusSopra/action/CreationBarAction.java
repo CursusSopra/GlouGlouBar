@@ -2,13 +2,12 @@
 
 package fr.cursusSopra.action;
 
-import java.sql.Time;
+
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.cursusSopra.model.Bar;
-import fr.cursusSopra.model.Horaire;
 import fr.cursusSopra.model.Jour;
 import fr.cursusSopra.model.Ville;
 import fr.cursusSopra.model.CategorieBar;
