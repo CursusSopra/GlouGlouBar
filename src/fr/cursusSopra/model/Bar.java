@@ -318,7 +318,7 @@ public class Bar {
 		Connection cnx = PostgresConnection.GetConnexion();
 
 		// requete de selection du bar d'idbar = id
-		String query = "SELECT * from v_adressesbar where idbar = ?";
+		String query = "SELECT * from v_adressebar where idbar = ?";
 
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
@@ -429,21 +429,30 @@ public class Bar {
 		Connection cnx = PostgresConnection.GetConnexion();
 		Statement state;
 
-		String queryHoraires = "INSERT INTO horaires (idbar, idjour, heuredebut, heurefin) VALUES (?, ?, TIME ?, TIME ?)";
-
 		try {
+			state = cnx.createStatement();
 			// Récupération du code postal de la ville sélectionnée
 			PreparedStatement psHoraires = cnx.prepareStatement(queryHoraires);
 			int retour = 1;
 			for (int i = 0; i < tabJoursOuvert.length; i++) {
-				psHoraires.setInt(1, idBar);
-				psHoraires.setInt(2, Integer.parseInt(tabJoursOuvert[i]));
-				psHoraires.setString(3, tabHeureDebutOuvert[i]);
-				psHoraires.setString(4, tabHeureFinOuvert[i]);
+
+				String queryHoraires = "INSERT INTO horaires (idbar, idjour, heuredebut, heurefin) VALUES ("
+						+ idBar
+						+ ", "
+						+ Integer.parseInt(tabJoursOuvert[i])
+						+ ", TIME '"
+						+ tabHeureDebutOuvert[i]
+						+ "', TIME '"
+						+ tabHeureFinOuvert[i] + "')";
+
+//				psHoraires.setInt(1, idBar);
+//				psHoraires.setInt(2, Integer.parseInt(tabJoursOuvert[i]));
+//				psHoraires.setString(3, tabHeureDebutOuvert[i]);
+//				psHoraires.setString(4, tabHeureFinOuvert[i]);
 
 				System.out.println(psHoraires);
 
-				retour = psHoraires.executeUpdate();
+				retour = psHoraires.executeUpdate(queryHoraires);
 			}
 			return retour;
 		} catch (SQLException e) {
