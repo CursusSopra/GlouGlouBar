@@ -18,6 +18,11 @@ public class ResultBarAction extends ActionSupport {
 	private Search searchElt;
 	private String[] cpSelected;
 	private int[] catSelected;
+	private int[] selectedCritere;
+
+	public void setSelectedCritere(int[] selectedCritere) {
+		this.selectedCritere = selectedCritere;
+	}
 
 	public int[] getCatSelected() {
 		return catSelected;
@@ -51,19 +56,23 @@ public class ResultBarAction extends ActionSupport {
 	public String execute() {
 
 
-		if (adresse.isEmpty() && nom.isEmpty() && cpSelected != null && catSelected == null) {
+		if (adresse.isEmpty() && nom.isEmpty() && cpSelected != null && catSelected == null && selectedCritere==null ) {
 			ExecuteSearchByCP();
 		}
-		if (!adresse.isEmpty() && nom.isEmpty() && cpSelected == null && catSelected == null) {
+		if (!adresse.isEmpty() && nom.isEmpty() && cpSelected == null && catSelected == null && selectedCritere==null) {
 			ExecuteSearchByAdresse();
 		}
-		if (adresse.isEmpty() && !nom.isEmpty() && cpSelected == null && catSelected == null) {
+		if (adresse.isEmpty() && !nom.isEmpty() && cpSelected == null && catSelected == null && selectedCritere==null) {
 			ExecuteSearchByName();
 		}
 		
-		if (adresse.isEmpty() && nom.isEmpty() && cpSelected == null && catSelected.length > 0) {
+		if (adresse.isEmpty() && nom.isEmpty() && cpSelected == null && catSelected != null && selectedCritere==null) {
 			ExecuteSearchByCat();
-		}else{
+		}
+		if (adresse.isEmpty() && nom.isEmpty() && cpSelected == null && catSelected == null && selectedCritere!=null ) {
+			ExecuteSearchByCrit();
+		}
+		else{
 			ExecuteMultiSearch();
 		}
 	
@@ -74,7 +83,7 @@ public class ResultBarAction extends ActionSupport {
 	private void ExecuteMultiSearch() {
 		setLstBars(new ArrayList<Bar>());
 		searchElt = new Search();
-		searchElt.MultiSearch(nom, adresse,catSelected , cpSelected);
+		searchElt.MultiSearch(nom, adresse,catSelected , cpSelected, selectedCritere);
 		setLstBars(searchElt.getLstbar());
 	}
 
@@ -97,6 +106,13 @@ public class ResultBarAction extends ActionSupport {
 		setLstBars(new ArrayList<Bar>());
 		searchElt = new Search();
 		searchElt.SearchIdBarByCat(catSelected);
+		setLstBars(searchElt.getLstbar());
+	}
+	
+	private void ExecuteSearchByCrit() {
+		setLstBars(new ArrayList<Bar>());
+		searchElt = new Search();
+		searchElt.SearchIdBarByCrit(selectedCritere);
 		setLstBars(searchElt.getLstbar());
 	}
 

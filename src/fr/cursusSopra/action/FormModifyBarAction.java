@@ -12,8 +12,18 @@ public class FormModifyBarAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = -4535160798778265077L;
 	
-	int idBar;
-	Bar leBar;
+	private int idBar;
+	private Bar leBar;
+	
+	public String execute() {
+		setLeBar(new Bar(idBar));
+		return SUCCESS;
+	}
+	
+	public String accessFormCreation(){
+		setLeBar(new Bar(idBar));
+		return SUCCESS;
+	}
 
 	public int getIdBar() {
 		return idBar;
@@ -23,14 +33,12 @@ public class FormModifyBarAction extends ActionSupport {
 		this.idBar = idBar;
 	}
 
-	public String execute() {
-		leBar = new Bar(idBar);
-		return SUCCESS;
+	public Bar getLeBar() {
+		return leBar;
 	}
-	
-	public String accessFormCreation(){
-		leBar = new Bar(idBar);
-		return SUCCESS;
+
+	public void setLeBar(Bar leBar) {
+		this.leBar = leBar;
 	}
 
 }

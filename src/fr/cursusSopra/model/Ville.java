@@ -1,6 +1,7 @@
 package fr.cursusSopra.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,6 +32,33 @@ public class Ville {
 			e.printStackTrace();
 		}	
 		return lstChampVille;
+	}
+	
+	public static List<Ville> getListeVilles(){
+		List<Ville> lstVille = new ArrayList<Ville>();		
+		Connection cnx = PostgresConnection.GetConnexion();
+		
+		//requete de selection de toutes les villes
+		String query = "SELECT ville, cp FROM villes";
+		
+		try {
+			PreparedStatement ps = cnx.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			
+			//remplissage tant qu'on trouve des ville
+			while (rs.next())
+			{
+				Ville newVille = new Ville();
+				newVille.cp = rs.getString("cp");
+				newVille.ville = rs.getString("ville");
+				lstVille.add(newVille);
+			}		
+			rs.close();		
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		return lstVille;
 	}
 	
 	public String getVille() {

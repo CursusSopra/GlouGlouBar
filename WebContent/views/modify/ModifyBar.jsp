@@ -1,27 +1,34 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<h1 class="col-md-offset-1">Modification du bar <s:property value="leBar.nom" /></h1>
+<h1 class="col-md-offset-1">
+	Modification du bar
+	<s:property value="leBar.nom" />
+</h1>
 <div class="row">
 	<div class="col-md-1"></div>
 	<form method="post" class="col-md-10"
-		action="<s:url action='addBar' />" id="addBar">
+		action="<s:url action='updateBar' />" id="updateBar">
 
 		<div class="form-group">
 			<label for="nom">Nom du bar</label> <input type="text"
 				class="form-control" id="nom" name="nom"
+				value="<s:property value="leBar.nom" />"
 				placeholder="Entrez le nom du bar">
 		</div>
 		<div class="form-group">
 			<label for="numTel">Numéro de téléphone</label> <input type="text"
 				class="form-control" id="numTel" name="numTel"
+				value="<s:property value="leBar.numTel" />"
 				placeholder="Entrez le numéro de téléphone">
 		</div>
 		<div class="form-group">
 			<label for="site">Site web</label> <input type="text" name="site"
-				class="form-control" id="site" placeholder="Entrez le site web">
+				class="form-control" id="site" placeholder="Entrez le site web"
+				value="<s:property value="leBar.site" />">
 		</div>
 
-		<textarea class="form-control" rows="3" name="description">Entrez la description...</textarea>
+		<textarea class="form-control" rows="3" name="description"><s:property
+				value="leBar.description" /></textarea>
 
 		<fieldset>
 			<legend>Adresse</legend>
@@ -91,6 +98,6 @@
 	<div class="col-md-1"></div>
 </div>
 <div class="row">
-	<a href="<s:url action='' />" class="col-md-offset-1">Retour
-		à l'index</a>
+	<a href="<s:url action='' />" class="col-md-offset-1">Retour à
+		l'index</a>
 </div>

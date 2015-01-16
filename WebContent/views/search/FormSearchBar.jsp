@@ -22,16 +22,16 @@
 		<form id="idSearchCP" class="form-horizontal" method="post"
 			action="<s:url action='searchByCP'/>">
 
-			<s:iterator value="searchElt.lstCP">
-				<input type="checkbox" name="cpSelected" value="<s:property />" />
-				<s:property />
+			<s:iterator value="lstVilles">
+				<input type="checkbox" name="cpSelected" value="<s:property value="cp"/>" />
+				<s:property value="ville"/>
 			</s:iterator>
 			
 			<p>
 				<em>Type de bar</em>
 			</p>
 
-			<s:iterator value="searchElt.lstcat">
+			<s:iterator value="lstCategories">
 				<input type="checkbox" name="catSelected" value="<s:property value="idCategorie" />" />
 				<s:property value="categorieBar" />
 			</s:iterator>
@@ -40,6 +40,13 @@
 			<br/>
 			Nom<input
 				class="form-control" id="idNom" name="nom" />
+				
+			<s:iterator value="lstCriteres">
+				<input type="checkbox" name="selectedCritere"
+					value="<s:property value="idCritere"/>">
+				<s:property value="critere" />
+			</s:iterator>
+				
 	
 			<br><br><br><br>
 			<div class="col-lg-4">

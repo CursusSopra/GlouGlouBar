@@ -17,5 +17,8 @@
 	<definition name="modifyBar" extends="baseLayout">
 		<put-attribute name="title" value="Modification d'un bar" />
 		<put-attribute name="body" value="/views/modify/ModifyBar.jsp" />
+		<put-list-attribute name="moreScripts">
+			<add-attribute value="_js/modifyBar.js"></add-attribute>
+		</put-list-attribute>
 	</definition>
 </tiles-definitions>
