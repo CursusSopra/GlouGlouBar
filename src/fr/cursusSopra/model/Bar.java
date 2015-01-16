@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.cursusSopra.tech.BarCommentaire;
 import fr.cursusSopra.tech.BarEvaluation;
 import fr.cursusSopra.tech.PostgresConnection;
 
@@ -23,7 +24,7 @@ public class Bar {
 	private int[] tabCriteres;
 	private int[] tabCategories;
 	private List<Double> lstNotes;
-	
+
 	private String[] tabJoursOuvert;
 	private String[] tabHeureDebutOuvert;
 	private String[] tabHeureFinOuvert;
@@ -31,13 +32,40 @@ public class Bar {
 	private List<Horaire> lstHoraires;
 	private List<CategorieBar> lstCategorie;
 	private List<Critere> lstCritere;
-	
+
 	private List<BarEvaluation> lstEvals;
+
+	private List<BarCommentaire> lstComms;
+
+	public List<BarCommentaire> getLstComms() {
+		List<BarCommentaire> lstComms = new ArrayList<BarCommentaire>();
+
+		Connection cnx = PostgresConnection.GetConnexion();
+		String query = "SELECT comm, EXTRACT(DATE FROM datecomm) AS datecomm, note from critiques inner join evaluations using (idcritique) where idbar=? and idcriteval=5";
+		PreparedStatement ps;
+		try {
+			ps = cnx.prepareStatement(query);
+			ps.setInt(1, idBar);
+			ResultSet rs = ps.executeQuery();
+
+			// remplissage de l'objet si le bar est trouvé
+			while (rs.next()) {
+				BarCommentaire bc = new BarCommentaire();
+				bc.setComm (rs.getString("comm"));
+				bc.setDateComm(rs.getDate("datecomm"));
+				bc.setNote(rs.getInt("note"));
+				lstComms.add(bc);
+			}
+		} catch (SQLException e) {
+		}
+
+		return lstComms;
+	}
 
 	public List<Horaire> getLstHoraires() {
 		return lstHoraires;
 	}
-	
+
 	public void setTabJoursOuvert(String[] tabJoursOuvert) {
 		this.tabJoursOuvert = tabJoursOuvert;
 	}
@@ -396,8 +424,8 @@ public class Bar {
 			return 0;
 		}
 	}
-	
-	public int CreateHoraires(int idBar){
+
+	public int CreateHoraires(int idBar) {
 		Connection cnx = PostgresConnection.GetConnexion();
 
 		String queryHoraires = "INSERT INTO horaires (idbar, idjour, heuredebut, heurefin) VALUES (?, ?, TIME ?, TIME ?)";
@@ -407,12 +435,12 @@ public class Bar {
 			PreparedStatement psHoraires = cnx.prepareStatement(queryHoraires);
 			int i;
 			int retour = 1;
-			for (i=0;i<tabJoursOuvert.length;i++){
+			for (i = 0; i < tabJoursOuvert.length; i++) {
 				psHoraires.setInt(1, idBar);
-				psHoraires.setInt(2,Integer.parseInt(tabJoursOuvert[i]));
+				psHoraires.setInt(2, Integer.parseInt(tabJoursOuvert[i]));
 				psHoraires.setString(3, tabHeureDebutOuvert[i]);
 				psHoraires.setString(4, tabHeureFinOuvert[i]);
-				
+
 				retour = psHoraires.executeUpdate();
 			}
 			return retour;
@@ -447,8 +475,8 @@ public class Bar {
 			rs.next();
 			// L'id du bar créé automatiquement est récupéré
 			int idBar = rs.getInt(1);
-			//On remplit la liste des horaires
-			for (int i=0; i<tabJoursOuvert.length; i++){
+			// On remplit la liste des horaires
+			for (int i = 0; i < tabJoursOuvert.length; i++) {
 				CreateHoraires(idBar);
 			}
 			// On remplit la table "criteresbars"
