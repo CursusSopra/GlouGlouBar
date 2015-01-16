@@ -52,7 +52,7 @@ public class CreationBarAction extends ActionSupport {
 		//Récupération de l'adresse
 		Adresse adresse = new Adresse();
 		Ville villeBar = new Ville();
-		villeBar.setVille(ville);
+		villeBar.setNom(ville);
 		villeBar.setCp(Ville.getCpWithVille(ville));
 		
 		adresse.setVoie(voie);
