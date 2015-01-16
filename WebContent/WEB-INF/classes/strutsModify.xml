@@ -6,12 +6,19 @@
 <struts>
 	<package name="modifyBar" extends="struts-default">
 		<result-types>
-			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
 		</result-types>
-		
+
+		<!-- Accès au formulaire de modification du bar -->
 		<action name="modifyBar" class="fr.cursusSopra.action.FormModifyBarAction"
 			method="accessFormCreation">
 			<result name="success" type="tiles">modifyBar</result>
+		</action>
+
+		<action name="updateBar" class="fr.cursusSopra.action.ModifyBarAction"
+			method="execute">
+			<result name="success">index.jsp</result>
 		</action>
 	</package>
 </struts>
