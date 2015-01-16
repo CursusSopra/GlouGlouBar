@@ -25,7 +25,7 @@ public class Critique {
 	//Ajout critique et evaluations correpsondante dans la BDD
 	public int AddCritique(List<Integer> listnotes, List<Integer> listcriteres, String commentaire, int idbarfromAction) {
 		Connection cnx = PostgresConnection.GetConnexion();
-		String queryAddCrit = "INSERT INTO critiques (idbar,comm,datecomm ) VALUES (?,?) RETURNING idcritique";
+		String queryAddCrit = "INSERT INTO critiques (idbar,comm) VALUES (?,?) RETURNING idcritique";
 		PreparedStatement psAddCrit;
 		try {
 			psAddCrit = cnx.prepareStatement(queryAddCrit);

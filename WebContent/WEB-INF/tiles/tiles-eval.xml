@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC 
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" 
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="formAddEval" extends="baseLayout">
+		<put-attribute name="title" value="Evaluation" />
+		<put-attribute name="body" value="/views/eval/AddEval.jsp" />
+		<put-list-attribute name="moreScripts">
+			<add-attribute value="_js/addeval.js"></add-attribute>
+			<add-attribute value="js/star-rating.min.js"></add-attribute>
+		</put-list-attribute>
+	</definition>
+
+</tiles-definitions>

@@ -1,101 +1,55 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
-<%@ taglib uri="/struts-tags" prefix="s"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<div class="row">
+	<div class="col-lg-offset-3 col-lg-6 col-sm-offset-3 col-sm-6">
+		<section class="content-wrapper main-content clear-fix">
+			<form method="post" id="addEval" class="form-horizontal" action="<s:url action='addEval' />">
+			
+				<s:iterator value="lstCriteresEval" status="idx">
 
-<!DOCTYPE html >
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link href="css/star-rating.min.css" media="all" rel="stylesheet"
-	type="text/css" />
+					<label class="col-lg-4 control-label"> <s:property
+							value="libcourt" />
+					</label>
+					<input class="critnumber" type="hidden"
+						value='<s:property value="idcriteval" />' />
+					<input type="number" id='"<s:property value="libcourt" />" '
+						class="rating" min=0 max=5 step=1 data-size="sm" data-rtl="false" />
 
-<title>Ajouter une evaluation</title>
-</head>
-<body>
-	<a href="<s:url action='formAddEval' />">Ajouter une evaluation</a>
+				</s:iterator>
 
+				<input type="hidden" name="idBar" id="ididBar"
+					value='<s:property value="idBar" />' /> <input type="hidden"
+					name="idNotes" id="idNotes" /> <input type="hidden"
+					name="idCriteres" id="idCriteres" />
 
-	<div class="row">
-		<div class="col-lg-offset-3 col-lg-6 col-sm-offset-3 col-sm-6">
-			<section class="content-wrapper main-content clear-fix">
-				<form id="addEval" class="form-horizontal" method="post"
-					action="<s:url action='addEval'/>">
-
-					<s:iterator value="lstCriteresEval" status="idx">
-
-						<label class="col-lg-4 control-label"> <s:property
-								value="libcourt" />
-						</label>
-						<input class="critnumber" type="hidden"
-							value='<s:property value="idcriteval" />' />
-						<input type="number" id='"<s:property value="libcourt" />" '
-							class="rating" min=0 max=5 step=1 data-size="sm" data-rtl="false" />
-
-					</s:iterator>
-
-					<input type="hidden" name="idBar" id="ididBar"
-						value='<s:property value="idBar" />' /> <input type="hidden"
-						name="idNotes" id="idNotes" /> <input type="hidden"
-						name="idCriteres" id="idCriteres" />
-
-					<fieldset>
-						<div class="form-group">
-							<div class="col-lg-4">
-								<div class="row">
-									<div class="col-lg-6">
-										<br> <br> <label for="idCommentaire"
-											class="col-lg-4 control-label">Commentaire</label> <input
-											class="form-control" id="idCommentaire" name="commentaire" />
-									</div>
-									<div class="col-lg-6">&nbsp;</div>
+				<fieldset>
+					<div class="form-group">
+						<div class="col-lg-4">
+							<div class="row">
+								<div class="col-lg-6">
+									<br> <br> <label for="idCommentaire"
+										class="col-lg-4 control-label">Commentaire</label> <input
+										class="form-control" id="idCommentaire" name="commentaire" />
 								</div>
+								<div class="col-lg-6">&nbsp;</div>
 							</div>
 						</div>
-					</fieldset>
-
-					<div class="form-group">
-						<div class="col-lg-4 col-lg-offset-2 col-sm-4 col-sm-offset-2">
-							<button type="reset" class="btn btn-default btn-center">
-								<span class="glyphicon glyphicon-refresh"></span> Ã‰tat initial
-							</button>
-						</div>
-						<div class="col-lg-4">
-							<button type="submit" id="test"
-								class="btn btn-primary btn-center">
-								<span class="glyphicon glyphicon-ok"></span> Mettre Ã  jour
-							</button>
-						</div>
 					</div>
-				</form>
-			</section>
-		</div>
+				</fieldset>
+
+				<div class="form-group">
+					<div class="col-lg-4 col-lg-offset-2 col-sm-4 col-sm-offset-2">
+						<button type="reset" class="btn btn-default btn-center">
+							<span class="glyphicon glyphicon-refresh"></span> État initial
+						</button>
+					</div>
+					<div class="col-lg-4">
+						<button type="submit" id="test" class="btn btn-primary btn-center">
+							<span class="glyphicon glyphicon-ok"></span> Mettre à jour
+						</button>
+					</div>
+				</div>
+			</form>
+		</section>
 	</div>
-	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-	<script src="js/star-rating.min.js" type="text/javascript"></script>
-	<script>
-		$(function() {
-			$('#addEval').submit(function() {
-
-				var str1 = "";
-				$.each($('.rating'), function(index, elt) {
-					str1 += $(elt).val() + ',';
-				});
-
-				var str2 = "";
-				$.each($('.critnumber'), function(index, elt) {
-					str2 += $(elt).val() + ',';
-				});
-
-				$('#idNotes').val(str1);
-				$('#idCriteres').val(str2);
-			});
-		});
-	</script>
-</body>
-</html>
+</div>
