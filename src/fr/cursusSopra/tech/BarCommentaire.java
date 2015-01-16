@@ -1,12 +1,10 @@
 package fr.cursusSopra.tech;
 
-import java.sql.Date;
-
 public class BarCommentaire {
 	
 	private int note;
 	private String comm;
-	private Date dateComm;
+	private String dateComm;
 	
 	public int getNote() {
 		return note;
@@ -20,10 +18,10 @@ public class BarCommentaire {
 	public void setComm(String comm) {
 		this.comm = comm;
 	}
-	public Date getDateComm() {
+	public String getDateComm() {
 		return dateComm;
 	}
-	public void setDateComm(Date dateComm) {
+	public void setDateComm(String dateComm) {
 		this.dateComm = dateComm;
 	}
 
