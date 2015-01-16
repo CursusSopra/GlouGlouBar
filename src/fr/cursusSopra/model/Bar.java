@@ -1,3 +1,4 @@
+//Bar.java
 //Virgile
 
 package fr.cursusSopra.model;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.cursusSopra.tech.BarCommentaire;
+import fr.cursusSopra.tech.BarCritere;
 import fr.cursusSopra.tech.BarEvaluation;
 import fr.cursusSopra.tech.PostgresConnection;
 
@@ -21,7 +23,6 @@ public class Bar {
 	private String ville;
 	private String cp;
 	private String shortDescription;
-	private int[] tabCriteres;
 	private int[] tabCategories;
 	private List<Double> lstNotes;
 
@@ -32,6 +33,8 @@ public class Bar {
 	private List<Horaire> lstHoraires;
 	private List<CategorieBar> lstCategorie;
 	private List<Critere> lstCritere;
+	
+	private List<BarCritere> lstBarCritere;
 
 	private List<BarEvaluation> lstEvals;
 
@@ -64,6 +67,14 @@ public class Bar {
 
 	public List<Horaire> getLstHoraires() {
 		return lstHoraires;
+	}
+	
+	public void setLstBarCritere(List<BarCritere> lstBarCritere) {
+		this.lstBarCritere = lstBarCritere;
+	}
+
+	public List<BarCritere> getLstBarCritere() {
+		return lstBarCritere;
 	}
 
 	public void setTabJoursOuvert(String[] tabJoursOuvert) {
@@ -134,10 +145,6 @@ public class Bar {
 
 	public void setTabCategories(int[] tabCategories) {
 		this.tabCategories = tabCategories;
-	}
-
-	public void setTabCriteres(int[] tabCriteres) {
-		this.tabCriteres = tabCriteres;
 	}
 
 	public String getLienImage() {
@@ -371,33 +378,6 @@ public class Bar {
 	}
 
 	/**
-	 * Ajoute des critères à un bar. Appelée dans la méthode Create()
-	 * 
-	 * @return
-	 */
-	public int CreateCriteres() {
-		Connection cnx = PostgresConnection.GetConnexion();
-
-		String queryCriteres = "INSERT INTO criteresbars (idbar, idcritere) VALUES (?, ?)";
-
-		try {
-			// Récupération du code postal de la ville sélectionnée
-			PreparedStatement psCriteres = cnx.prepareStatement(queryCriteres);
-			int i;
-			int retour = 1;
-			for (i = 0; i < tabCriteres.length; i++) {
-				psCriteres.setInt(1, idBar);
-				psCriteres.setInt(2, tabCriteres[i]);
-				retour = psCriteres.executeUpdate();
-			}
-			return retour;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return 0;
-		}
-	}
-
-	/**
 	 * Ajoute des catégories à un bar. Appelée dans la méthode Create()
 	 * 
 	 * @return
@@ -482,8 +462,8 @@ public class Bar {
 			CreateHoraires();
 
 			// On remplit la table "criteresbars"
-			if (tabCriteres.length != 0) {
-				CreateCriteres();
+			if (lstBarCritere.size() != 0) {
+				Critere.CreateCriteres(this);
 			}
 			// On remplit la table "categoriesbars"
 			if (tabCategories.length != 0) {
