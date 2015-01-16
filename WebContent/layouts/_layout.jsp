@@ -19,6 +19,13 @@
 		<link href="./${cssFile}" media="all" rel="stylesheet" type="text/css" />
 	</c:forEach>
 </c:if>
+	
+<tiles:useAttribute name="moreHttpStyles" scope="request" ignore="true" />
+<c:if test="${not empty moreHttpStyles}">
+	<c:forEach items="${moreHttpStyles}" var="cssFile">
+		<link href="./${cssFile}" media="all" rel="stylesheet" type="text/css" />
+	</c:forEach>
+</c:if>
 <title><tiles:getAsString name="title" /></title>
 </head>
 <body>
@@ -89,6 +96,13 @@
 	<c:if test="${not empty moreScripts}">
 		<c:forEach items="${moreScripts}" var="jsFile">
 			<script type="text/javascript" src="./${jsFile}"></script>
+		</c:forEach>
+	</c:if>
+
+	<tiles:useAttribute name="moreHttpScripts" scope="request" ignore="true" />
+	<c:if test="${not empty moreHttpScripts}">
+		<c:forEach items="${moreHttpScripts}" var="jsFile">
+			<script type="text/javascript" src="${jsFile}"></script>
 		</c:forEach>
 	</c:if>
 	

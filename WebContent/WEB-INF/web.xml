@@ -39,7 +39,7 @@
           org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG
         </param-name>
 		<param-value>
-			/WEB-INF/tiles/tiles.xml,/WEB-INF/tiles/tiles-bar.xml
+			/WEB-INF/tiles/tiles.xml,/WEB-INF/tiles/tiles-bar.xml,/WEB-INF/tiles/tiles-details.xml,/WEB-INF/tiles/tiles-search.xml,/WEB-INF/tiles/tiles-eval.xml
 		</param-value>
     </context-param>
 
