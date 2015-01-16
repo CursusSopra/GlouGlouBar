@@ -40,8 +40,8 @@ body {
 
 					<b><font size="20px" face="Mistral"> <s:property
 								value="leBar.nom.toUpperCase()" />
-					</font></b> <img src="<s:property value="leBar.lienImage"/>" width="40%"
-						height="40%" />
+					</font></b> <img src="<s:property value="leBar.lienImage"/>" width="35%"
+						height="35%" />
 
 
 				</div>
@@ -54,7 +54,7 @@ body {
 					<br />
 				</div>
 				<div class="panel-body">
-					<div class="col-md-4 col-offset-1">
+					<div class="col-md-4">
 						<s:if test="%{leBar.lstHoraires.size > 0}">
 							<table class="table table-striped table-hover"
 								style="text-align: center;">
@@ -81,33 +81,44 @@ body {
 
 					<div class="col-md-4 col-md-offset-1">
 						<s:iterator value="leBar.lstEvals">
+						
+							<s:property value="libCourt" />
 							<input disabled="true" type="number" class="rating " min=0 max=5
 								step=0.1 data-size="sm" data-rtl="false"
 								value="<s:property value="note"/>" data-show-caption="false"
 								data-show-clear="false" data-read-only="true"
 								data-hover-enabled="false" />
-							<s:property value="libCourt" />
+							
 						</s:iterator>
 
 					</div>
-					<a href="<s:url action='' />">Retour aux bars</a>
+					
+					<div class="col-md-3">
+						<a href="<s:url action='' />">Retour aux bars</a>
+						<br/>
+						<br/>
 
-					<s:url action="formAddEval" var="GoToformEval">
-						<s:param name="idBar">
-							<s:property value="idBar" />
-						</s:param>
-					</s:url>
+						<s:url action="formAddEval" var="GoToformEval">
+							<s:param name="idBar">
+								<s:property value="idBar" />
+							</s:param>
+						</s:url>
 
-					<a href="<s:property value='#GoToformEval'/> "> Donnez votre
-						avis </a>
+						<a href="<s:property value='#GoToformEval'/> "> Donnez votre
+							avis </a>
+						<br/>
+						<br/>
 
-					<s:url action="modifyBar" var="GoToFormModify">
-						<s:param name="idBar">
-							<s:property value="idBar" />
-						</s:param>
-					</s:url>
+						<s:url action="modifyBar" var="GoToFormModify">
+							<s:param name="idBar">
+								<s:property value="idBar" />
+							</s:param>
+						</s:url>
 
-					<a href="<s:property value='GoToFormModify'/> "> Modifiez les informations </a>
+						<a href="<s:property value='GoToFormModify'/> "> Modifiez les informations </a>
+					
+					</div>
+
 				</div>
 			</div>
 		</div>
@@ -121,19 +132,21 @@ body {
 						<div id="map-canvas" style="width: 100%; height: 100%;"></div>
 					</div>
 
-				</div>
+				<br/>
 
 				<s:property value="leBar.nom" />
-				<br />
+				<br/>
 				<s:property value="leBar.voie" />
-				<br />
+				<br/>
 				<s:property value="leBar.cp" />
 				<s:property value="leBar.ville" />
-				<br /> <br />
+				<br/> <br/>
 				<s:property value="leBar.numTel" />
-				<br /> <br />
+				<br/> <br/>
 				<s:property value="leBar.site" />
-				<br />
+				<br/>
+				
+				</div>
 			</div>
 
 			<div class="panel panel-info" style="margin-right: 20px;">
@@ -252,6 +265,9 @@ body {
 								data-hover-enabled="false" />
 							
 							<s:property value="comm"/>
+							<br/>
+							<br/>
+							
 					</s:iterator> 
 				
 				</div>
