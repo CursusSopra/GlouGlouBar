@@ -12,6 +12,8 @@
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
 	rel="stylesheet">
+<link href="css/star-rating.min.css" media="all" rel="stylesheet"
+	type="text/css" />
 	
 <tiles:useAttribute name="moreStyles" scope="request" ignore="true" />
 <c:if test="${not empty moreStyles}">
@@ -29,6 +31,8 @@
 <title><tiles:getAsString name="title" /></title>
 </head>
 <body>
+<img class="imgtop" src="content/images/glougloulogo.jpg" width="300px;" height="60px;" />
+
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->

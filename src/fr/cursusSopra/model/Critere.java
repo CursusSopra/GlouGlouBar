@@ -1,9 +1,11 @@
+//Critere.java
 package fr.cursusSopra.model;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.cursusSopra.tech.BarCritere;
 import fr.cursusSopra.tech.PostgresConnection;
 
 public class Critere {
@@ -29,6 +31,35 @@ public class Critere {
 		this.idBar = idBar;
 	}
 
+	/**
+	 * Ajoute des critères à un bar. Appelée dans la méthode Create()
+	 * 
+	 * @return
+	 */
+	public static int CreateCriteres(Bar leBar) {
+		Connection cnx = PostgresConnection.GetConnexion();
+
+		String queryCriteres = "INSERT INTO criteresbars (idbar, idcritere) VALUES (?, ?)";
+		int idBar = leBar.getIdBar();
+		List<BarCritere> lstBarCritere = leBar.getLstBarCritere();
+
+		try {
+			// Récupération du code postal de la ville sélectionnée
+			PreparedStatement psCriteres = cnx.prepareStatement(queryCriteres);
+			int i;
+			int retour = 1;
+			for (i = 0; i < lstBarCritere.size(); i++) {
+				psCriteres.setInt(1, idBar);
+				psCriteres.setInt(2, lstBarCritere.get(i).getIdcritere());
+				retour = psCriteres.executeUpdate();
+			}
+			return retour;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
 	/**
 	 * Récupère la liste de tous les critères spéciaux de bars dans la base de données et crée les objets Critere correspondant
 	 * @return List<Bar>

@@ -12,14 +12,11 @@ public class FormAddEvalAction extends ActionSupport  {
 
 	private static final long serialVersionUID = 1L;
 	
-	
-
 	private List<CriteresEval> lstCriteresEval;
 	private int idBar;
 	
 	public String execute() {
 		lstCriteresEval = CriteresEval.lstCriteresEval();
-		
 		return SUCCESS;
 	}
 
@@ -38,5 +35,4 @@ public class FormAddEvalAction extends ActionSupport  {
 	public void setIdBar(int idBar) {
 		this.idBar = idBar;
 	}
-
 }

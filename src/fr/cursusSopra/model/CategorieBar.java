@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.cursusSopra.tech.BarCategorie;
+import fr.cursusSopra.tech.BarCritere;
 import fr.cursusSopra.tech.PostgresConnection;
 
 public class CategorieBar {
@@ -27,6 +29,37 @@ public class CategorieBar {
 
 	public void setIdBar(int idBar) {
 		this.idBar = idBar;
+	}
+	
+	/**
+	 * Ajoute des catégories à un bar. Appelée dans la méthode Create()
+	 * 
+	 * @return
+	 */
+	public static int CreateCategories(Bar leBar) {
+		Connection cnx = PostgresConnection.GetConnexion();
+		
+		int idBar = leBar.getIdBar();
+		List<BarCategorie> lstBarCategorie = leBar.getLstBarCategorie();
+
+		String queryCategories = "INSERT INTO categoriesbars (idbar, idcategorie) VALUES (?, ?)";
+
+		try {
+			// Récupération du code postal de la ville sélectionnée
+			PreparedStatement psCategories = cnx
+					.prepareStatement(queryCategories);
+			int i;
+			int retour = 1;
+			for (i = 0; i < lstBarCategorie.size(); i++) {
+				psCategories.setInt(1, idBar);
+				psCategories.setInt(2, lstBarCategorie.get(i).getIdCategorie());
+				retour = psCategories.executeUpdate();
+			}
+			return retour;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
 	/**

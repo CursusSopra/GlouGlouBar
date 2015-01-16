@@ -1,3 +1,4 @@
+//Bar.java
 //Virgile
 
 package fr.cursusSopra.model;
@@ -6,7 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.cursusSopra.tech.BarCategorie;
 import fr.cursusSopra.tech.BarCommentaire;
+import fr.cursusSopra.tech.BarCritere;
 import fr.cursusSopra.tech.BarEvaluation;
 import fr.cursusSopra.tech.PostgresConnection;
 
@@ -21,8 +24,6 @@ public class Bar {
 	private String ville;
 	private String cp;
 	private String shortDescription;
-	private int[] tabCriteres;
-	private int[] tabCategories;
 	private List<Double> lstNotes;
 
 	private String[] tabJoursOuvert;
@@ -32,6 +33,9 @@ public class Bar {
 	private List<Horaire> lstHoraires;
 	private List<CategorieBar> lstCategorie;
 	private List<Critere> lstCritere;
+	
+	private List<BarCritere> lstBarCritere;
+	private List<BarCategorie> lstBarCategorie;
 
 	private List<BarEvaluation> lstEvals;
 
@@ -64,6 +68,22 @@ public class Bar {
 
 	public List<Horaire> getLstHoraires() {
 		return lstHoraires;
+	}
+	
+	public void setLstBarCritere(List<BarCritere> lstBarCritere) {
+		this.lstBarCritere = lstBarCritere;
+	}
+
+	public List<BarCritere> getLstBarCritere() {
+		return lstBarCritere;
+	}
+	
+	public void setLstBarCategorie(List<BarCategorie> lstBarCategorie) {
+		this.lstBarCategorie = lstBarCategorie;
+	}
+
+	public List<BarCategorie> getLstBarCategorie() {
+		return lstBarCategorie;
 	}
 
 	public void setTabJoursOuvert(String[] tabJoursOuvert) {
@@ -130,14 +150,6 @@ public class Bar {
 			lst.add(globalNote);
 		}
 		return lst;
-	}
-
-	public void setTabCategories(int[] tabCategories) {
-		this.tabCategories = tabCategories;
-	}
-
-	public void setTabCriteres(int[] tabCriteres) {
-		this.tabCriteres = tabCriteres;
 	}
 
 	public String getLienImage() {
@@ -217,7 +229,7 @@ public class Bar {
 	public List<CategorieBar> getLstCategorie() {
 		return lstCategorie;
 	}
-
+	
 	public List<Critere> getLstCritere() {
 		return lstCritere;
 	}
@@ -370,61 +382,6 @@ public class Bar {
 		}
 	}
 
-	/**
-	 * Ajoute des critères à un bar. Appelée dans la méthode Create()
-	 * 
-	 * @return
-	 */
-	public int CreateCriteres() {
-		Connection cnx = PostgresConnection.GetConnexion();
-
-		String queryCriteres = "INSERT INTO criteresbars (idbar, idcritere) VALUES (?, ?)";
-
-		try {
-			// Récupération du code postal de la ville sélectionnée
-			PreparedStatement psCriteres = cnx.prepareStatement(queryCriteres);
-			int i;
-			int retour = 1;
-			for (i = 0; i < tabCriteres.length; i++) {
-				psCriteres.setInt(1, idBar);
-				psCriteres.setInt(2, tabCriteres[i]);
-				retour = psCriteres.executeUpdate();
-			}
-			return retour;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return 0;
-		}
-	}
-
-	/**
-	 * Ajoute des catégories à un bar. Appelée dans la méthode Create()
-	 * 
-	 * @return
-	 */
-	public int CreateCategories() {
-		Connection cnx = PostgresConnection.GetConnexion();
-
-		String queryCategories = "INSERT INTO categoriesbars (idbar, idcategorie) VALUES (?, ?)";
-
-		try {
-			// Récupération du code postal de la ville sélectionnée
-			PreparedStatement psCategories = cnx
-					.prepareStatement(queryCategories);
-			int i;
-			int retour = 1;
-			for (i = 0; i < tabCategories.length; i++) {
-				psCategories.setInt(1, idBar);
-				psCategories.setInt(2, tabCategories[i]);
-				retour = psCategories.executeUpdate();
-			}
-			return retour;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return 0;
-		}
-	}
-
 	public int CreateHoraires() {
 		Connection cnx = PostgresConnection.GetConnexion();
 		Statement state;
@@ -482,12 +439,12 @@ public class Bar {
 			CreateHoraires();
 
 			// On remplit la table "criteresbars"
-			if (tabCriteres.length != 0) {
-				CreateCriteres();
+			if (lstBarCritere.size() != 0) {
+				Critere.CreateCriteres(this);
 			}
 			// On remplit la table "categoriesbars"
-			if (tabCategories.length != 0) {
-				CreateCategories();
+			if (lstBarCategorie.size() != 0) {
+				CategorieBar.CreateCategories(this);
 			}
 			return 1;
 		} catch (SQLException e) {

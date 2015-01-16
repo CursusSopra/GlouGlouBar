@@ -53,16 +53,16 @@ $(function() {
 	
 	$('#addBar').submit(function() {
 		// Format l'adresse à partir des infos du formulaire
-		var geocoder = new google.maps.Geocoder();		
-		
-		geocoder.geocode({ 'address' : address }, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				lat = results[0].geometry.location.lat();
-				long = results[0].geometry.location.lng();
-				
-				// Stockage de ces résultats dans deux champs cachés du formulaire
-				
-			}
+//		var geocoder = new google.maps.Geocoder();		
+//		
+//		geocoder.geocode({ 'address' : address }, function(results, status) {
+//			if (status == google.maps.GeocoderStatus.OK) {
+//				lat = results[0].geometry.location.lat();
+//				long = results[0].geometry.location.lng();
+//				
+//				// Stockage de ces résultats dans deux champs cachés du formulaire
+//				
+//			}
 			var szJour = '';
 			var szHeureDebut = '';
 			var szHeureFin = '';
@@ -80,8 +80,7 @@ $(function() {
 			$('#idHeureDebut').val(szHeureDebut);
 			$('#idHeureFin').val(szHeureFin);
 		});
-
-	});
+//	});
 });
 
 function fermeAction() {
