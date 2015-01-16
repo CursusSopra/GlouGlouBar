@@ -80,7 +80,6 @@ $(function() {
 			$('#idHeureDebut').val(szHeureDebut);
 			$('#idHeureFin').val(szHeureFin);
 		});
-
 	});
 });
 
