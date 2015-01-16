@@ -17,10 +17,12 @@
 <link href="_css/maps.css" type="text/css" rel="stylesheet" />
 
 <style>
+
 body {
-	background-image: url("content/images/background4.jpg");
+	background-image: url("content/images/background.jpg");
 	background-repeat: repeat;
 }
+
 </style>
 
 <title>Détails bar</title>
@@ -32,7 +34,7 @@ body {
 	<img src="content/images/glougloulogo.jpg" width="300px;"
 		height="60px;" />
 
-	<div class="row" style="margin-top: 25px;">
+	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-7">
 			<div class="panel panel-primary">
@@ -54,7 +56,7 @@ body {
 					<br />
 				</div>
 				<div class="panel-body">
-					<div class="col-md-4 col-md-offset-4">
+					<div class="col-md-4 col-md-offset-1">
 						<s:if test="%{leBar.lstHoraires.size > 0}">
 							<table class="table table-striped table-hover"
 								style="text-align: center;">
@@ -78,6 +80,18 @@ body {
 							</table>
 						</s:if>
 					</div>
+					
+					<div class="col-md-4 col-md-offset-1">
+						<s:iterator value="leBar.lstEvals">
+							<input disabled="true" type="number" class="rating " min=0 max=5
+								step=0.1 data-size="sm" data-rtl="false"
+								value="<s:property value="note"/>" data-show-caption="false"
+								data-show-clear="false" data-read-only="true"
+								data-hover-enabled="false" />
+							<s:property value="libCourt" />
+						</s:iterator>
+					
+					</div>
 					<a href="<s:url action='' />">Retour aux bars</a>
 
 					<s:url action="formAddEval" var="GoToformEval">
@@ -92,7 +106,7 @@ body {
 			</div>
 		</div>
 		<div class="col-md-3">
-			<div class="panel panel-info" style="margin-right: 20px;">
+			<div class="panel panel-info">
 				<div class="panel-heading" style="text-align: center">
 					<font size="4px"><b>Informations pratiques</b> </font>
 				</div>
@@ -100,17 +114,7 @@ body {
 				<div style="width: 300px; height: 300px;">
 				<div id="map-canvas" style="width: 100%; height: 100%;"></div>
 				</div>
-				
-					<div>
-						<s:iterator value="leBar.lstEvals">
-							<input disabled="true" type="number" class="rating " min=0 max=5
-								step=0.1 data-size="sm" data-rtl="false"
-								value="<s:property value="note"/>" data-show-caption="false"
-								data-show-clear="false" data-read-only="true"
-								data-hover-enabled="false" />
-							<s:property value="libCourt" />
-						</s:iterator>
-					</div>
+
 
 				</div>
 
