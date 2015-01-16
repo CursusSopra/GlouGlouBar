@@ -61,7 +61,6 @@ public class Bar {
 			}
 		} catch (SQLException e) {
 		}
-
 		return lstComms;
 	}
 
@@ -309,30 +308,6 @@ public class Bar {
 		} catch (SQLException e) {
 		}
 	}
-
-//	private void buildAdresse() {
-//		Connection cnx = PostgresConnection.GetConnexion();
-//
-//		// requete de selection du bar d'idbar = id
-//		String query = "SELECT * from v_adressebar where idbar = ?";
-//
-//		try {
-//			PreparedStatement ps = cnx.prepareStatement(query);
-//			ps.setInt(1, idBar);
-//			ResultSet rs = ps.executeQuery();
-//
-//			// remplissage de l'objet si le bar est trouvé
-//			if (rs.next()) {
-//				Ville ville = new Ville();
-//				ville.setCp(rs.getString("cp"));
-//				ville.setVille(rs.getString("ville"));
-//				adresse.setVille(ville);
-//				adresse.setVoie(rs.getString("voie"));
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 	public int CreateHoraires() {
 		Connection cnx = PostgresConnection.GetConnexion();

@@ -71,7 +71,7 @@ public class CreationBarAction extends ActionSupport {
 		
 		//Récupération de la liste des catégories
 		List<BarCategorie> lstBarCategorie = new ArrayList<>();
-		for (int i = 0; i < checkboxCritere.length; i++) {
+		for (int i = 0; i < checkboxCategorie.length; i++) {
 			BarCategorie barCat = new BarCategorie();
 			barCat.setIdCategorie(checkboxCategorie[i]);
 			lstBarCategorie.add(barCat);
