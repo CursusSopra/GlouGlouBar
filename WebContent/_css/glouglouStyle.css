@@ -35,4 +35,15 @@ vignette, .description:hover {
 .linkStyle:hover {
 	color: #000;
 	text-decoration: none;
+	
+}
+.linkStyle:focus {
+	outline: none;
+}
+.linkStyle:visited{
+	outline: none;
+}
+
+a{
+	outline: none;
 }
