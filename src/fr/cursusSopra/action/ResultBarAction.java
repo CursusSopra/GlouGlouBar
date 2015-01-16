@@ -83,7 +83,7 @@ public class ResultBarAction extends ActionSupport {
 	private void ExecuteMultiSearch() {
 		setLstBars(new ArrayList<Bar>());
 		searchElt = new Search();
-		searchElt.MultiSearch(nom, adresse,catSelected , cpSelected);
+		searchElt.MultiSearch(nom, adresse,catSelected , cpSelected, selectedCritere);
 		setLstBars(searchElt.getLstbar());
 	}
 

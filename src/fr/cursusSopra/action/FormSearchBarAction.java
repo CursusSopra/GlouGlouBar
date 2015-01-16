@@ -7,7 +7,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import fr.cursusSopra.model.CategorieBar;
 import fr.cursusSopra.model.Critere;
-import fr.cursusSopra.model.Search;
 import fr.cursusSopra.model.Ville;
 
 public class FormSearchBarAction extends ActionSupport {
