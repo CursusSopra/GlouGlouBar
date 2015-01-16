@@ -41,7 +41,7 @@ public class Bar {
 		List<BarCommentaire> lstComms = new ArrayList<BarCommentaire>();
 
 		Connection cnx = PostgresConnection.GetConnexion();
-		String query = "SELECT comm, EXTRACT(DATE FROM datecomm) AS datecomm, note from critiques inner join evaluations using (idcritique) where idbar=? and idcriteval=5";
+		String query = "SELECT * FROM v_comm_notes where idbar=? and idcriteval=5";
 		PreparedStatement ps;
 		try {
 			ps = cnx.prepareStatement(query);
@@ -52,7 +52,7 @@ public class Bar {
 			while (rs.next()) {
 				BarCommentaire bc = new BarCommentaire();
 				bc.setComm(rs.getString("comm"));
-				bc.setDateComm(rs.getDate("datecomm"));
+				bc.setDateComm(rs.getString("datecomm"));
 				bc.setNote(rs.getInt("note"));
 				lstComms.add(bc);
 			}
@@ -318,7 +318,7 @@ public class Bar {
 		Connection cnx = PostgresConnection.GetConnexion();
 
 		// requete de selection du bar d'idbar = id
-		String query = "SELECT voie, cp, ville from adresses inner join bars using(idadresse) inner join villes using (cp) where idbar = ?";
+		String query = "SELECT * from v_adressesbar where idbar = ?";
 
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
