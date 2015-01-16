@@ -10,14 +10,12 @@
 		</result-types>
 	
 		<action name="formSearchBar" class="fr.cursusSopra.action.FormSearchBarAction" method="execute">
-			<result name="success">views/search/FormSearchBar.jsp</result>
+			<result name="success" type="tiles">formSearchBar</result>
 			
 		</action>
 		<action name="searchByCP" class="fr.cursusSopra.action.ResultBarAction" method="execute">
-			<result name="success">views/search/ResultSearchBar.jsp</result>
+			<result name="success" type="tiles">resultSearchBar</result>
 		</action>
-		
-		
 		
 	</package>
 </struts>
