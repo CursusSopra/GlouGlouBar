@@ -17,12 +17,10 @@
 <link href="_css/maps.css" type="text/css" rel="stylesheet" />
 
 <style>
-
 body {
 	background-image: url("content/images/background.jpg");
 	background-repeat: repeat;
 }
-
 </style>
 
 <title>Détails bar</title>
@@ -56,7 +54,7 @@ body {
 					<br />
 				</div>
 				<div class="panel-body">
-					<div class="col-md-4 col-md-offset-1">
+					<div class="col-md-4 col-offset-1">
 						<s:if test="%{leBar.lstHoraires.size > 0}">
 							<table class="table table-striped table-hover"
 								style="text-align: center;">
@@ -80,7 +78,7 @@ body {
 							</table>
 						</s:if>
 					</div>
-					
+
 					<div class="col-md-4 col-md-offset-1">
 						<s:iterator value="leBar.lstEvals">
 							<input disabled="true" type="number" class="rating " min=0 max=5
@@ -90,7 +88,7 @@ body {
 								data-hover-enabled="false" />
 							<s:property value="libCourt" />
 						</s:iterator>
-					
+
 					</div>
 					<a href="<s:url action='' />">Retour aux bars</a>
 
@@ -102,6 +100,14 @@ body {
 
 					<a href="<s:property value='#GoToformEval'/> "> Donnez votre
 						avis </a>
+
+					<s:url action="modifyBar" var="GoToFormModify">
+						<s:param name="idBar">
+							<s:property value="idBar" />
+						</s:param>
+					</s:url>
+
+					<a href="<s:property value='GoToFormModify'/> "> Modifiez les informations </a>
 				</div>
 			</div>
 		</div>
@@ -110,11 +116,10 @@ body {
 				<div class="panel-heading" style="text-align: center">
 					<font size="4px"><b>Informations pratiques</b> </font>
 				</div>
-				<div class="panel-body" >
-				<div style="width: 300px; height: 300px;">
-				<div id="map-canvas" style="width: 100%; height: 100%;"></div>
-				</div>
-
+				<div class="panel-body">
+					<div style="width: 300px; height: 300px;">
+						<div id="map-canvas" style="width: 100%; height: 100%;"></div>
+					</div>
 
 				</div>
 
@@ -225,7 +230,34 @@ body {
 		</div>
 	</div>
 
-
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-7">
+			<div class="panel panel-info">
+				<div class="panel-heading" style="text-align: center">
+					<h2>
+						L'avis des internautes
+					</h2>
+				</div>
+				
+				<div class="panel-body">
+					<s:iterator value="leBar.lstComms">
+					
+						<s:property value="dateComm"/>
+						
+							<input disabled="true" type="number" class="rating " min=0 max=5
+								step=0.1 data-size="sm" data-rtl="false"
+								value="<s:property value="note"/>" data-show-caption="false"
+								data-show-clear="false" data-read-only="true"
+								data-hover-enabled="false" />
+							
+							<s:property value="comm"/>
+					</s:iterator> 
+				
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
