@@ -10,26 +10,14 @@ body{
   filter:alpha(opacity=70);
 }
 
-.#row1{
-	 margin-top:25px;
-}
-
-.#margecaract{
-	margin-left:20px;
-}
-
-.#titrecaract {
-	text-align:center
-}
-
 .taillelogo {
 	width:25%;
 	height:25%;
 }
 
 .tailleimage{
-	width:40%;
-	height:40%;
+	width:35%;
+	height:35%;
 }
 
 .panel-info{

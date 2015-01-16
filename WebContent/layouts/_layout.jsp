@@ -29,6 +29,8 @@
 <title><tiles:getAsString name="title" /></title>
 </head>
 <body>
+<img class="imgtop" src="content/images/glougloulogo.jpg" width="300px;" height="60px;" />
+
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
