@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC 
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" 
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="detailsBar" extends="baseLayout">
+		<put-attribute name="title" value="Détails d'un Bar" />
+		<put-attribute name="body" value="/views/details/DetailsBar.jsp" />
+		
+		<put-list-attribute name="moreScripts">
+			<add-attribute value="js/jquery-2.1.1.min.js"></add-attribute>
+			<add-attribute value="_js/maps.js"></add-attribute>
+			<add-attribute value="js/star-rating.min.js"></add-attribute>
+		</put-list-attribute>
+		
+		<put-list-attribute name="moreHttpScripts">
+			<add-attribute value="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIXm3hVBQgLwOmmsORoaxue1ZSqYx4rc0	"></add-attribute>
+		</put-list-attribute>
+		
+		<put-list-attribute name="moreStyles">
+			<add-attribute value="css/bootstrap.css"></add-attribute>
+			<add-attribute value="css/star-rating.min.css"></add-attribute>
+			<add-attribute value="_css/maps.css"></add-attribute>
+			<add-attribute value="_css/glouglouStyle.css"></add-attribute>
+		</put-list-attribute>
+	</definition>
+	
+</tiles-definitions>
