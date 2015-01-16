@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.cursusSopra.tech.Adresse;
 import fr.cursusSopra.tech.BarCategorie;
 import fr.cursusSopra.tech.BarCommentaire;
 import fr.cursusSopra.tech.BarCritere;
@@ -20,9 +21,9 @@ public class Bar {
 	private String site;
 	private String description;
 	private String lienImage;
-	private String voie;
-	private String ville;
-	private String cp;
+	
+	private Adresse adresse;
+	
 	private String shortDescription;
 	private List<Double> lstNotes;
 
@@ -36,9 +37,7 @@ public class Bar {
 	
 	private List<BarCritere> lstBarCritere;
 	private List<BarCategorie> lstBarCategorie;
-
 	private List<BarEvaluation> lstEvals;
-
 	private List<BarCommentaire> lstComms;
 
 	public List<BarCommentaire> getLstComms() {
@@ -171,6 +170,14 @@ public class Bar {
 
 	}
 
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
+
 	public Bar() {
 	}
 
@@ -206,18 +213,6 @@ public class Bar {
 		this.description = description;
 	}
 
-	public void setVoie(String voie) {
-		this.voie = voie;
-	}
-
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-
-	public void setCp(String cp) {
-		this.cp = cp;
-	}
-
 	public void setIdBar(int idBar) {
 		this.idBar = idBar;
 	}
@@ -234,18 +229,6 @@ public class Bar {
 		return lstCritere;
 	}
 
-	public String getVoie() {
-		return voie;
-	}
-
-	public String getVille() {
-		return ville;
-	}
-
-	public String getCp() {
-		return cp;
-	}
-
 	/**
 	 * Constructeur de l'objet bar qui récupère le bar correspondant à l'id dans
 	 * la table
@@ -258,6 +241,7 @@ public class Bar {
 		lstHoraires = Horaire.getListeHoraires(idBar);
 		lstCategorie = CategorieBar.listeCategorie(idBar);
 		lstCritere = Critere.listeCritere(idBar);
+		adresse = Adresse.getAdresse(idBar);
 		// requete de selection du bar d'idbar = id
 		String query = "SELECT nom, numtel, site, description FROM bars WHERE idbar = ?";
 
@@ -269,7 +253,7 @@ public class Bar {
 			// remplissage de l'objet si le bar est trouvé
 			if (rs.next()) {
 				fillBar(this, rs);
-				buildAdresse();
+//				buildAdresse();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -326,61 +310,29 @@ public class Bar {
 		}
 	}
 
-	private void buildAdresse() {
-		Connection cnx = PostgresConnection.GetConnexion();
-
-		// requete de selection du bar d'idbar = id
-		String query = "SELECT * from v_adressebar where idbar = ?";
-
-		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
-			ps.setInt(1, idBar);
-			ResultSet rs = ps.executeQuery();
-
-			// remplissage de l'objet si le bar est trouvé
-			if (rs.next()) {
-				setVoie(rs.getString("voie"));
-				setCp(rs.getString("cp"));
-				setVille(rs.getString("ville"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Ajoute une adresse à un bar. Appelée dans la méthode Create()
-	 * 
-	 * @return
-	 */
-	public int CreateAdresse() {
-		Connection cnx = PostgresConnection.GetConnexion();
-
-		String queryCp = "SELECT cp FROM villes WHERE ville=?";
-		String queryAdresse = "INSERT INTO adresses (voie, cp) VALUES (?, ?) RETURNING idadresse";
-
-		try {
-			// Récupération du code postal de la ville sélectionnée
-			PreparedStatement psCp = cnx.prepareStatement(queryCp);
-			psCp.setString(1, ville);
-			ResultSet rsCp = psCp.executeQuery();
-			rsCp.next();
-			setCp(rsCp.getString("cp"));
-
-			// Insertion de l'adresse dans la base de données
-			PreparedStatement psAdresse = cnx.prepareStatement(queryAdresse);
-			psAdresse.setString(1, voie);
-			psAdresse.setString(2, cp);
-			// Récupération de l'idadresse
-			ResultSet rsAdresse = psAdresse.executeQuery();
-			rsAdresse.next();
-			return rsAdresse.getInt(1);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return 0;
-		}
-	}
+//	private void buildAdresse() {
+//		Connection cnx = PostgresConnection.GetConnexion();
+//
+//		// requete de selection du bar d'idbar = id
+//		String query = "SELECT * from v_adressebar where idbar = ?";
+//
+//		try {
+//			PreparedStatement ps = cnx.prepareStatement(query);
+//			ps.setInt(1, idBar);
+//			ResultSet rs = ps.executeQuery();
+//
+//			// remplissage de l'objet si le bar est trouvé
+//			if (rs.next()) {
+//				Ville ville = new Ville();
+//				ville.setCp(rs.getString("cp"));
+//				ville.setVille(rs.getString("ville"));
+//				adresse.setVille(ville);
+//				adresse.setVoie(rs.getString("voie"));
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	public int CreateHoraires() {
 		Connection cnx = PostgresConnection.GetConnexion();
@@ -390,7 +342,6 @@ public class Bar {
 			state = cnx.createStatement();
 			int retour = 1;
 			for (int i = 0; i < tabJoursOuvert.length; i++) {
-
 				String queryHoraires = "INSERT INTO horaires (idbar, idjour, heuredebut, heurefin) VALUES ("
 						+ idBar
 						+ ", "
@@ -417,7 +368,7 @@ public class Bar {
 	public int Create() {
 		Connection cnx = PostgresConnection.GetConnexion();
 
-		int idAdresse = CreateAdresse();
+		int idAdresse = Adresse.CreateAdresse(this);
 
 		String query = "INSERT INTO bars (nom,numtel,site,description, idadresse) VALUES (?,?,?,?,?) RETURNING idbar";
 

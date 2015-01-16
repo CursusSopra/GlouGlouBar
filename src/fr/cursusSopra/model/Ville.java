@@ -12,7 +12,7 @@ import fr.cursusSopra.tech.PostgresConnection;
 
 public class Ville {
 	private String cp;
-	private String ville;
+	private String nom;
 	
 	public static List<String> getLstChampVille() {
 		List<String> lstChampVille = new ArrayList<String>();
@@ -50,7 +50,7 @@ public class Ville {
 			{
 				Ville newVille = new Ville();
 				newVille.cp = rs.getString("cp");
-				newVille.ville = rs.getString("ville");
+				newVille.nom = rs.getString("ville");
 				lstVille.add(newVille);
 			}		
 			rs.close();		
@@ -61,15 +61,32 @@ public class Ville {
 		return lstVille;
 	}
 	
-	public String getVille() {
-		return ville;
+	public String getNom() {
+		return nom;
 	}
-	public void setVille(String ville) {
-		this.ville = ville;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 	public String getCp() {
 		return cp;
 	}
+	
+	public static String getCpWithVille (String nom) {
+		Connection cnx = PostgresConnection.GetConnexion();
+		String queryCp = "SELECT cp FROM villes WHERE ville=?";
+		try {
+			// Récupération du code postal de la ville sélectionnée
+			PreparedStatement psCp = cnx.prepareStatement(queryCp);
+			psCp.setString(1, nom);
+			ResultSet rsCp = psCp.executeQuery();
+			rsCp.next();	
+			return rsCp.getString("cp");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public void setCp(String cp) {
 		this.cp = cp;
 	}

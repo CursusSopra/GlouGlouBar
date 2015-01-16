@@ -104,10 +104,10 @@
 
 				<s:property value="leBar.nom" />
 				<br/>
-				<s:property value="leBar.voie" />
+				<s:property value="leBar.adresse.voie" />
 				<br/>
-				<s:property value="leBar.cp" />
-				<s:property value="leBar.ville" />
+				<s:property value="leBar.adresse.ville.cp" />
+				<s:property value="leBar.adresse.ville.nom" />
 				<br/> <br/>
 				<s:property value="leBar.numTel" />
 				<br/> <br/>

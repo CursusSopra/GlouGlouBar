@@ -13,6 +13,7 @@ import fr.cursusSopra.model.Jour;
 import fr.cursusSopra.model.Ville;
 import fr.cursusSopra.model.CategorieBar;
 import fr.cursusSopra.model.Critere;
+import fr.cursusSopra.tech.Adresse;
 import fr.cursusSopra.tech.BarCategorie;
 import fr.cursusSopra.tech.BarCritere;
 
@@ -48,6 +49,17 @@ public class CreationBarAction extends ActionSupport {
 		leBar.setSite(site);
 		leBar.setDescription(description);
 		
+		//Récupération de l'adresse
+		Adresse adresse = new Adresse();
+		Ville villeBar = new Ville();
+		villeBar.setVille(ville);
+		villeBar.setCp(Ville.getCpWithVille(ville));
+		
+		adresse.setVoie(voie);
+		adresse.setVille(villeBar);
+		
+		leBar.setAdresse(adresse);
+		
 		//Récupération de la liste des critères
 		List<BarCritere> lstBarCritere = new ArrayList<>();
 		for (int i = 0; i < checkboxCritere.length; i++) {
@@ -65,9 +77,6 @@ public class CreationBarAction extends ActionSupport {
 			lstBarCategorie.add(barCat);
 		}
 		leBar.setLstBarCategorie(lstBarCategorie);
-		
-		leBar.setVoie(voie);
-		leBar.setVille(ville);
 
 		String[] tabJoursOuvert = idJour.split(",");
 		String[] tabHeureDebutOuvert = idHeureDebut.split(",");
