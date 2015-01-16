@@ -13,6 +13,7 @@ import fr.cursusSopra.model.Jour;
 import fr.cursusSopra.model.Ville;
 import fr.cursusSopra.model.CategorieBar;
 import fr.cursusSopra.model.Critere;
+import fr.cursusSopra.tech.BarCategorie;
 import fr.cursusSopra.tech.BarCritere;
 
 public class CreationBarAction extends ActionSupport {
@@ -47,19 +48,26 @@ public class CreationBarAction extends ActionSupport {
 		leBar.setSite(site);
 		leBar.setDescription(description);
 		
-		//Liste des critères
+		//Récupération de la liste des critères
 		List<BarCritere> lstBarCritere = new ArrayList<>();
 		for (int i = 0; i < checkboxCritere.length; i++) {
-			BarCritere bc = new BarCritere();
-			bc.setIdcritere(checkboxCritere[i]);
-			lstBarCritere.add(bc);
+			BarCritere barCrit = new BarCritere();
+			barCrit.setIdcritere(checkboxCritere[i]);
+			lstBarCritere.add(barCrit);
 		}
 		leBar.setLstBarCritere(lstBarCritere);
 		
+		//Récupération de la liste des catégories
+		List<BarCategorie> lstBarCategorie = new ArrayList<>();
+		for (int i = 0; i < checkboxCritere.length; i++) {
+			BarCategorie barCat = new BarCategorie();
+			barCat.setIdCategorie(checkboxCategorie[i]);
+			lstBarCategorie.add(barCat);
+		}
+		leBar.setLstBarCategorie(lstBarCategorie);
+		
 		leBar.setVoie(voie);
 		leBar.setVille(ville);
-		
-		leBar.setTabCategories(checkboxCategorie);
 
 		String[] tabJoursOuvert = idJour.split(",");
 		String[] tabHeureDebutOuvert = idHeureDebut.split(",");
