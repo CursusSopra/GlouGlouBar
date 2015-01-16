@@ -66,7 +66,8 @@ public class Critere {
 		Connection cnx = PostgresConnection.GetConnexion();
 		
 		//requete de selection de tous les bars
-		String query = "SELECT * FROM v_listcriterebar WHERE idbar =?";
+		String query = "SELECT idcritere, critere FROM criteresbars inner join bars using (idbar) inner join criteresspeciaux using (idcritere) WHERE idbar =?";
+		
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
 			ps.setInt(1, idBar);
