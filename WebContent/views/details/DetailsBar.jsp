@@ -1,36 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="css/glouglouStyle.css" rel="stylesheet">
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link href="css/star-rating.min.css" media="all" rel="stylesheet"
-	type="text/css" />
-<link href="_css/maps.css" type="text/css" rel="stylesheet" />
-
-<style>
-body {
-	background-image: url("content/images/background.jpg");
-	background-repeat: repeat;
-}
-</style>
-
-<title>DÃ©tails bar</title>
-
-</head>
-
-
-<body>
-	<img src="content/images/glougloulogo.jpg" width="300px;"
-		height="60px;" />
 
 	<div class="row">
 		<div class="col-md-2"></div>
@@ -40,8 +9,7 @@ body {
 
 					<b><font size="20px" face="Mistral"> <s:property
 								value="leBar.nom.toUpperCase()" />
-					</font></b> <img src="<s:property value="leBar.lienImage"/>" width="35%"
-						height="35%" />
+					</font></b> <img class="tailleimage" src="<s:property value="leBar.lienImage"/>" />
 
 
 				</div>
@@ -84,7 +52,7 @@ body {
 						
 							<s:property value="libCourt" />
 							<input disabled="true" type="number" class="rating " min=0 max=5
-								step=0.1 data-size="sm" data-rtl="false"
+								step=1 data-size="sm" data-rtl="false"
 								value="<s:property value="note"/>" data-show-caption="false"
 								data-show-clear="false" data-read-only="true"
 								data-hover-enabled="false" />
@@ -151,7 +119,7 @@ body {
 
 			<div class="panel panel-info" style="margin-right: 20px;">
 				<div class="panel-heading" style="text-align: center">
-					<font size="4px"><b>CaractÃ©ristiques</b> </font>
+					<font size="4px"><b>Caractéristiques</b> </font>
 				</div>
 
 				<div class="panel-body">
@@ -178,70 +146,59 @@ body {
 
 
 	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-7">
-			<div class="panel panel-info">
-				<div class="panel-heading" style="text-align: center">
-					<h2>
-						Votre avis sur
-						<s:property value="leBar.nom" />
-					</h2>
-				</div>
-				<div class="panel-body">
+	<div class="col-lg-offset-3 col-lg-6 col-sm-offset-3 col-sm-6">
+		<section class="content-wrapper main-content clear-fix">
+			<form method="post" id="addEval" class="form-horizontal" action="<s:url action='addEval' />">
+			
+				<s:iterator value="lstCriteresEval" status="idx">
 
-					<section class="content-wrapper main-content clear-fix">
-						<form id="addEval" class="form-horizontal" method="post"
-							action="<s:url action='addEval'/>">
+					<label class="col-lg-4 control-label"> <s:property
+							value="libcourt" />
+					</label>
+					<input class="critnumber" type="hidden"
+						value='<s:property value="idcriteval" />' />
+					<input type="number" id='"<s:property value="libcourt" />" '
+						class="rating" min=0 max=5 step=1 data-size="sm" data-rtl="false" />
 
-							<s:iterator value="lstCriteresEval" status="idx">
+				</s:iterator>
 
-								<label class="col-lg-4 control-label"> <s:property
-										value="libcourt" />
-								</label>
-								<input type="number" id='"<s:property value="libcourt" />" '
-									class="rating" min=0 max=5 step=1 data-size="xs"
-									data-rtl="false" />
+				<input type="hidden" name="idBar" id="ididBar"
+					value='<s:property value="idBar" />' /> <input type="hidden"
+					name="idNotes" id="idNotes" /> <input type="hidden"
+					name="idCriteres" id="idCriteres" />
 
-							</s:iterator>
-
-							<input type="hidden" name="idBar" id="ididBar"
-								value='<s:property value="idBar" />' /> <input type="hidden"
-								name="idLib" id="idLib" />
-
-							<fieldset>
-								<div class="form-group">
-									<div class="col-lg-4">
-										<div class="row">
-											<div class="col-lg-6">
-												<br /> <br /> <label for="idCommentaire"
-													class="col-lg-4 control-label">Commentaire</label> <input
-													class="form-control" id="idCommentaire" name="commentaire" />
-											</div>
-											<div class="col-lg-6">&nbsp;</div>
-										</div>
-									</div>
+				<fieldset>
+					<div class="form-group">
+						<div class="col-lg-4">
+							<div class="row">
+								<div class="col-lg-6">
+									<br> <br> <label for="idCommentaire"
+										class="col-lg-4 control-label">Commentaire</label> <input
+										class="form-control" id="idCommentaire" name="commentaire" />
 								</div>
-							</fieldset>
-
-							<div class="form-group">
-								<div class="col-lg-4 col-lg-offset-2 col-sm-4 col-sm-offset-2">
-									<button type="reset" class="btn btn-default btn-center">
-										<span class="glyphicon glyphicon-refresh"></span> Ã‰tat initial
-									</button>
-								</div>
-								<div class="col-lg-4">
-									<button type="submit" id="test"
-										class="btn btn-primary btn-center">
-										<span class="glyphicon glyphicon-ok"></span> Mettre Ã  jour
-									</button>
-								</div>
+								<div class="col-lg-6">&nbsp;</div>
 							</div>
-						</form>
-					</section>
+						</div>
+					</div>
+				</fieldset>
+
+				<div class="form-group">
+					<div class="col-lg-4 col-lg-offset-2 col-sm-4 col-sm-offset-2">
+						<button type="reset" class="btn btn-default btn-center">
+							<span class="glyphicon glyphicon-refresh"></span> État initial
+						</button>
+					</div>
+					<div class="col-lg-4">
+						<button type="submit" id="test" class="btn btn-primary btn-center">
+							<span class="glyphicon glyphicon-ok"></span> Mettre à jour
+						</button>
+					</div>
 				</div>
-			</div>
-		</div>
+			</form>
+		</section>
 	</div>
+</div>
+
 
 	<div class="row">
 		<div class="col-md-2"></div>
@@ -259,7 +216,7 @@ body {
 						<s:property value="dateComm"/>
 						
 							<input disabled="true" type="number" class="rating " min=0 max=5
-								step=0.1 data-size="sm" data-rtl="false"
+								step=1 data-size="sm" data-rtl="false"
 								value="<s:property value="note"/>" data-show-caption="false"
 								data-show-clear="false" data-read-only="true"
 								data-hover-enabled="false" />
@@ -277,8 +234,7 @@ body {
 
 
 
-</body>
-
+<!-- 
 <script>
 	$(function() {
 		$('#addEval').submit(function() {
@@ -290,11 +246,4 @@ body {
 		});
 	});
 </script>
-
-<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIXm3hVBQgLwOmmsORoaxue1ZSqYx4rc0	"></script>
-<script src="_js/maps.js" type="text/javascript"></script>
-<script src="js/star-rating.min.js" type="text/javascript"></script>
-
-</html>
+ -->
