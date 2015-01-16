@@ -1,0 +1,37 @@
+body{
+	background-image:url("content/images/background.jpg");
+	background-repeat:repeat;
+}
+
+.imgtop
+{
+  z-index:10;
+  opacity:0.7;
+  filter:alpha(opacity=70);
+}
+
+.#row1{
+	 margin-top:25px;
+}
+
+.#margecaract{
+	margin-left:20px;
+}
+
+.#titrecaract {
+	text-align:center
+}
+
+.taillelogo {
+	width:25%;
+	height:25%;
+}
+
+.tailleimage{
+	width:40%;
+	height:40%;
+}
+
+.panel-info{
+	margin-right:20px;
+}

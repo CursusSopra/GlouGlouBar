@@ -11,9 +11,7 @@
 		<put-attribute name="body" value="/views/details/DetailsBar.jsp" />
 		
 		<put-list-attribute name="moreScripts">
-			<add-attribute value="js/jquery-2.1.1.min.js"></add-attribute>
 			<add-attribute value="_js/maps.js"></add-attribute>
-			<add-attribute value="js/star-rating.min.js"></add-attribute>
 		</put-list-attribute>
 		
 		<put-list-attribute name="moreHttpScripts">
@@ -21,10 +19,9 @@
 		</put-list-attribute>
 		
 		<put-list-attribute name="moreStyles">
-			<add-attribute value="css/bootstrap.css"></add-attribute>
-			<add-attribute value="css/star-rating.min.css"></add-attribute>
 			<add-attribute value="_css/maps.css"></add-attribute>
 			<add-attribute value="_css/glouglouStyle.css"></add-attribute>
+			<add-attribute value="_css/detailsStyle.css"></add-attribute>
 		</put-list-attribute>
 	</definition>
 	
