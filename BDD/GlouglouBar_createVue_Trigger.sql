@@ -1,4 +1,4 @@
-﻿
+
 -- Creation des Triggers
 
 CREATE OR REPLACE FUNCTION on_insert()
@@ -66,6 +66,18 @@ CREATE OR REPLACE VIEW v_listcriterebar AS
      JOIN criteresspeciaux USING (idcritere)
   ORDER BY criteresbars.idbar;
 
+-- View: v_comm_notes
 
+
+CREATE OR REPLACE VIEW v_comm_notes AS 
+ SELECT critiques.idbar,
+    evaluations.idcriteval,
+    critiques.comm,
+    to_char(critiques.datecomm, 'dd MonthYYYY'::text) AS datecomm,
+    evaluations.note
+   FROM critiques
+     JOIN evaluations USING (idcritique)
+  ORDER BY critiques.idbar;
+     
 
 
