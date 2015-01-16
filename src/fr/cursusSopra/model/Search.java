@@ -165,6 +165,25 @@ public class Search {
 		}
 	}
 
+	public void SearchIdBarByCrit(int[] tabcrit){
+		Connection cnx = PostgresConnection.GetConnexion();
+		lstbar = new ArrayList<Bar>();
+		String query = "SELECT distinct idbar FROM criteresbars WHERE idcritere IN ";
+		query+=RequeteFromIntTab(tabcrit);
+		try {
+			PreparedStatement ps = cnx.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			// remplissage tant qu'on trouve des catégories
+			while (rs.next()) {
+				Bar LeBar = new Bar(rs.getInt("idbar"));
+				lstbar.add(LeBar);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void SearchIdBarByCat(int[] tabcat) {
 		Connection cnx = PostgresConnection.GetConnexion();
 		lstbar = new ArrayList<Bar>();
@@ -185,27 +204,6 @@ public class Search {
 	}
 
 	public Search() {
-		lstCP = new ArrayList<String>();
-		lstcat = new ArrayList<CategorieBar>();
-		lstcat = CategorieBar.getListeCategoriesBar();
-
-		Connection cnx = PostgresConnection.GetConnexion();
-		// requete pour selectionner tous les codes postaux
-		String query = "SELECT cp FROM villes";
-
-		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
-			ResultSet rs = ps.executeQuery();
-
-			// remplissage tant qu'on trouve des catégories
-			while (rs.next()) {
-				lstCP.add(rs.getString("cp"));
-			}
-			rs.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-
-		}
 	}
 
 	public int getIdBar() {
