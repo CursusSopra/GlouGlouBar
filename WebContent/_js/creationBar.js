@@ -51,28 +51,37 @@ $(function() {
 		$('#selectFinTousLesJours').children().change(changeTousLesHorairesFin);
 	});
 	
-	
-
-	
-
 	$('#addBar').submit(function() {
-		var szJour = '';
-		var szHeureDebut = '';
-		var szHeureFin = '';
-		$.each($('.jour'), function(index, elt) {
-			szJour += $(elt).val() + ',';
-		});
-		$.each($('.horaireDebut'), function(index, elt) {
-			szHeureDebut += $(elt).val() + ',';
-		});
-		$.each($('.horaireFin'), function(index, elt) {
-			szHeureFin += $(elt).val() + ',';
+		// Format l'adresse à partir des infos du formulaire
+		var geocoder = new google.maps.Geocoder();		
+		
+		geocoder.geocode({ 'address' : address }, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				lat = results[0].geometry.location.lat();
+				long = results[0].geometry.location.lng();
+				
+				// Stockage de ces résultats dans deux champs cachés du formulaire
+				
+			}
+			var szJour = '';
+			var szHeureDebut = '';
+			var szHeureFin = '';
+			$.each($('.jour'), function(index, elt) {
+				szJour += $(elt).val() + ',';
+			});
+			$.each($('.horaireDebut'), function(index, elt) {
+				szHeureDebut += $(elt).val() + ',';
+			});
+			$.each($('.horaireFin'), function(index, elt) {
+				szHeureFin += $(elt).val() + ',';
+			});
+
+			$('#idJour').val(szJour);
+			$('#idHeureDebut').val(szHeureDebut);
+			$('#idHeureFin').val(szHeureFin);
 		});
 
-		$('#idJour').val(szJour);
-		$('#idHeureDebut').val(szHeureDebut);
-		$('#idHeureFin').val(szHeureFin);
-		});
+	});
 });
 
 function fermeAction() {
