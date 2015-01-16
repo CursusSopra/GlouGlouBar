@@ -1,3 +1,5 @@
+<!-- Antoine -->
+
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <h1 class="col-md-offset-1">Création bar</h1>
@@ -40,20 +42,30 @@
 			</div>
 		</fieldset>
 
-		<div class="form-group">
-			<s:iterator value="lstCategories">
-				<input type="checkbox" name="checkboxCategorie"
-					value="<s:property value="idCategorie"/>">
-				<s:property value="categorieBar" />
-			</s:iterator>
-		</div>
-		<div class="form-group">
-			<s:iterator value="lstCriteres">
-				<input type="checkbox" name="checkboxCritere"
-					value="<s:property value="idCritere"/>">
-				<s:property value="critere" />
-			</s:iterator>
-		</div>
+		<fieldset>
+			<legend>Type de Bar</legend>
+			<div>
+				<s:iterator value="lstCategories">
+					<input type="checkbox" name="checkboxCategorie"
+						value="<s:property value="idCategorie"/>">
+					<s:property value="categorieBar" />
+					<br />
+				</s:iterator>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>Caractéristiques</legend>
+			<div>
+				<s:iterator value="lstCriteres">
+					<input type="checkbox" name="checkboxCritere"
+						value="<s:property value="idCritere"/>">
+					<s:property value="critere" />
+					<br />
+				</s:iterator>
+			</div>
+		</fieldset>
+
 
 		<fieldset>
 			<legend>Horaires</legend>
@@ -91,6 +103,6 @@
 	<div class="col-md-1"></div>
 </div>
 <div class="row">
-	<a href="<s:url action='' />" class="col-md-offset-1">Retour
-		à l'index</a>
+	<a href="<s:url action='' />" class="col-md-offset-1">Retour à
+		l'index</a>
 </div>
