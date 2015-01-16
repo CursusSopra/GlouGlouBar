@@ -6,6 +6,7 @@ function initialize() {
 	var geocoder = new google.maps.Geocoder();
 	var address = "12 Rue Sainte-Catherine, 69001 Lyon, FRANCE";
 	
+	
 	geocoder.geocode({
 		'address' : address
 	}, function(results, status) {
@@ -14,12 +15,17 @@ function initialize() {
 			lat = results[0].geometry.location.lat();
 			long = results[0].geometry.location.lng();
 
+			var myLatlng = new google.maps.LatLng(lat,long);
 			var mapOptions = {
 				center : new google.maps.LatLng(lat, long),
 				zoom : 15,
 				mapTypeId : google.maps.MapTypeId.ROADMAP
 			};
 			map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+			var marker = new google.maps.Marker({
+			      position: myLatlng,
+			      map: map,
+			      title: address})
 		}
 	});
 
@@ -30,3 +36,5 @@ google.maps.event.addDomListener(window, "resize", function() {
 	google.maps.event.trigger(map, "resize");
 	map.setCenter(center);
 });
+
+

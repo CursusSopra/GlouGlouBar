@@ -9,13 +9,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/glouglouStyle.css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-<script src="js/star-rating.min.js" type="text/javascript"></script>
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
 	rel="stylesheet" />
 <link href="css/star-rating.min.css" media="all" rel="stylesheet"
 	type="text/css" />
+<link href="_css/maps.css" type="text/css" rel="stylesheet" />
 
 <style>
 body {
@@ -34,9 +33,7 @@ body {
 		height="60px;" />
 
 	<div class="row" style="margin-top: 25px;">
-		<div class="col-md-2">
-
-		</div>
+		<div class="col-md-2"></div>
 		<div class="col-md-7">
 			<div class="panel panel-primary">
 				<div class="panel-heading" style="text-align: center">
@@ -99,7 +96,11 @@ body {
 				<div class="panel-heading" style="text-align: center">
 					<font size="4px"><b>Informations pratiques</b> </font>
 				</div>
-				<div class="panel-body">
+				<div class="panel-body" >
+				<div style="width: 300px; height: 300px;">
+				<div id="map-canvas" style="width: 100%; height: 100%;"></div>
+				</div>
+				
 					<div>
 						<s:iterator value="leBar.lstEvals">
 							<input disabled="true" type="number" class="rating " min=0 max=5
@@ -125,7 +126,7 @@ body {
 				<s:property value="leBar.site" />
 				<br />
 			</div>
-			
+
 			<div class="panel panel-info" style="margin-right: 20px;">
 				<div class="panel-heading" style="text-align: center">
 					<font size="4px"><b>Caractéristiques</b> </font>
@@ -144,7 +145,7 @@ body {
 					</ul>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 
@@ -219,20 +220,29 @@ body {
 			</div>
 		</div>
 	</div>
-	<script>
-		$(function() {
-			$('#addEval').submit(function() {
-				var sz = "";
-				$.each($('.rating'), function(index, elt) {
-					sz += $(elt).val() + ',';
-				});
-				$('#idLib').val(sz);
-			});
-		});
-	</script>
+
 
 
 
 
 </body>
+
+<script>
+	$(function() {
+		$('#addEval').submit(function() {
+			var sz = "";
+			$.each($('.rating'), function(index, elt) {
+				sz += $(elt).val() + ',';
+			});
+			$('#idLib').val(sz);
+		});
+	});
+</script>
+
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIXm3hVBQgLwOmmsORoaxue1ZSqYx4rc0	"></script>
+<script src="_js/maps.js" type="text/javascript"></script>
+<script src="js/star-rating.min.js" type="text/javascript"></script>
+
 </html>

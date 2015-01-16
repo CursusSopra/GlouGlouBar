@@ -32,7 +32,7 @@
 </head>
 <body>
 <img src="content/images/glougloulogo.jpg" width="300px;" height ="60px;"/>
-	<div class="row" style="margin-top: 50px; margin-left: 50px;">
+	<div class="row" style="margin-top: 50px; margin-left: 50px; margin-right: 50px;">
 
 		<s:iterator value="lstBars">
 
@@ -64,8 +64,7 @@
 	</div>
 	<a href="<s:url action='creationBar' />">Création d'un nouveau bar</a>
 	<a href="<s:url action='formSearchBar' />">Recherche</a>
-	
-	<div id="map-canvas" style="width: 20%; height: 20%; height: 40%; "></div>
+
 	
 </body>
 
