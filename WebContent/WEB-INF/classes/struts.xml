@@ -11,6 +11,7 @@
 	<include file="strutsBar.xml" />
 	<include file="strutsSearch.xml" />
 	<include file="strutsJSON.xml" />
+	<include file="strutsModify.xml" />
 
 	<package name="default" extends="struts-default">
 		<result-types>
