@@ -7,7 +7,7 @@ $BODY$begin
 	new.datecomm = now();
 	return new;
 end;$BODY$
-  LANGUAGE plpgsql
+  LANGUAGE plpgsql;
 
 CREATE TRIGGER on_before_insert
   BEFORE INSERT
