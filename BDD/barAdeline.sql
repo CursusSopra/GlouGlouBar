@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.3.5
 -- Dumped by pg_dump version 9.3.5
--- Started on 2015-01-16 11:18:00
+-- Started on 2015-01-16 11:48:27
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -16,7 +16,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 2036 (class 0 OID 57351)
+-- TOC entry 2035 (class 0 OID 57351)
 -- Dependencies: 172
 -- Data for Name: adresses; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -31,7 +31,7 @@ INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (9, '47, 
 
 
 --
--- TOC entry 2063 (class 0 OID 0)
+-- TOC entry 2059 (class 0 OID 0)
 -- Dependencies: 171
 -- Name: adresses_idadresse_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40,7 +40,7 @@ SELECT pg_catalog.setval('adresses_idadresse_seq', 9, true);
 
 
 --
--- TOC entry 2038 (class 0 OID 57367)
+-- TOC entry 2037 (class 0 OID 57367)
 -- Dependencies: 174
 -- Data for Name: bars; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -63,7 +63,7 @@ INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (9, 9
 
 
 --
--- TOC entry 2064 (class 0 OID 0)
+-- TOC entry 2060 (class 0 OID 0)
 -- Dependencies: 173
 -- Name: bars_idbar_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -72,41 +72,7 @@ SELECT pg_catalog.setval('bars_idbar_seq', 9, true);
 
 
 --
--- TOC entry 2044 (class 0 OID 57446)
--- Dependencies: 186
--- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO categories (idcategorie, categoriebar) VALUES (1, 'Bar festif');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (2, 'Pub');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (3, 'Bar à vin');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (4, 'Bar à bière');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (5, 'Bar à cocktail');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (6, 'Bar lounge');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (7, 'Bar à concert');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (8, 'Bar à tapas');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (9, 'Café bar');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (10, 'Bar à shooters');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (11, 'Bar dansant');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (12, 'Bar à whisky');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (13, 'Irish Pub');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (14, 'Bar Jazzy');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (15, 'Bar after work');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (16, 'Bar gay');
-INSERT INTO categories (idcategorie, categoriebar) VALUES (17, 'Bar lesbien');
-
-
---
--- TOC entry 2065 (class 0 OID 0)
--- Dependencies: 185
--- Name: categories_idcategorie_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('categories_idcategorie_seq', 17, true);
-
-
---
--- TOC entry 2046 (class 0 OID 57454)
+-- TOC entry 2045 (class 0 OID 57454)
 -- Dependencies: 188
 -- Data for Name: categoriesbars; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -133,7 +99,7 @@ INSERT INTO categoriesbars (idcatbar, idbar, idcategorie) VALUES (19, 9, 15);
 
 
 --
--- TOC entry 2066 (class 0 OID 0)
+-- TOC entry 2061 (class 0 OID 0)
 -- Dependencies: 187
 -- Name: categoriesbars_idcatbar_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -142,7 +108,7 @@ SELECT pg_catalog.setval('categoriesbars_idcatbar_seq', 19, true);
 
 
 --
--- TOC entry 2050 (class 0 OID 57480)
+-- TOC entry 2047 (class 0 OID 57480)
 -- Dependencies: 192
 -- Data for Name: criteresbars; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -172,7 +138,7 @@ INSERT INTO criteresbars (idcriterebar, idbar, idcritere) VALUES (22, 9, 19);
 
 
 --
--- TOC entry 2067 (class 0 OID 0)
+-- TOC entry 2062 (class 0 OID 0)
 -- Dependencies: 191
 -- Name: criteresbars_idcriterebar_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -181,43 +147,7 @@ SELECT pg_catalog.setval('criteresbars_idcriterebar_seq', 22, true);
 
 
 --
--- TOC entry 2048 (class 0 OID 57472)
--- Dependencies: 190
--- Data for Name: criteresspeciaux; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (1, 'Terrasse');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (2, 'Accès Handicapé');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (3, 'Brunch');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (4, 'Gay friendly');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (5, 'Musique live');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (6, 'Ouvert le dimanche');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (7, 'Retransmission foot');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (8, 'Apéros/Planches');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (9, 'Au bord de l eau');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (10, 'Décoration originale');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (11, 'Privatisation pour groupes');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (12, 'Enterrement de vie de garçon/jeune fille');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (13, 'Espace fumeur');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (14, 'Ouvert après 1h');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (15, 'Plat du jour');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (16, 'Retransmission évènements');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (17, 'Sportifs');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (18, 'Avec piscine');
-INSERT INTO criteresspeciaux (idcritere, critere) VALUES (19, 'Connexion Wifi');
-
-
---
--- TOC entry 2068 (class 0 OID 0)
--- Dependencies: 189
--- Name: criteresspeciaux_idcritere_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('criteresspeciaux_idcritere_seq', 19, true);
-
-
---
--- TOC entry 2040 (class 0 OID 57409)
+-- TOC entry 2041 (class 0 OID 57409)
 -- Dependencies: 180
 -- Data for Name: critiques; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -234,7 +164,7 @@ INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (9, 8, 'Moi, j'
 
 
 --
--- TOC entry 2069 (class 0 OID 0)
+-- TOC entry 2063 (class 0 OID 0)
 -- Dependencies: 179
 -- Name: critiques_idcritique_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -243,7 +173,7 @@ SELECT pg_catalog.setval('critiques_idcritique_seq', 9, true);
 
 
 --
--- TOC entry 2042 (class 0 OID 57433)
+-- TOC entry 2043 (class 0 OID 57433)
 -- Dependencies: 184
 -- Data for Name: evaluations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -291,7 +221,7 @@ INSERT INTO evaluations (ideval, idcritique, idcriteval, note) VALUES (40, 9, 5,
 
 
 --
--- TOC entry 2070 (class 0 OID 0)
+-- TOC entry 2064 (class 0 OID 0)
 -- Dependencies: 183
 -- Name: evaluations_ideval_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -299,7 +229,32 @@ INSERT INTO evaluations (ideval, idcritique, idcriteval, note) VALUES (40, 9, 5,
 SELECT pg_catalog.setval('evaluations_ideval_seq', 40, true);
 
 
--- Completed on 2015-01-16 11:18:00
+--
+-- TOC entry 2039 (class 0 OID 57391)
+-- Dependencies: 178
+-- Data for Name: horaires; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO horaires (idhoraire, idbar, idjour, heuredebut, heurefin) VALUES (1, 1, 1, '12:30:00', '23:30:00');
+INSERT INTO horaires (idhoraire, idbar, idjour, heuredebut, heurefin) VALUES (2, 1, 2, '09:30:00', '12:30:00');
+INSERT INTO horaires (idhoraire, idbar, idjour, heuredebut, heurefin) VALUES (3, 1, 2, '14:30:00', '23:30:00');
+INSERT INTO horaires (idhoraire, idbar, idjour, heuredebut, heurefin) VALUES (4, 1, 3, '14:30:00', '23:30:00');
+INSERT INTO horaires (idhoraire, idbar, idjour, heuredebut, heurefin) VALUES (5, 1, 4, '14:30:00', '23:30:00');
+INSERT INTO horaires (idhoraire, idbar, idjour, heuredebut, heurefin) VALUES (6, 1, 5, '14:30:00', '01:30:00');
+INSERT INTO horaires (idhoraire, idbar, idjour, heuredebut, heurefin) VALUES (7, 1, 6, '14:30:00', '01:30:00');
+INSERT INTO horaires (idhoraire, idbar, idjour, heuredebut, heurefin) VALUES (8, 1, 7, '14:30:00', '01:30:00');
+
+
+--
+-- TOC entry 2065 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: horaires_idhoraire_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('horaires_idhoraire_seq', 8, true);
+
+
+-- Completed on 2015-01-16 11:48:28
 
 --
 -- PostgreSQL database dump complete
