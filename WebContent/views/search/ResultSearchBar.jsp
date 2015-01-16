@@ -1,25 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
-	rel="stylesheet">
-
-<link href="_css/glouglouStyle.css" type="text/css" rel="stylesheet" />
-<link href="css/star-rating.min.css" media="all" rel="stylesheet"
-	type="text/css" />
-
-
-<title>Index</title>
-
-</head>
-<body>
 	<img src="content/images/glougloulogo.jpg" width="300px;"
 		height="60px;" />
 	<div class="row" style="margin-top: 50px; margin-left: 50px;">
@@ -53,7 +33,27 @@
 
 	</div>
 	<a href="<s:url action='creationBar' />">Création d'un nouveau bar</a>
-	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-	<script src="js/star-rating.min.js" type="text/javascript"></script>
-</body>
-</html>
+
+
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" --%>
+<%-- 	pageEncoding="UTF-8"%> --%>
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
+<!-- <head> -->
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+<!-- <link -->
+<!-- 	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" -->
+<!-- 	rel="stylesheet"> -->
+
+<!-- <link href="_css/glouglouStyle.css" type="text/css" rel="stylesheet" /> -->
+<!-- <link href="css/star-rating.min.css" media="all" rel="stylesheet" -->
+<!-- 	type="text/css" /> -->
+
+
+<!-- <title>Index</title> -->
+
+<!-- </head> -->
+<!-- <body> -->
+
+<!-- </body> -->
+<!-- </html> -->

@@ -126,7 +126,7 @@ public class Search {
 			query += " AND cp IN ";
 			query+= RequeteFromStringTab(tabcp);
 		}
-		if (tabcp != null) {
+		if (tabcrit != null) {
 			query += " AND idcritere IN ";
 			query += RequeteFromIntTab(tabcrit);
 		}
