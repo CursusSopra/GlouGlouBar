@@ -82,36 +82,6 @@ public class Bar {
 		return lstEval;
 	}
 
-	public List<Double> getLstNotes() {
-
-		double globalNote;
-		List<Double> lst = new ArrayList<>();
-
-		Connection cnx = PostgresConnection.GetConnexion();
-		// requete de selection du bar d'idbar = id
-		String query = "SELECT SUM (note) as total, count (*) as idx FROM evaluations INNER JOIN critiques USING (idcritique) WHERE (idbar = ? and idcriteval=?)";
-		int i;
-		for (i = 1; i <= 5; i++) {
-			globalNote = 0;
-			try {
-				PreparedStatement ps = cnx.prepareStatement(query);
-				ps.setInt(1, idBar);
-				ps.setInt(2, i);
-				ResultSet rs = ps.executeQuery();
-
-				// remplissage de l'objet si le bar est trouvé
-				if (rs.next()) {
-					globalNote = (double) rs.getInt("total")
-							/ (double) rs.getInt("idx");
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			lst.add(globalNote);
-		}
-		return lst;
-	}
-
 	public String getLienImage() {
 		return ("content/images/" + String.valueOf(idBar) + ".jpg");
 	}
