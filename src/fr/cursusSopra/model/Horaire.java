@@ -72,12 +72,12 @@ public class Horaire {
 				newHoraire.idHoraire = rs.getInt("idhoraire");	
 				newHoraire.idBar = rs.getInt("idbar");
 				newHoraire.idJour = rs.getInt("idjour");
-				String heureOuverture = Double.toString(rs.getDouble(("heureouverture")));
-				String minuteOuverture = Double.toString(rs.getDouble(("minuteouverture")));
+				String heureOuverture = Integer.toString((int) rs.getDouble("heureouverture"));
+				String minuteOuverture = Integer.toString((int) rs.getDouble("minuteouverture"));
 				newHoraire.heureDebut = heureOuverture + ":" + minuteOuverture;
-				String heureFermeture = Double.toString(rs.getDouble(("heurefermeture")));
-				String minuteFermeture = Double.toString(rs.getDouble(("minutefermeture")));
-				newHoraire.heureDebut = heureFermeture + ":" + minuteFermeture;
+				String heureFermeture = Integer.toString((int) rs.getDouble("heurefermeture"));
+				String minuteFermeture = Integer.toString((int) rs.getDouble("minutefermeture"));
+				newHoraire.heureFin = heureFermeture + ":" + minuteFermeture;
 				lstHoraireBar.add(newHoraire);
 			}		
 			rs.close();		
