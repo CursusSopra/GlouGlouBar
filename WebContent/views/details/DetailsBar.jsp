@@ -46,7 +46,9 @@
 
 				<div class="col-md-4 col-md-offset-1">
 					Résumé des notes :
-					<s:property value="leBar.lstComms.size()" />
+					<s:property value="leBar.lstComms.size()" /> avis
+					<br/><br/>
+					
 					<s:iterator value="leBar.lstEvals">
 
 						<s:property value="libCourt" />
@@ -84,7 +86,9 @@
 					</s:url>
 
 					<a href="<s:property value='GoToFormModify'/> "> Modifiez les
-						informations </a> <a href="<s:property value='GoToformImage'/> ">
+						informations </a> 
+					<br/><br/>	
+					<a href="<s:property value='GoToformImage'/> ">
 						Ajouter une image </a>
 
 				</div>
@@ -99,7 +103,7 @@
 			</div>
 			<div class="panel-body">
 				<div style="width: 300px; height: 300px;">
-					<div id="map-canvas" style="width: 100%; height: 100%;"></div>
+					<div id="map_canvas" style="width: 100%; height: 100%;"></div>
 				</div>
 
 				<br />
@@ -118,7 +122,7 @@
 			</div>
 		</div>
 
-		<div class="panel panel-info" style="margin-right: 20px;">
+		<div class="panel panel-info" >
 			<div class="panel-heading" style="text-align: center">
 				<font size="4px"><b>Caractéristiques</b> </font>
 			</div>
@@ -183,8 +187,10 @@
 									<div class="col-lg-5 col-lg-offset-4">
 										<div class="row">
 											<br> <br> <label for="idCommentaire"
-												class="col-lg-4 control-label">Commentaire</label> <input
-												class="form-control" id="idCommentaire" name="commentaire" />
+												class="col-lg-4 control-label">Commentaire</label>
+												<textarea class="form-control" id="idCommentaire" name="commentaire"
+												cols="30" rows="5">
+												</textarea>
 											<br />
 										</div>
 									</div>
