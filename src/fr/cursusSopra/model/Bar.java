@@ -29,7 +29,7 @@ public class Bar {
 	private List<BarCommentaire> lstComms;
 	private Image mainImage;
 	private List<Image> lstImage;
-	
+
 	public Bar() {
 	}
 
@@ -59,8 +59,9 @@ public class Bar {
 			// remplissage de l'objet si le bar est trouvé
 			if (rs.next()) {
 				fillBar(this, rs);
-//				buildAdresse();
+				// buildAdresse();
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -85,6 +86,7 @@ public class Bar {
 				bc.setNote(rs.getInt("note"));
 				lstComms.add(bc);
 			}
+			rs.close();
 		} catch (SQLException e) {
 		}
 		return lstComms;
@@ -109,6 +111,7 @@ public class Bar {
 				be.setLibLong(rs.getString("liblong"));
 				lstEval.add(be);
 			}
+			ps.close();
 		} catch (SQLException e) {
 		}
 
@@ -152,8 +155,8 @@ public class Bar {
 				newBar.idBar = rs.getInt("idbar");
 				fillBar(newBar, rs);
 				newBar.lstHoraires = Horaire.getListeHoraires(newBar.idBar);
-				newBar.mainImage=Image.getMainImage(newBar.idBar);
-				newBar.lstImage=Image.getAllImage(newBar.idBar);
+				newBar.mainImage = Image.getMainImage(newBar.idBar);
+				newBar.lstImage = Image.getAllImage(newBar.idBar);
 				lstBar.add(newBar);
 			}
 			rs.close();
@@ -204,7 +207,7 @@ public class Bar {
 			// L'id du bar créé automatiquement est récupéré
 			int idBar = rs.getInt(1);
 			this.idBar = idBar;
-
+			rs.close();
 			return 1;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -229,13 +232,14 @@ public class Bar {
 			ps.setString(3, site);
 			ps.setString(4, description);
 			ps.setInt(5, idBar);
-			System.out.println("Coucou" + nom + numTel + site + description + idBar);
+			System.out.println("Coucou" + nom + numTel + site + description
+					+ idBar);
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
 		} finally {
-			if(ps != null) {
+			if (ps != null) {
 				try {
 					ps.close();
 				} catch (SQLException e) {
@@ -252,21 +256,28 @@ public class Bar {
 	public int Delete() {
 		Connection cnx = PostgresConnection.GetConnexion();
 		String query = "DELETE FROM bars WHERE idbar = ?";
-
+		PreparedStatement ps = null;
 		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
+			ps = cnx.prepareStatement(query);
 			ps.setInt(1, idBar);
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+				}
+			}
 		}
 	}
-	
+
 	public void setLstHoraires(List<Horaire> lstHoraires) {
 		this.lstHoraires = lstHoraires;
 	}
-	
+
 	public String getNom() {
 		return nom;
 	}
@@ -310,15 +321,15 @@ public class Bar {
 	public List<CategorieBar> getLstCategorie() {
 		return lstCategorie;
 	}
-	
+
 	public List<Critere> getLstCritere() {
 		return lstCritere;
 	}
-	
+
 	public List<Horaire> getLstHoraires() {
 		return lstHoraires;
 	}
-	
+
 	public void setLstCategorie(List<CategorieBar> lstCategorie) {
 		this.lstCategorie = lstCategorie;
 	}
@@ -326,7 +337,7 @@ public class Bar {
 	public void setShortDescription(String shortDescription) {
 
 	}
-	
+
 	public void setLstCritere(List<Critere> lstCritere) {
 		this.lstCritere = lstCritere;
 	}
@@ -338,7 +349,6 @@ public class Bar {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
-
 
 	public Image getMainImage() {
 		return mainImage;
