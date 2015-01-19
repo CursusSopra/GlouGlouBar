@@ -34,6 +34,8 @@ public class CreationBarAction extends ActionSupport {
 	private String description;
 	private String voie;
 	private String ville;
+	private double latitude;
+	private double longitude;
 	private List<CategorieBar> lstCategories;
 	private List<Critere> lstCriteres;
 	private List<String> champVille;
@@ -51,7 +53,7 @@ public class CreationBarAction extends ActionSupport {
 		// Récupération de l'adresse
 
 		Ville villeBar = new Ville(Ville.getCpWithVille(ville), ville);
-		Adresse adresse = new Adresse(villeBar, voie);
+		Adresse adresse = new Adresse(villeBar, voie, latitude, longitude);
 		//Sauvegarde de l'adresse
 		adresse.SaveAdresse();
 
@@ -92,19 +94,19 @@ public class CreationBarAction extends ActionSupport {
 		String[] tabHeureDebutOuvert = idHeureDebut.split(",");
 		String[] tabHeureFinOuvert = idHeureFin.split(",");
 		
-		DateFormat formatter = new SimpleDateFormat("hh:mm");
-		List<Horaire> lstHoraires = new ArrayList<>();
-		Horaire horaire = new Horaire();
-		for (int j = 0; j < tabJoursOuvert.length; j++) {
-			horaire.setIdBar(leBar.getIdBar());
-			horaire.setIdJour(Integer.parseInt(idJour));
-			Date heureDebut = (Date)formatter.parse(tabHeureDebutOuvert[j]);
-			horaire.setHeureDebut((Time) heureDebut);
-			Date heureFin = (Date)formatter.parse(tabHeureDebutOuvert[j]);
-			horaire.setHeureFin((Time) heureFin);
-			lstHoraires.add(horaire);
-		}
-		leBar.setLstHoraires(lstHoraires);
+//		DateFormat formatter = new SimpleDateFormat("hh:mm");
+//		List<Horaire> lstHoraires = new ArrayList<>();
+//		Horaire horaire = new Horaire();
+//		for (int j = 0; j < tabJoursOuvert.length; j++) {
+//			horaire.setIdBar(leBar.getIdBar());
+//			horaire.setIdJour(Integer.parseInt(idJour));
+//			Date heureDebut = (Date)formatter.parse(tabHeureDebutOuvert[j]);
+//			horaire.setHeureDebut((Time) heureDebut);
+//			Date heureFin = (Date)formatter.parse(tabHeureDebutOuvert[j]);
+//			horaire.setHeureFin((Time) heureFin);
+//			lstHoraires.add(horaire);
+//		}
+//		leBar.setLstHoraires(lstHoraires);
 
 		return result == 0 ? ERROR : SUCCESS;
 	}
@@ -149,6 +151,14 @@ public class CreationBarAction extends ActionSupport {
 		this.champVille = champVille;
 	}
 
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+	
 	public List<CategorieBar> getLstCategories() {
 		return lstCategories;
 	}

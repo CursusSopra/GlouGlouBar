@@ -181,31 +181,6 @@ public class Bar {
 		}
 	}
 
-	public int CreateHoraires() {
-		Connection cnx = PostgresConnection.GetConnexion();
-		Statement state;
-
-		try {
-			state = cnx.createStatement();
-			int retour = 1;
-			for (int i = 0; i < lstHoraires.size(); i++) {
-				String queryHoraires = "INSERT INTO horaires (idbar, idjour, heuredebut, heurefin) VALUES ("
-						+ idBar
-						+ ", "
-						+ lstHoraires.get(i).getIdJour()
-						+ ", "
-						+ lstHoraires.get(i).getHeureDebut()
-						+ ", "
-						+ lstHoraires.get(i).getHeureFin() + "')";
-				state.executeUpdate(queryHoraires);
-			}
-			return retour;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return 0;
-		}
-	}
-
 	/**
 	 * Ajoute un bar dans la base de données à partir des données connues dans
 	 * l'objet ci-présent
@@ -229,9 +204,6 @@ public class Bar {
 			int idBar = rs.getInt(1);
 			this.idBar = idBar;
 
-			// On remplit la liste des horaires
-			CreateHoraires();
-			
 			return 1;
 		} catch (SQLException e) {
 			e.printStackTrace();

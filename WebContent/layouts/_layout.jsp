@@ -96,17 +96,17 @@
 
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 
-	<tiles:useAttribute name="moreScripts" scope="request" ignore="true" />
-	<c:if test="${not empty moreScripts}">
-		<c:forEach items="${moreScripts}" var="jsFile">
-			<script type="text/javascript" src="./${jsFile}"></script>
-		</c:forEach>
-	</c:if>
-
 	<tiles:useAttribute name="moreHttpScripts" scope="request" ignore="true" />
 	<c:if test="${not empty moreHttpScripts}">
 		<c:forEach items="${moreHttpScripts}" var="jsFile">
 			<script type="text/javascript" src="${jsFile}"></script>
+		</c:forEach>
+	</c:if>
+
+	<tiles:useAttribute name="moreScripts" scope="request" ignore="true" />
+	<c:if test="${not empty moreScripts}">
+		<c:forEach items="${moreScripts}" var="jsFile">
+			<script type="text/javascript" src="./${jsFile}"></script>
 		</c:forEach>
 	</c:if>
 	

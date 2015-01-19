@@ -15,10 +15,14 @@ public class Adresse {
 	private int idAdresse;
 	private Ville ville;
 	private String voie;
+	private double latitude;
+	private double longitude;
 	
-	public Adresse(Ville ville, String voie){
+	public Adresse(Ville ville, String voie, double latitude, double longitude){
 		setVille(ville);
 		setVoie(voie);
+		setLatitude(latitude);
+		setLongitude(longitude);
 	}
 	
 	public Adresse() {
@@ -32,12 +36,14 @@ public class Adresse {
 	 */
 	public void SaveAdresse() {
 		Connection cnx = PostgresConnection.GetConnexion();
-		String queryAdresse = "INSERT INTO adresses (voie, cp) VALUES (?, ?) RETURNING idadresse";
+		String queryAdresse = "INSERT INTO adresses (voie, cp, latitude, longitude) VALUES (?, ?, ?, ?) RETURNING idadresse";
 		try {
 			// Insertion de l'adresse dans la base de données
 			PreparedStatement psAdresse = cnx.prepareStatement(queryAdresse);
 			psAdresse.setString(1, getVoie());
 			psAdresse.setString(2, getVille().getCp());
+			psAdresse.setDouble(3, getLatitude());
+			psAdresse.setDouble(4, getLongitude());
 			// Récupération de l'idadresse
 			ResultSet rsAdresse = psAdresse.executeQuery();
 			rsAdresse.next();
@@ -67,6 +73,22 @@ public class Adresse {
 		this.idAdresse = idAdresse;
 	}
 	
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+	
 	public static Adresse getAdresse(int idBar) {
 		// TODO Auto-generated method stub
 		Adresse adresse = new Adresse();
@@ -85,6 +107,8 @@ public class Adresse {
 				Ville ville = new Ville(rs.getString("cp"), rs.getString("ville"));	
 				adresse.setVille(ville);
 				adresse.setVoie(rs.getString("voie"));
+				adresse.setLatitude(rs.getDouble("latitude"));
+				adresse.setLongitude(rs.getDouble("longitude"));
 			}
 			rs.close();
 		} catch (SQLException e) {

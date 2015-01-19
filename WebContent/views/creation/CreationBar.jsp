@@ -44,6 +44,8 @@
 							</s:iterator>
 						</select>
 					</div>
+					<input type="hidden" id="latitude" name="latitude"/>
+					<input type="hidden" id="longitude" name="longitude"/>			
 				</fieldset>
 			</div>
 			<div class="form-group">
