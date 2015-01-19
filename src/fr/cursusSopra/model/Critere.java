@@ -47,6 +47,7 @@ public class Critere {
 			psCriteres.setInt(1, idBar);
 			psCriteres.setInt(2, idCritere);
 			psCriteres.executeUpdate();
+			psCriteres.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

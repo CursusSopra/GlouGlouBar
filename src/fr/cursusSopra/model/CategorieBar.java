@@ -49,6 +49,7 @@ public class CategorieBar {
 			psCategories.setInt(1, idBar);
 			psCategories.setInt(2, idCategorie);
 			psCategories.executeUpdate();
+			psCategories.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

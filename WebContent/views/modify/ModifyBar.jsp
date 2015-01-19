@@ -45,7 +45,7 @@
 						<label for="ville">Ville</label> <select class="form-control"
 							id="ville" name="ville">
 							<option
-								value="<s:property value="leBar.adresse.ville.idAdresse"/>"><s:property
+								value="<s:property value="leBar.adresse.ville.nom"/>"><s:property
 									value="leBar.adresse.ville.nom" /></option>
 							<s:iterator var="i" value="champVille" status="idx">
 								<option value="<s:property />"><s:property /></option>
