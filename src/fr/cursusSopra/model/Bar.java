@@ -111,7 +111,7 @@ public class Bar {
 
 		Connection cnx = PostgresConnection.GetConnexion();
 		String query = "SELECT AVG(note) as note, libcourt, liblong FROM critiques INNER JOIN evaluations USING (idcritique)     INNER JOIN critereseval USING (idcriteval) WHERE idbar = ? GROUP BY libcourt, liblong, tri ORDER BY tri";
-		PreparedStatement ps;
+		PreparedStatement ps=null;
 		try {
 			ps = cnx.prepareStatement(query);
 			ps.setInt(1, idBar);
@@ -160,8 +160,9 @@ public class Bar {
 
 		// requete de selection de tous les bars
 		String query = "SELECT idbar, nom, numtel, site, description FROM bars";
+		PreparedStatement ps=null;
 		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
+			ps = cnx.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 
 			// remplissage tant qu'on trouve des bars
@@ -175,9 +176,16 @@ public class Bar {
 				lstBar.add(newBar);
 			}
 			rs.close();
-			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 
 		return lstBar;
@@ -210,8 +218,9 @@ public class Bar {
 	public int SaveBar() {
 		Connection cnx = PostgresConnection.GetConnexion();
 		String query = "INSERT INTO bars (nom,numtel,site,description, idadresse) VALUES (?,?,?,?,?) RETURNING idbar";
+		PreparedStatement ps =null;
 		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
+			ps = cnx.prepareStatement(query);
 			ps.setString(1, nom);
 			ps.setString(2, numTel);
 			ps.setString(3, site);
@@ -224,11 +233,17 @@ public class Bar {
 			int idBar = rs.getInt(1);
 			this.idBar = idBar;
 			rs.close();
-			ps.close();
 			return 1;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
+		}finally{
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
