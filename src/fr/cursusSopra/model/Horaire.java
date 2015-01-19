@@ -32,9 +32,10 @@ public class Horaire {
 
 		// requete de selection de tous les bars
 		String query = "SELECT jour FROM jours WHERE idjour = ?";
-
+		PreparedStatement ps = null;
 		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
+			 ps = cnx.prepareStatement(query);
+			
 			ps.setInt(1, idJour);
 			ResultSet rs = ps.executeQuery();
 
@@ -45,6 +46,13 @@ public class Horaire {
 			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally{
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		return "Jour inconnu";
@@ -62,9 +70,9 @@ public class Horaire {
 
 		// requete de selection de tous les bars
 		String query = "SELECT idhoraire, idbar, idjour, EXTRACT(HOUR FROM heuredebut) AS heureouverture, EXTRACT(MINUTE FROM heuredebut) AS minuteouverture, EXTRACT(HOUR FROM heurefin) AS heurefermeture, EXTRACT(MINUTE FROM heurefin) AS minutefermeture FROM horaires WHERE idbar = ? ORDER BY idjour, heuredebut";
-
+		PreparedStatement ps = null;
 		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
+			ps = cnx.prepareStatement(query);
 			ps.setInt(1, idBar);
 			ResultSet rs = ps.executeQuery();
 
@@ -89,6 +97,13 @@ public class Horaire {
 			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		return lstHoraireBar;
