@@ -1,5 +1,5 @@
 
--- Creation des Triggers
+-- Creation du trigger sur critiques
 
 CREATE OR REPLACE FUNCTION on_insert()
   RETURNS trigger AS
@@ -14,6 +14,36 @@ CREATE TRIGGER on_before_insert
   ON critiques
   FOR EACH ROW
   EXECUTE PROCEDURE on_insert();
+  
+  -- création du trigger sur images
+  
+  
+  CREATE OR REPLACE FUNCTION on_insert_image()
+  RETURNS trigger AS
+$BODY$DECLARE 
+nbimage integer;
+
+BEGIN
+
+EXECUTE 'SELECT count(*) FROM images WHERE idbar= $1'
+	INTO nbimage
+	USING new.idbar;
+
+	IF nbimage = 0 then new.isprincipal = true;
+	else new.isprincipal = false;
+	end if;
+
+	return new;
+END;
+$BODY$
+  LANGUAGE plpgsql
+  
+  
+  CREATE TRIGGER on_before_insert
+  BEFORE INSERT
+  ON images
+  FOR EACH ROW
+  EXECUTE PROCEDURE on_insert_image();
 
 
 -- Creation des Vues
