@@ -11,6 +11,15 @@
 	<definition name="index" extends="baseLayout">
 		<put-attribute name="title" value="Index" />
 		<put-attribute name="body" value="/views/index.jsp" />
+		
+		<put-list-attribute name="moreStyles">
+			<add-attribute value="_css/glouglouStyle.css"></add-attribute>
+		</put-list-attribute>
+		
+		<put-list-attribute name="moreHttpScripts">
+			<add-attribute
+				value="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIXm3hVBQgLwOmmsORoaxue1ZSqYx4rc0	"></add-attribute>
+		</put-list-attribute>
 	</definition>
 
 </tiles-definitions>

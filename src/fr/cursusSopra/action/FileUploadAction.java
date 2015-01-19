@@ -34,7 +34,7 @@ public class FileUploadAction extends ActionSupport implements
 			File fileToCreate = new File(filePath, imageName);
 			FileUtils.copyFile(this.userImage, fileToCreate);
 			
-			Image newImage=new Image(idBar,imageName );
+			Image newImage=new Image(idBar,imageName);
 			newImage.SaveImage();
 			
 			

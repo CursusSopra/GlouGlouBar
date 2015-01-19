@@ -3,6 +3,8 @@
 package fr.cursusSopra.model;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.cursusSopra.tech.Adresse;
 import fr.cursusSopra.tech.PostgresConnection;
@@ -25,12 +27,12 @@ public class Image {
 	
 	public int SaveImage() {
 		Connection cnx = PostgresConnection.GetConnexion();
-		String queryAddEval = "INSERT INTO images (idbar,nomimage, isprincipal) VALUES (?,?, FALSE)";
+		String queryAddEval = "INSERT INTO images (idbar,nomimage) VALUES (?,?)";
 		PreparedStatement psAddEval;
 		try {
 			psAddEval = cnx.prepareStatement(queryAddEval);
 			psAddEval.setInt(1, idBar);
-			psAddEval.setString(2, nomImage);
+			psAddEval.setString(2, "content/images/"+nomImage);
 
 			int result = psAddEval.executeUpdate();
 
@@ -48,7 +50,7 @@ public class Image {
 		Image image = new Image();
 		Connection cnx = PostgresConnection.GetConnexion();
 
-		// requete de selection de tous les bars
+		
 		String query = "SELECT idbar, nomimage FROM images WHERE idbar =? AND isprincipal=TRUE";
 
 		try {
@@ -68,6 +70,36 @@ public class Image {
 		return image;
 	}
 
+	public static List<Image> getAllImage(int idBar) {
+		// TODO Auto-generated method stub
+		List<Image> lstImages=new ArrayList<Image>();
+		Connection cnx = PostgresConnection.GetConnexion();
+
+		
+		String query = "SELECT idbar, nomimage FROM images WHERE idbar =?";
+
+		try {
+			PreparedStatement ps = cnx.prepareStatement(query);
+			ps.setInt(1, idBar);
+			ResultSet rs = ps.executeQuery();
+
+			// remplissage tant qu'on trouve des criteres
+			if (rs.next()) {
+				Image image = new Image();
+				image.idBar=rs.getInt("idBar");
+				image.nomImage=rs.getString("nomImage");
+				lstImages.add(image);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return lstImages;
+	}
+	
+	
+	
+	
 	public String getNomImage() {
 		return nomImage;
 	}
