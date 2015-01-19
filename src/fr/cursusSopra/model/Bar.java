@@ -18,7 +18,8 @@ public class Bar {
 	private String numTel;
 	private String site;
 	private String description;
-	private String lienImage;
+	private Image mainImage;
+	private List<Image> allImage;
 	
 	private Adresse adresse;
 	
