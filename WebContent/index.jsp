@@ -1,37 +1,6 @@
 <!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-<!-- Virgile -->
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="s" uri="/struts-tags"%>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" />
-	
-<link href="_css/glouglouStyle.css" type="text/css" rel="stylesheet"/>
-<link href="_css/maps.css" type="text/css" rel="stylesheet"/>
-<link href="css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
-
-<title>Index</title>
-
-</head>
-<body>
-<img src="content/images/glougloulogo.jpg" width="300px;" height ="60px;"/>
 	<div class="row" style="margin-top: 50px; margin-left: 50px; margin-right: 50px;">
 
 		<s:iterator value="lstBars">
@@ -62,15 +31,5 @@
 		</s:iterator>
 	
 	</div>
-	<a href="<s:url action='creationBar' />">CrÃ©ation d'un nouveau bar</a>
+	<a href="<s:url action='creationBar' />">Création d'un nouveau bar</a>
 	<a href="<s:url action='formSearchBar' />">Recherche</a>
-
-	
-</body>
-
-
-<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIXm3hVBQgLwOmmsORoaxue1ZSqYx4rc0	"></script>
-<script src="_js/maps.js" type="text/javascript"></script>
-<script src="js/star-rating.min.js" type="text/javascript"></script>
-</html>
