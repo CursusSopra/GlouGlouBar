@@ -1,7 +1,7 @@
 /**
  * Pierre Peclet
  */
- 
+
 package fr.cursusSopra.model;
 
 import java.sql.*;
@@ -19,92 +19,97 @@ public class Horaire {
 	private String heureDebut;
 	private String heureFin;
 
-	public Horaire(){}
-	
+	public Horaire() {
+	}
+
 	/**
 	 * Récupère le mot associé au numéro de jour
+	 * 
 	 * @return le jour en toute lettre
 	 */
-	public String getNomJour(){
+	public String getNomJour() {
 		Connection cnx = PostgresConnection.GetConnexion();
-		
-		//requete de selection de tous les bars
+
+		// requete de selection de tous les bars
 		String query = "SELECT jour FROM jours WHERE idjour = ?";
-		
+
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
 			ps.setInt(1, idJour);
 			ResultSet rs = ps.executeQuery();
-			
-			//remplissage tant qu'on trouve des critères spéciaux
-			if (rs.next())
-			{
+
+			// remplissage tant qu'on trouve des critères spéciaux
+			if (rs.next()) {
 				return rs.getString("jour");
-			}		
-			rs.close();		
-		}catch (SQLException e){
+			}
+			rs.close();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return "Jour inconnu";
 	}
 
 	/**
-	 * Récupère la liste de tous les horaires correspondant à un bar dans la base de données
+	 * Récupère la liste de tous les horaires correspondant à un bar dans la
+	 * base de données
+	 * 
 	 * @return List<Horaire>
 	 */
-	public static List<Horaire> getListeHoraires(int idBar){
-		List<Horaire> lstHoraireBar = new ArrayList<Horaire>();		
+	public static List<Horaire> getListeHoraires(int idBar) {
+		List<Horaire> lstHoraireBar = new ArrayList<Horaire>();
 		Connection cnx = PostgresConnection.GetConnexion();
-		
-		//requete de selection de tous les bars
+
+		// requete de selection de tous les bars
 		String query = "SELECT idhoraire, idbar, idjour, EXTRACT(HOUR FROM heuredebut) AS heureouverture, EXTRACT(MINUTE FROM heuredebut) AS minuteouverture, EXTRACT(HOUR FROM heurefin) AS heurefermeture, EXTRACT(MINUTE FROM heurefin) AS minutefermeture FROM horaires WHERE idbar = ? ORDER BY idjour, heuredebut";
-		
+
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
 			ps.setInt(1, idBar);
 			ResultSet rs = ps.executeQuery();
-			
-			//remplissage tant qu'on trouve des critères spéciaux
-			while (rs.next())
-			{
+
+			// remplissage tant qu'on trouve des critères spéciaux
+			while (rs.next()) {
 				Horaire newHoraire = new Horaire();
-				newHoraire.idHoraire = rs.getInt("idhoraire");	
+				newHoraire.idHoraire = rs.getInt("idhoraire");
 				newHoraire.idBar = rs.getInt("idbar");
 				newHoraire.idJour = rs.getInt("idjour");
-				String heureOuverture = Integer.toString((int) rs.getDouble("heureouverture"));
-				String minuteOuverture = Integer.toString((int) rs.getDouble("minuteouverture"));
+				String heureOuverture = Integer.toString((int) rs
+						.getDouble("heureouverture"));
+				String minuteOuverture = Integer.toString((int) rs
+						.getDouble("minuteouverture"));
 				newHoraire.heureDebut = heureOuverture + ":" + minuteOuverture;
-				String heureFermeture = Integer.toString((int) rs.getDouble("heurefermeture"));
-				String minuteFermeture = Integer.toString((int) rs.getDouble("minutefermeture"));
-				newHoraire.heureFin = heureFermeture + ":" + minuteFermeture;
+				String heureFermeture = Integer.toString((int) rs
+						.getDouble("heurefermeture"));
+				String minuteFermeture = Integer.toString((int) rs
+						.getDouble("minutefermeture"));
+				newHoraire.heureFin = heureFermeture + ":" + minuteOuverture;
 				lstHoraireBar.add(newHoraire);
-			}		
-			rs.close();		
-		}catch (SQLException e){
+			}
+			rs.close();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return lstHoraireBar;
 	}
-	
+
 	/**
-	 * Ajoute un horaire dans la base de données à partir des données connues dans
-	 * l'objet ci-présent
+	 * Ajoute un horaire dans la base de données à partir des données connues
+	 * dans l'objet ci-présent
 	 * 
 	 * @return 1 si la création s'est effectuée correctement, 0 sinon
 	 */
 	public int SaveHoraire() {
 		Connection cnx = PostgresConnection.GetConnexion();
 
-		String query = "INSERT INTO horaires (idbar, idjour, heuredebut, heurefin) VALUES (?,?,?,?)";
+		String query = "INSERT INTO horaires (idbar, idjour, heuredebut, heurefin) VALUES (?,?,TIME '"
+				+ heureDebut + "',TIME '" + heureFin + "')";
 
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
 			ps.setInt(1, idBar);
 			ps.setInt(2, idJour);
-			ps.setString(3, heureDebut);
-			ps.setString(4, heureFin);
 
 			return ps.executeUpdate();
 		} catch (SQLException e) {
@@ -114,7 +119,8 @@ public class Horaire {
 	}
 
 	/**
-	 * Détruit l'horaire avec l'idhoraire de l'objet en cours dans la base de données
+	 * Détruit l'horaire avec l'idhoraire de l'objet en cours dans la base de
+	 * données
 	 * 
 	 * @return 1 si la destruction s'est effectuée correctement, 0 sinon
 	 */
@@ -131,11 +137,11 @@ public class Horaire {
 			return 0;
 		}
 	}
-	
+
 	public int getIdHoraire() {
 		return idHoraire;
 	}
-	
+
 	public int getIdBar() {
 		return idBar;
 	}
@@ -151,7 +157,7 @@ public class Horaire {
 	public void setIdJour(int idJour) {
 		this.idJour = idJour;
 	}
-	
+
 	public String getHeureDebut() {
 		return heureDebut;
 	}
