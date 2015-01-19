@@ -28,19 +28,25 @@ public class Image {
 	public int SaveImage() {
 		Connection cnx = PostgresConnection.GetConnexion();
 		String queryImage = "INSERT INTO images (idbar, nomimage) VALUES (?,?)";
-		PreparedStatement psImage;
+		PreparedStatement psImage=null;
 		try {
 			psImage = cnx.prepareStatement(queryImage);
 			psImage.setInt(1, idBar);
 			psImage.setString(2, nomImage.toString());
 
 			int result = psImage.executeUpdate();
-			psImage.close();
 			return result;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0;
+		}finally{
+			try {
+				psImage.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -52,9 +58,9 @@ public class Image {
 
 		
 		String query = "SELECT nomimage FROM images WHERE idbar =? AND isprincipal=TRUE";
-
+		PreparedStatement ps = null;
 		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
+			ps = cnx.prepareStatement(query);
 			ps.setInt(1, idBarExt);
 			ResultSet rs = ps.executeQuery();
 
@@ -66,6 +72,13 @@ public class Image {
 			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return image;
 	}
@@ -77,9 +90,9 @@ public class Image {
 
 		
 		String query = "SELECT nomimage FROM images WHERE idbar =?";
-
+		PreparedStatement ps = null;
 		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
+			ps = cnx.prepareStatement(query);
 			ps.setInt(1, idBarExt);
 			ResultSet rs = ps.executeQuery();
 
@@ -93,6 +106,13 @@ public class Image {
 			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return lstImages;
 	}
