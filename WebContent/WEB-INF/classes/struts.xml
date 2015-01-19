@@ -27,7 +27,7 @@
 <!-- 		</action> -->
 		<action name="" class="fr.cursusSopra.action.IndexAction"
 			method="execute">
-			<result name="success">index.jsp</result>
+			<result name="success" type="tiles">index</result>
 		</action>
 	</package>
 </struts>
