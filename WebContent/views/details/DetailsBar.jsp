@@ -15,7 +15,7 @@
 				</div>
 				<div class="panel-body">
 					<h3>
-						L'avis de <font face="Comic Sans">GlouGlouBar</font>
+						L'avis de GlouGlouBar
 					</h3>
 					<br />
 					<s:property value="leBar.description" />
@@ -48,10 +48,11 @@
 					</div>
 
 					<div class="col-md-4 col-md-offset-1">
+						Résumé des notes : <s:property value="leBar.lstComms.size()"/> 
 						<s:iterator value="leBar.lstEvals">
 						
 							<s:property value="libCourt" />
-							<input disabled="true" type="number" class="rating " min=0 max=5
+							<input disabled type="number" class="rating " min=0 max=5
 								step=1 data-size="sm" data-rtl="false"
 								value="<s:property value="note"/>" data-show-caption="false"
 								data-show-clear="false" data-read-only="true"
@@ -84,12 +85,14 @@
 						</s:url>
 
 						<a href="<s:property value='GoToFormModify'/> "> Modifiez les informations </a>
+						
+						<a href=""> Ajouter une image</a>
 					
 					</div>
-
 				</div>
 			</div>
 		</div>
+		
 		<div class="col-md-3">
 			<div class="panel panel-info">
 				<div class="panel-heading" style="text-align: center">
@@ -111,7 +114,7 @@
 				<br/> <br/>
 				<s:property value="leBar.numTel" />
 				<br/> <br/>
-				<s:property value="leBar.site" />
+				<a href="http://<s:property value="leBar.site" />"><s:property value="leBar.site" /> </a>
 				<br/>
 				
 				</div>
@@ -144,62 +147,71 @@
 	<!-- Partie Ajout Evaluation -->
 
 
-
 	<div class="row">
-		<div class="panel panel-info">
-			<div class="col-lg-offset-3 col-lg-6 col-sm-offset-3 col-sm-6">
-				<section class="content-wrapper main-content clear-fix">
-					<form method="post" id="addEval" class="form-horizontal" action="<s:url action='addEval' />">
-			
-						<s:iterator value="lstCriteresEval" status="idx">
-
-							<label class="col-lg-4 control-label"> <s:property
-								value="libcourt" />
-							</label>
-							<input class="critnumber" type="hidden"
-								value='<s:property value="idcriteval" />' />
-							<input type="number" id='"<s:property value="libcourt" />" '
-								class="rating" min=0 max=5 step=1 data-size="sm" data-rtl="false" />
-						</s:iterator>
-
-						<input type="hidden" name="idBar" id="ididBar"
-							value='<s:property value="idBar" />' /> <input type="hidden"
-							name="idNotes" id="idNotes" /> <input type="hidden"
-							name="idCriteres" id="idCriteres" />
-
-						<fieldset>
-							<div class="form-group">
-								<div class="col-lg-4">
-									<div class="row">
-										<div class="col-lg-6 col-lg-offset-10">
-											<br> <br> <label for="idCommentaire"
-												class="col-lg-4 control-label">Commentaire</label> <input
-												class="form-control" id="idCommentaire" name="commentaire" />
+		<div class="col-md-2"></div>
+			<div class="col-md-7">
+				<div class="panel panel-info">
+					<div class="panel-heading" style="text-align: center">
+						<h2>
+							Votre avis sur
+							<s:property value="leBar.nom" />
+						</h2>
+					</div>
+					<div class="panel-body">
+						<div class="col-lg-offset-2 col-lg-8 col-sm-offset-2 col-sm-8">
+							<section class="content-wrapper main-content clear-fix">
+								<form method="post" id="addEval" class="form-horizontal" action="<s:url action='addEval' />">
+						
+									<s:iterator value="lstCriteresEval" status="idx">
+	
+										<label class="col-lg-4 control-label"> <s:property
+											value="libcourt" />
+										</label>
+										<input class="critnumber" type="hidden"
+											value='<s:property value="idcriteval" />' />
+										<input type="number" id='"<s:property value="libcourt" />" '
+											class="rating" min=0 max=5 step=1 data-size="sm" data-rtl="false" />
+									</s:iterator>
+	
+									<input type="hidden" name="idBar" id="ididBar"
+										value='<s:property value="idBar" />' /> <input type="hidden"
+										name="idNotes" id="idNotes" /> <input type="hidden"
+										name="idCriteres" id="idCriteres" />
+	
+									<fieldset>
+										<div class="form-group">
+											<div class="col-lg-5 col-lg-offset-4">
+												<div class="row">
+														<br> <br> <label for="idCommentaire"
+															class="col-lg-4 control-label">Commentaire</label> <input
+															class="form-control" id="idCommentaire" name="commentaire" />
+													<br/>
+												</div>
+											</div>
 										</div>
-								<div class="col-lg-6">&nbsp;</div>
-							</div>
-						</div>
-					</div>
-				</fieldset>
-
-				<div class="form-group">
-					<div class="col-lg-4 col-lg-offset-2 col-sm-4 col-sm-offset-2">
-						<button type="reset" class="btn btn-default btn-center">
-							<span class="glyphicon glyphicon-refresh"></span> État initial
-						</button>
-					</div>
-					<div class="col-lg-4">
-						<button type="submit" id="test" class="btn btn-primary btn-center">
-							<span class="glyphicon glyphicon-ok"></span> Mettre à jour
-						</button>
+									</fieldset>
+					
+									<div class="form-group">
+										<div class="col-lg-4 col-lg-offset-2 col-sm-4 col-sm-offset-2">
+											<button type="reset" class="btn btn-default btn-center">
+												<span class="glyphicon glyphicon-refresh"></span> État initial
+											</button>
+										</div>
+										<div class="col-lg-4">
+											<button type="submit" id="test" class="btn btn-primary btn-center">
+												<span class="glyphicon glyphicon-ok"></span> Mettre à jour
+											</button>
+										</div>
+									</div>
+							</form>
+						</section>
 					</div>
 				</div>
-			</form>
-		</section>
+			</div>
+		</div>
 	</div>
-</div>
-</div>
-
+	
+	<!-- Partie affichage des commentaires -->
 
 	<div class="row">
 		<div class="col-md-2"></div>
@@ -216,7 +228,7 @@
 					
 						<s:property value="dateComm"/>
 						
-							<input disabled="true" type="number" class="rating " min=0 max=5
+							<input disabled type="number" class="rating " min=0 max=5
 								step=1 data-size="sm" data-rtl="false"
 								value="<s:property value="note"/>" data-show-caption="false"
 								data-show-clear="false" data-read-only="true"
@@ -227,7 +239,7 @@
 							<br/>
 							
 					</s:iterator> 
-				
+				</div>
 				</div>
 			</div>
 		</div>
