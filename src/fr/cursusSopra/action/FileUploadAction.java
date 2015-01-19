@@ -3,6 +3,7 @@
 package fr.cursusSopra.action;
 
 import java.io.File;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,7 +29,8 @@ public class FileUploadAction extends ActionSupport implements
 
 	public String execute() {
 		try {
-			String imageName=idBar+userImageFileName;
+			String[] tokens = userImageFileName.split("\\.(?=[^\\.]+$)");
+			String imageName=idBar+"-"+UUID.randomUUID()+"."+tokens[1];
 			String filePath = servletRequest.getSession().getServletContext().getRealPath("/content/images");
 			System.out.println("Server path:" + filePath );
 			File fileToCreate = new File(filePath, imageName);

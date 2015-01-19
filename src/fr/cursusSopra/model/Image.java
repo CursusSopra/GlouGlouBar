@@ -27,12 +27,12 @@ public class Image {
 	
 	public int SaveImage() {
 		Connection cnx = PostgresConnection.GetConnexion();
-		String queryAddEval = "INSERT INTO images (idbar,nomimage) VALUES (?,?)";
+		String queryAddEval = "INSERT INTO images (idbar, nomimage) VALUES (?,?)";
 		PreparedStatement psAddEval;
 		try {
 			psAddEval = cnx.prepareStatement(queryAddEval);
 			psAddEval.setInt(1, idBar);
-			psAddEval.setString(2, "content/images/"+nomImage);
+			psAddEval.setString(2, nomImage.toString());
 
 			int result = psAddEval.executeUpdate();
 
@@ -45,23 +45,23 @@ public class Image {
 
 	}
 	
-	public static Image getMainImage(int idBar) {
+	public static Image getMainImage(int idBarExt) {
 		// TODO Auto-generated method stub
 		Image image = new Image();
 		Connection cnx = PostgresConnection.GetConnexion();
 
 		
-		String query = "SELECT idbar, nomimage FROM images WHERE idbar =? AND isprincipal=TRUE";
+		String query = "SELECT nomimage FROM images WHERE idbar =? AND isprincipal=TRUE";
 
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
-			ps.setInt(1, idBar);
+			ps.setInt(1, idBarExt);
 			ResultSet rs = ps.executeQuery();
 
 			// remplissage tant qu'on trouve des criteres
 			if (rs.next()) {
-				image.idBar=rs.getInt("idBar");
-				image.nomImage=rs.getString("nomImage");
+				image.idBar=idBarExt;
+				image.nomImage=rs.getString("nomimage");
 			}
 			rs.close();
 		} catch (SQLException e) {
@@ -70,24 +70,24 @@ public class Image {
 		return image;
 	}
 
-	public static List<Image> getAllImage(int idBar) {
+	public static List<Image> getAllImage(int idBarExt) {
 		// TODO Auto-generated method stub
 		List<Image> lstImages=new ArrayList<Image>();
 		Connection cnx = PostgresConnection.GetConnexion();
 
 		
-		String query = "SELECT idbar, nomimage FROM images WHERE idbar =?";
+		String query = "SELECT nomimage FROM images WHERE idbar =?";
 
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
-			ps.setInt(1, idBar);
+			ps.setInt(1, idBarExt);
 			ResultSet rs = ps.executeQuery();
 
 			// remplissage tant qu'on trouve des criteres
 			if (rs.next()) {
 				Image image = new Image();
-				image.idBar=rs.getInt("idBar");
-				image.nomImage=rs.getString("nomImage");
+				image.idBar=idBarExt;
+				image.nomImage=rs.getString("nomimage");
 				lstImages.add(image);
 			}
 			rs.close();
