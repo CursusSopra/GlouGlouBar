@@ -141,7 +141,7 @@ public class Bar {
 		Connection cnx = PostgresConnection.GetConnexion();
 
 		// requete de selection de tous les bars
-		String query = "SELECT idbar, nom, numtel, site, description FROM bars ";
+		String query = "SELECT idbar, nom, numtel, site, description FROM bars";
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();

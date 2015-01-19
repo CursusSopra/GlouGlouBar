@@ -12,7 +12,7 @@
 			</s:url>
 			<div class="vignette col-lg-3 col-sm-4">
 				<a href="<s:property value='#db'/>" class="linkStyle"> <img
-					src="<s:property value="mainImage.nomImage"/>" class="vignetteImage" 
+					src="content/image/<s:property value="mainImage.nomImage"/>" class="vignetteImage" 
 					title="<s:property value="nom" />" />
 
 					<p class="lead">
