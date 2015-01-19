@@ -72,6 +72,11 @@
 								<s:property value="idBar" />
 							</s:param>
 						</s:url>
+						<s:url action="formAddImage" var="GoToformImage">
+							<s:param name="idBar">
+								<s:property value="idBar" />
+							</s:param>
+						</s:url>
 
 						<a href="<s:property value='#GoToformEval'/> "> Donnez votre
 							avis </a>
@@ -86,7 +91,8 @@
 
 						<a href="<s:property value='GoToFormModify'/> "> Modifiez les informations </a>
 						
-						<a href=""> Ajouter une image</a>
+						
+						<a href="<s:property value='GoToformImage'/> "> Ajouter une image </a>
 					
 					</div>
 				</div>
