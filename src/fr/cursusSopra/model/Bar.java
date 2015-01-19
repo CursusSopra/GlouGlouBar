@@ -50,9 +50,9 @@ public class Bar {
 		setLstImage(Image.getAllImage(idBar));
 		// requete de selection du bar d'idbar = id
 		String query = "SELECT nom, numtel, site, description FROM bars WHERE idbar = ?";
-
+		PreparedStatement ps = null;
 		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
+			ps = cnx.prepareStatement(query);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 
@@ -64,6 +64,13 @@ public class Bar {
 			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally{
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -72,7 +79,7 @@ public class Bar {
 
 		Connection cnx = PostgresConnection.GetConnexion();
 		String query = "SELECT * FROM v_comm_notes where idbar=? and idcriteval=5";
-		PreparedStatement ps;
+		PreparedStatement ps=null;
 		try {
 			ps = cnx.prepareStatement(query);
 			ps.setInt(1, idBar);
@@ -88,6 +95,13 @@ public class Bar {
 			}
 			rs.close();
 		} catch (SQLException e) {
+		} finally{
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return lstComms;
 	}
@@ -111,6 +125,7 @@ public class Bar {
 				be.setLibLong(rs.getString("liblong"));
 				lstEval.add(be);
 			}
+			rs.close();
 			ps.close();
 		} catch (SQLException e) {
 		}
@@ -160,6 +175,7 @@ public class Bar {
 				lstBar.add(newBar);
 			}
 			rs.close();
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -208,6 +224,7 @@ public class Bar {
 			int idBar = rs.getInt(1);
 			this.idBar = idBar;
 			rs.close();
+			ps.close();
 			return 1;
 		} catch (SQLException e) {
 			e.printStackTrace();
