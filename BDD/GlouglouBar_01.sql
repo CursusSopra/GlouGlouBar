@@ -64,6 +64,7 @@ create table critereseval(
 	idcriteval serial NOT NULL,
 	libcourt varchar(15) NOT  NULL,
 	liblong varchar(100) NOT NULL,
+	tri smallint,
 	CONSTRAINT pk_critereseval PRIMARY KEY (idcriteval)
 );
 

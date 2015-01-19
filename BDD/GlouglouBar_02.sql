@@ -38,11 +38,11 @@ insert into criteresspeciaux(critere) VALUES ('Avec piscine');
 insert into criteresspeciaux(critere) VALUES ('Connexion Wifi');
 
 
-INSERT INTO critereseval(libcourt, liblong) VALUES ('Accueil', 'Accueil');
-INSERT INTO critereseval(libcourt, liblong) VALUES ('Ambiance', 'Ambiance générale du bar');
-INSERT INTO critereseval(libcourt, liblong) VALUES ('Tarif', 'Tarif ');
-INSERT INTO critereseval(libcourt, liblong) VALUES ('Qualite', 'Qualité du service et des consommations');
-INSERT INTO critereseval(libcourt, liblong) VALUES ('Note Globale', 'Appréciation générale du bar');
+INSERT INTO critereseval(libcourt, liblong, tri) VALUES ('Accueil', 'Accueil',1);
+INSERT INTO critereseval(libcourt, liblong, tri) VALUES ('Ambiance', 'Ambiance générale du bar',2);
+INSERT INTO critereseval(libcourt, liblong, tri) VALUES ('Tarif', 'Tarif ',3);
+INSERT INTO critereseval(libcourt, liblong, tri) VALUES ('Qualite', 'Qualité du service et des consommations',4);
+INSERT INTO critereseval(libcourt, liblong, tri) VALUES ('Note Globale', 'Appréciation générale du bar',5);
 
 
 INSERT INTO villes(ville, cp) VALUES ('Lyon 1', '69001');

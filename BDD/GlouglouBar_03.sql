@@ -60,17 +60,19 @@ CREATE OR REPLACE VIEW v_adressebar AS
      JOIN villes USING (cp)
   ORDER BY bars.idbar;
 
-
 -- View: v_evalbar
+
 
 CREATE OR REPLACE VIEW v_evalbar AS 
  SELECT avg(evaluations.note) AS note,
     critereseval.libcourt,
+    critereseval.liblong,
     critiques.idbar
    FROM critiques
      JOIN evaluations USING (idcritique)
      JOIN critereseval USING (idcriteval)
-  GROUP BY critiques.idbar, critereseval.libcourt;
+  GROUP BY critereseval.libcourt, critereseval.liblong, critereseval.tri, critiques.idbar
+  ORDER BY critereseval.tri;
 
 
 -- View: v_listcategoriebar
