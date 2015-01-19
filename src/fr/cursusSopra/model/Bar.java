@@ -221,9 +221,9 @@ public class Bar {
 	public int Update() {
 		Connection cnx = PostgresConnection.GetConnexion();
 		String query = "UPDATE bars SET nom=?, numtel=?, site=?, description=? WHERE idbar=?";
-
+		PreparedStatement ps = null;
 		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
+			ps = cnx.prepareStatement(query);
 			ps.setString(1, nom);
 			ps.setString(2, numTel);
 			ps.setString(3, site);
@@ -234,6 +234,13 @@ public class Bar {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
+		} finally {
+			if(ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+				}
+			}
 		}
 	}
 
