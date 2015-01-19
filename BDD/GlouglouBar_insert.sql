@@ -1,16 +1,15 @@
-ï»¿
 insert into categories (categoriebar) VALUES ('Bar festif');
 insert into categories (categoriebar) VALUES ('Pub');
-insert into categories (categoriebar) VALUES ('Bar Ã  vin');
-insert into categories (categoriebar) VALUES ('Bar Ã  biÃ¨re');
-insert into categories (categoriebar) VALUES ('Bar Ã  cocktail');
+insert into categories (categoriebar) VALUES ('Bar à vin');
+insert into categories (categoriebar) VALUES ('Bar à bière');
+insert into categories (categoriebar) VALUES ('Bar à cocktail');
 insert into categories (categoriebar) VALUES ('Bar lounge');
-insert into categories (categoriebar) VALUES ('Bar Ã  concert');
-insert into categories (categoriebar) VALUES ('Bar Ã  tapas');
-insert into categories (categoriebar) VALUES ('CafÃ© bar');
-insert into categories (categoriebar) VALUES ('Bar Ã  shooters');
+insert into categories (categoriebar) VALUES ('Bar à concert');
+insert into categories (categoriebar) VALUES ('Bar à tapas');
+insert into categories (categoriebar) VALUES ('Café bar');
+insert into categories (categoriebar) VALUES ('Bar à shooters');
 insert into categories (categoriebar) VALUES ('Bar dansant');
-insert into categories (categoriebar) VALUES ('Bar Ã  whisky');
+insert into categories (categoriebar) VALUES ('Bar à whisky');
 insert into categories (categoriebar) VALUES ('Irish Pub');
 insert into categories (categoriebar) VALUES ('Bar Jazzy');
 insert into categories (categoriebar) VALUES ('Bar after work');
@@ -19,31 +18,31 @@ insert into categories (categoriebar) VALUES ('Bar lesbien');
 
 
 insert into criteresspeciaux(critere) VALUES ('Terrasse');
-insert into criteresspeciaux(critere) VALUES ('AccÃ¨s HandicapÃ©');
+insert into criteresspeciaux(critere) VALUES ('Accès Handicapé');
 insert into criteresspeciaux(critere) VALUES ('Brunch');
 insert into criteresspeciaux(critere) VALUES ('Gay friendly');
 insert into criteresspeciaux(critere) VALUES ('Musique live');
 insert into criteresspeciaux(critere) VALUES ('Ouvert le dimanche');
 insert into criteresspeciaux(critere) VALUES ('Retransmission foot');
-insert into criteresspeciaux(critere) VALUES ('ApÃ©ros/Planches');
+insert into criteresspeciaux(critere) VALUES ('Apéros/Planches');
 insert into criteresspeciaux(critere) VALUES ('Au bord de l eau');
-insert into criteresspeciaux(critere) VALUES ('DÃ©coration originale');
+insert into criteresspeciaux(critere) VALUES ('Décoration originale');
 insert into criteresspeciaux(critere) VALUES ('Privatisation pour groupes');
-insert into criteresspeciaux(critere) VALUES ('Enterrement de vie de garÃ§on/jeune fille');
+insert into criteresspeciaux(critere) VALUES ('Enterrement de vie de garçon/jeune fille');
 insert into criteresspeciaux(critere) VALUES ('Espace fumeur');
-insert into criteresspeciaux(critere) VALUES ('Ouvert aprÃ¨s 1h');
+insert into criteresspeciaux(critere) VALUES ('Ouvert après 1h');
 insert into criteresspeciaux(critere) VALUES ('Plat du jour');
-insert into criteresspeciaux(critere) VALUES ('Retransmission Ã©vÃ¨nements');
+insert into criteresspeciaux(critere) VALUES ('Retransmission évènements');
 insert into criteresspeciaux(critere) VALUES ('Sportifs');
 insert into criteresspeciaux(critere) VALUES ('Avec piscine');
 insert into criteresspeciaux(critere) VALUES ('Connexion Wifi');
 
 
-INSERT INTO critereseval(libcourt, liblong) VALUES ('accueil', 'Accueil');
-INSERT INTO critereseval(libcourt, liblong) VALUES ('ambiance', 'Ambiance gÃ©nÃ©rale du bar');
-INSERT INTO critereseval(libcourt, liblong) VALUES ('tarif', 'Tarif ');
-INSERT INTO critereseval(libcourt, liblong) VALUES ('qualite', 'QualitÃ© du service et des consommations');
-INSERT INTO critereseval(libcourt, liblong) VALUES ('noteglobale', 'ApprÃ©ciation gÃ©nÃ©rale du bar');
+INSERT INTO critereseval(libcourt, liblong) VALUES ('Accueil', 'Accueil');
+INSERT INTO critereseval(libcourt, liblong) VALUES ('Ambiance', 'Ambiance générale du bar');
+INSERT INTO critereseval(libcourt, liblong) VALUES ('Tarif', 'Tarif ');
+INSERT INTO critereseval(libcourt, liblong) VALUES ('Qualite', 'Qualité du service et des consommations');
+INSERT INTO critereseval(libcourt, liblong) VALUES ('Note Globale', 'Appréciation générale du bar');
 
 
 INSERT INTO villes(ville, cp) VALUES ('Lyon 1', '69001');
@@ -64,11 +63,4 @@ INSERT INTO jours(jour) VALUES ('Jeudi');
 INSERT INTO jours(jour) VALUES ('Vendredi');
 INSERT INTO jours(jour) VALUES ('Samedi');
 INSERT INTO jours(jour) VALUES ('Dimanche');
-
-
-
-
-
-
-
 
