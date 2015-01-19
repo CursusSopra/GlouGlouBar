@@ -1,4 +1,5 @@
-﻿DROP TABLE villes, adresses, bars, jours, horaires, critiques, critereseval, evaluations, categories, categoriesbars, criteresspeciaux, criteresbars;
+DROP VIEW  v_adressebar, v_comm_notes, v_evalbar, v_listcategoriebar, v_listcriterebar;
+DROP TABLE villes, adresses, bars, jours, horaires, critiques, critereseval, evaluations, categories, categoriesbars, criteresspeciaux, criteresbars, images;
 
 
 
