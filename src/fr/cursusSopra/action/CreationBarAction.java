@@ -3,19 +3,23 @@
 
 package fr.cursusSopra.action;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.cursusSopra.model.Bar;
+import fr.cursusSopra.model.Horaire;
 import fr.cursusSopra.model.Jour;
 import fr.cursusSopra.model.Ville;
 import fr.cursusSopra.model.CategorieBar;
 import fr.cursusSopra.model.Critere;
 import fr.cursusSopra.tech.Adresse;
-import fr.cursusSopra.tech.BarCategorie;
-import fr.cursusSopra.tech.BarCritere;
 
 public class CreationBarAction extends ActionSupport {
 
@@ -41,52 +45,66 @@ public class CreationBarAction extends ActionSupport {
 	private int[] checkboxCritere;
 	private int[] checkboxCategorie;
 
-	public String execute() {
+	public String execute() throws ParseException {
 		Bar leBar = new Bar();
-		//Infos de base
+		
+		// Récupération de l'adresse
+
+		Ville villeBar = new Ville(Ville.getCpWithVille(ville), ville);
+		Adresse adresse = new Adresse(villeBar, voie);
+		//Sauvegarde de l'adresse
+		adresse.SaveAdresse();
+
+		// Infos de base
 		leBar.setNom(nom);
 		leBar.setNumTel(numTel);
 		leBar.setSite(site);
 		leBar.setDescription(description);
-		
-		//Récupération de l'adresse
-		Adresse adresse = new Adresse();
-		Ville villeBar = new Ville();
-		villeBar.setNom(ville);
-		villeBar.setCp(Ville.getCpWithVille(ville));
-		
-		adresse.setVoie(voie);
-		adresse.setVille(villeBar);
-		
 		leBar.setAdresse(adresse);
-		
-		//Récupération de la liste des critères
-		List<BarCritere> lstBarCritere = new ArrayList<>();
-		for (int i = 0; i < checkboxCritere.length; i++) {
-			BarCritere barCrit = new BarCritere();
-			barCrit.setIdcritere(checkboxCritere[i]);
-			lstBarCritere.add(barCrit);
-		}
-		leBar.setLstBarCritere(lstBarCritere);
-		
-		//Récupération de la liste des catégories
-		List<BarCategorie> lstBarCategorie = new ArrayList<>();
-		for (int i = 0; i < checkboxCategorie.length; i++) {
-			BarCategorie barCat = new BarCategorie();
-			barCat.setIdCategorie(checkboxCategorie[i]);
-			lstBarCategorie.add(barCat);
-		}
-		leBar.setLstBarCategorie(lstBarCategorie);
+		//Sauvegarde du bar
+		int result = leBar.SaveBar();
 
+		// Récupération de la liste des critères
+		List<Critere> lstCritere = new ArrayList<>();
+		for (int i = 0; i < checkboxCritere.length; i++) {
+			Critere crit = new Critere();
+			crit.setIdCritere(checkboxCritere[i]);
+			crit.setIdBar(leBar.getIdBar());
+			lstCritere.add(crit);
+			//Sauvegarde du critère
+			crit.SaveCritere();
+		}
+		leBar.setLstCritere(lstCritere);
+
+		// Récupération de la liste des catégories
+		List<CategorieBar> lstCategorieBar = new ArrayList<>();
+		for (int i = 0; i < checkboxCategorie.length; i++) {
+			CategorieBar catBar = new CategorieBar();
+			catBar.setIdCategorie(checkboxCategorie[i]);
+			lstCategorieBar.add(catBar);
+			//Sauvegarde de la catégorie
+			catBar.SaveCategorie();
+		}
+		leBar.setLstCategorie(lstCategorieBar);
+
+		// Récupération de la liste des horaires
 		String[] tabJoursOuvert = idJour.split(",");
 		String[] tabHeureDebutOuvert = idHeureDebut.split(",");
 		String[] tabHeureFinOuvert = idHeureFin.split(",");
-
-		leBar.setTabJoursOuvert(tabJoursOuvert);
-		leBar.setTabHeureDebutOuvert(tabHeureDebutOuvert);
-		leBar.setTabHeureFinOuvert(tabHeureFinOuvert);
-
-		int result = leBar.Create();
+		
+		DateFormat formatter = new SimpleDateFormat("hh:mm");
+		List<Horaire> lstHoraires = new ArrayList<>();
+		Horaire horaire = new Horaire();
+		for (int j = 0; j < tabJoursOuvert.length; j++) {
+			horaire.setIdBar(leBar.getIdBar());
+			horaire.setIdJour(Integer.parseInt(idJour));
+			Date heureDebut = (Date)formatter.parse(tabHeureDebutOuvert[j]);
+			horaire.setHeureDebut((Time) heureDebut);
+			Date heureFin = (Date)formatter.parse(tabHeureDebutOuvert[j]);
+			horaire.setHeureFin((Time) heureFin);
+			lstHoraires.add(horaire);
+		}
+		leBar.setLstHoraires(lstHoraires);
 
 		return result == 0 ? ERROR : SUCCESS;
 	}

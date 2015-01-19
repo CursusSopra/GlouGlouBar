@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.cursusSopra.tech.Adresse;
-import fr.cursusSopra.tech.BarCategorie;
 import fr.cursusSopra.tech.BarCommentaire;
-import fr.cursusSopra.tech.BarCritere;
 import fr.cursusSopra.tech.BarEvaluation;
 import fr.cursusSopra.tech.PostgresConnection;
 
@@ -27,16 +25,11 @@ public class Bar {
 	private String shortDescription;
 	private List<Double> lstNotes;
 
-	private String[] tabJoursOuvert;
-	private String[] tabHeureDebutOuvert;
-	private String[] tabHeureFinOuvert;
-
 	private List<Horaire> lstHoraires;
+
 	private List<CategorieBar> lstCategorie;
 	private List<Critere> lstCritere;
 	
-	private List<BarCritere> lstBarCritere;
-	private List<BarCategorie> lstBarCategorie;
 	private List<BarEvaluation> lstEvals;
 	private List<BarCommentaire> lstComms;
 
@@ -64,43 +57,11 @@ public class Bar {
 		return lstComms;
 	}
 
-	public List<Horaire> getLstHoraires() {
-		return lstHoraires;
-	}
-	
-	public void setLstBarCritere(List<BarCritere> lstBarCritere) {
-		this.lstBarCritere = lstBarCritere;
-	}
-
-	public List<BarCritere> getLstBarCritere() {
-		return lstBarCritere;
-	}
-	
-	public void setLstBarCategorie(List<BarCategorie> lstBarCategorie) {
-		this.lstBarCategorie = lstBarCategorie;
-	}
-
-	public List<BarCategorie> getLstBarCategorie() {
-		return lstBarCategorie;
-	}
-
-	public void setTabJoursOuvert(String[] tabJoursOuvert) {
-		this.tabJoursOuvert = tabJoursOuvert;
-	}
-
-	public void setTabHeureDebutOuvert(String[] tabHeureDebutOuvert) {
-		this.tabHeureDebutOuvert = tabHeureDebutOuvert;
-	}
-
-	public void setTabHeureFinOuvert(String[] tabHeureFinOuvert) {
-		this.tabHeureFinOuvert = tabHeureFinOuvert;
-	}
-
 	public List<BarEvaluation> getLstEvals() {
 		List<BarEvaluation> lstEval = new ArrayList<BarEvaluation>();
 
 		Connection cnx = PostgresConnection.GetConnexion();
-		String query = "SELECT AVG(note) as note, libcourt FROM critiques INNER JOIN evaluations USING (idcritique)     INNER JOIN critereseval USING (idcriteval) WHERE idbar = ? GROUP BY libcourt";
+		String query = "SELECT AVG(note) as note, libcourt, liblong FROM critiques INNER JOIN evaluations USING (idcritique)     INNER JOIN critereseval USING (idcriteval) WHERE idbar = ? GROUP BY libcourt";
 		PreparedStatement ps;
 		try {
 			ps = cnx.prepareStatement(query);
@@ -112,6 +73,7 @@ public class Bar {
 				BarEvaluation be = new BarEvaluation();
 				be.setLibCourt(rs.getString("libcourt"));
 				be.setNote(rs.getDouble("note"));
+				be.setLibLong(rs.getString("liblong"));
 				lstEval.add(be);
 			}
 		} catch (SQLException e) {
@@ -165,67 +127,7 @@ public class Bar {
 		}
 	}
 
-	public void setShortDescription(String shortDescription) {
-
-	}
-
-	public Adresse getAdresse() {
-		return adresse;
-	}
-
-	public void setAdresse(Adresse adresse) {
-		this.adresse = adresse;
-	}
-
 	public Bar() {
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getNumTel() {
-		return numTel;
-	}
-
-	public void setNumTel(String numTel) {
-		this.numTel = numTel;
-	}
-
-	public String getSite() {
-		return site;
-	}
-
-	public void setSite(String site) {
-		this.site = site;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public void setIdBar(int idBar) {
-		this.idBar = idBar;
-	}
-
-	public int getIdBar() {
-		return idBar;
-	}
-
-	public List<CategorieBar> getLstCategorie() {
-		return lstCategorie;
-	}
-	
-	public List<Critere> getLstCritere() {
-		return lstCritere;
 	}
 
 	/**
@@ -316,15 +218,15 @@ public class Bar {
 		try {
 			state = cnx.createStatement();
 			int retour = 1;
-			for (int i = 0; i < tabJoursOuvert.length; i++) {
+			for (int i = 0; i < lstHoraires.size(); i++) {
 				String queryHoraires = "INSERT INTO horaires (idbar, idjour, heuredebut, heurefin) VALUES ("
 						+ idBar
 						+ ", "
-						+ Integer.parseInt(tabJoursOuvert[i])
-						+ ", TIME '"
-						+ tabHeureDebutOuvert[i]
-						+ "', TIME '"
-						+ tabHeureFinOuvert[i] + "')";
+						+ lstHoraires.get(i).getIdJour()
+						+ ", "
+						+ lstHoraires.get(i).getHeureDebut()
+						+ ", "
+						+ lstHoraires.get(i).getHeureFin() + "')";
 				state.executeUpdate(queryHoraires);
 			}
 			return retour;
@@ -340,20 +242,16 @@ public class Bar {
 	 * 
 	 * @return 1 si la création s'est effectuée correctement, 0 sinon
 	 */
-	public int Create() {
+	public int SaveBar() {
 		Connection cnx = PostgresConnection.GetConnexion();
-
-		int idAdresse = Adresse.CreateAdresse(this);
-
 		String query = "INSERT INTO bars (nom,numtel,site,description, idadresse) VALUES (?,?,?,?,?) RETURNING idbar";
-
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
 			ps.setString(1, nom);
 			ps.setString(2, numTel);
 			ps.setString(3, site);
 			ps.setString(4, description);
-			ps.setInt(5, idAdresse);
+			ps.setInt(5, adresse.getIdAdresse());
 
 			ResultSet rs = ps.executeQuery();
 			rs.next();
@@ -363,15 +261,7 @@ public class Bar {
 
 			// On remplit la liste des horaires
 			CreateHoraires();
-
-			// On remplit la table "criteresbars"
-			if (lstBarCritere.size() != 0) {
-				Critere.CreateCriteres(this);
-			}
-			// On remplit la table "categoriesbars"
-			if (lstBarCategorie.size() != 0) {
-				CategorieBar.CreateCategories(this);
-			}
+			
 			return 1;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -421,5 +311,81 @@ public class Bar {
 			e.printStackTrace();
 			return 0;
 		}
+	}
+	
+	public void setLstHoraires(List<Horaire> lstHoraires) {
+		this.lstHoraires = lstHoraires;
+	}
+	
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getNumTel() {
+		return numTel;
+	}
+
+	public void setNumTel(String numTel) {
+		this.numTel = numTel;
+	}
+
+	public String getSite() {
+		return site;
+	}
+
+	public void setSite(String site) {
+		this.site = site;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setIdBar(int idBar) {
+		this.idBar = idBar;
+	}
+
+	public int getIdBar() {
+		return idBar;
+	}
+
+	public List<CategorieBar> getLstCategorie() {
+		return lstCategorie;
+	}
+	
+	public List<Critere> getLstCritere() {
+		return lstCritere;
+	}
+	
+	public List<Horaire> getLstHoraires() {
+		return lstHoraires;
+	}
+	
+	public void setLstCategorie(List<CategorieBar> lstCategorie) {
+		this.lstCategorie = lstCategorie;
+	}
+
+	public void setShortDescription(String shortDescription) {
+
+	}
+	
+	public void setLstCritere(List<Critere> lstCritere) {
+		this.lstCritere = lstCritere;
+	}
+
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
 	}
 }

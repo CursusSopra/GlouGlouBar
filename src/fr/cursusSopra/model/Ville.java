@@ -21,7 +21,6 @@ public class Ville {
 	
 	public void SaveVille(){
 		Connection cnx = PostgresConnection.GetConnexion();
-		Statement state;
 		String queryVille = "INSERT INTO villes (cp, ville) VALUES (?,?) ";
 		try {
 			PreparedStatement ps = cnx.prepareStatement(queryVille);
