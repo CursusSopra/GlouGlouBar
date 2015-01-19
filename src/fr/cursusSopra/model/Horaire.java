@@ -5,6 +5,8 @@
 package fr.cursusSopra.model;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +16,8 @@ public class Horaire {
 	private int idHoraire;
 	private int idBar;
 	private int idJour;
-	private Time heureDebut;
-	private Time heureFin;
+	private String heureDebut;
+	private String heureFin;
 
 	public Horaire(){}
 	
@@ -56,7 +58,7 @@ public class Horaire {
 		Connection cnx = PostgresConnection.GetConnexion();
 		
 		//requete de selection de tous les bars
-		String query = "SELECT idhoraire, idbar, idjour, heuredebut, heurefin FROM horaires WHERE idbar = ? ORDER BY idjour, heuredebut";
+		String query = "SELECT idhoraire, idbar, idjour, EXTRACT(HOUR FROM heuredebut) AS heureouverture, EXTRACT(MINUTE FROM heuredebut) AS minuteouverture, EXTRACT(HOUR FROM heurefin) AS heurefermeture, EXTRACT(MINUTE FROM heurefin) AS minutefermeture FROM horaires WHERE idbar = ? ORDER BY idjour, heuredebut";
 		
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
@@ -70,8 +72,12 @@ public class Horaire {
 				newHoraire.idHoraire = rs.getInt("idhoraire");	
 				newHoraire.idBar = rs.getInt("idbar");
 				newHoraire.idJour = rs.getInt("idjour");
-				newHoraire.heureDebut = rs.getTime("heuredebut");
-				newHoraire.heureFin = rs.getTime("heurefin");
+				String heureOuverture = Double.toString(rs.getDouble(("heureouverture")));
+				String minuteOuverture = Double.toString(rs.getDouble(("minuteouverture")));
+				newHoraire.heureDebut = heureOuverture + ":" + minuteOuverture;
+				String heureFermeture = Double.toString(rs.getDouble(("heurefermeture")));
+				String minuteFermeture = Double.toString(rs.getDouble(("minutefermeture")));
+				newHoraire.heureDebut = heureFermeture + ":" + minuteFermeture;
 				lstHoraireBar.add(newHoraire);
 			}		
 			rs.close();		
@@ -97,8 +103,8 @@ public class Horaire {
 			PreparedStatement ps = cnx.prepareStatement(query);
 			ps.setInt(1, idBar);
 			ps.setInt(2, idJour);
-			ps.setTime(3, heureDebut);
-			ps.setTime(4, heureFin);
+			ps.setString(3, heureDebut);
+			ps.setString(4, heureFin);
 
 			return ps.executeUpdate();
 		} catch (SQLException e) {
@@ -146,19 +152,19 @@ public class Horaire {
 		this.idJour = idJour;
 	}
 	
-	public Time getHeureDebut() {
+	public String getHeureDebut() {
 		return heureDebut;
 	}
 
-	public void setHeureDebut(Time heureDebut) {
+	public void setHeureDebut(String heureDebut) {
 		this.heureDebut = heureDebut;
 	}
 
-	public Time getHeureFin() {
+	public String getHeureFin() {
 		return heureFin;
 	}
 
-	public void setHeureFin(Time heureFin) {
+	public void setHeureFin(String heureFin) {
 		this.heureFin = heureFin;
 	}
 }

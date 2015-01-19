@@ -101,10 +101,8 @@ public class CreationBarAction extends ActionSupport {
 			Horaire horaire = new Horaire();
 			horaire.setIdBar(leBar.getIdBar());
 			horaire.setIdJour(Integer.parseInt(tabJoursOuvert[k]));
-			Date heureDebut = (Date)formatter.parse(tabHeureDebutOuvert[k]);
-			horaire.setHeureDebut((Time) heureDebut);
-			Date heureFin = (Date)formatter.parse(tabHeureDebutOuvert[k]);
-			horaire.setHeureFin((Time) heureFin);
+			horaire.setHeureDebut(tabHeureDebutOuvert[k]);
+			horaire.setHeureFin(tabHeureFinOuvert[k]);
 			lstHoraires.add(horaire);
 			//Sauvegarde de l'horaire
 			horaire.SaveHoraire();
