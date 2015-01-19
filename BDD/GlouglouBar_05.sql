@@ -1,4 +1,4 @@
---
+ï»¿--
 -- PostgreSQL database dump
 --
 
@@ -20,7 +20,7 @@ SET search_path = public, pg_catalog;
 -- Dependencies: 172
 -- Data for Name: adresses; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
+TRUNCATE adresses RESTART IDENTITY CASCADE;
 INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (1, '12 rue Sainte Catherine', '69001', 45.768081, 4.833417);
 INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (4, '41, quai P. Scize', '69009', NULL, NULL);
 INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (5, '20, Quai Arloing', '69009', NULL, NULL);
@@ -46,20 +46,20 @@ SELECT pg_catalog.setval('adresses_idadresse_seq', 9, true);
 --
 
 INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (1, 1, 'The Albion', '0644050479', 'www.thealbion.fr', 'Sans ta Guinness je vacille, ton ambiance est indescriptible.');
-INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (4, 4, 'L''adresse', '0478289755', 'www.ladresselyon.com', 'Importé des grandes capitales nocturnes (Londres, New york, Paris), le premier concept de bar-bourse est né à Lyon, à l''Adresse.
-Oubliés le cac 40, l''indice NIkkai ou les tristes actions Euro-Tunnel, maintenant votre portefeuille boursier s''articule autour d''une coupe de champagne, d''un Martini, ou d''un cocktail.
-Sur un écran plasma, les boissons devenues des valeurs boursières font la valse des prix toutes les 90secondes.
-Ainsi, un verre peut passer de 3 à 12 euros en quelques minutes, sans oubliés les innombrables Krächs boursiers!
-Un concept innovant et ludique à faire consommer même le plus convaincu des anti-capitalistes !');
+INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (4, 4, 'L''adresse', '0478289755', 'www.ladresselyon.com', 'ImportÃ© des grandes capitales nocturnes (Londres, New york, Paris), le premier concept de bar-bourse est nÃ© Ã  Lyon, Ã  l''Adresse.
+OubliÃ©s le cac 40, l''indice NIkkai ou les tristes actions Euro-Tunnel, maintenant votre portefeuille boursier s''articule autour d''une coupe de champagne, d''un Martini, ou d''un cocktail.
+Sur un Ã©cran plasma, les boissons devenues des valeurs boursiÃ¨res font la valse des prix toutes les 90secondes.
+Ainsi, un verre peut passer de 3 Ã  12 euros en quelques minutes, sans oubliÃ©s les innombrables KrÃ¤chs boursiers!
+Un concept innovant et ludique Ã  faire consommer mÃªme le plus convaincu des anti-capitalistes !');
 INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (5, 5, 'Le Pas Sage', '0899235991', '', 'Bar Antillais, ambiance caliente garantie !
 
 Midi : 10 - 15 euros
 Soir : 10 - 15 euros');
-INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (6, 6, 'Le Florian', '0478422437', 'www.le-florian.fr', 'Les jupes virevoltent, les esprits se déchaînent et s''abandonnent sur des rythmes jazzy. Les serveurs, complices de l’organisation, donnent le ton et arment les lyonnais désabusés de cocktails détonnants.');
-INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (7, 7, 'Drôle de Zèbre', '0472070289', 'http://www.droledezebre-cafe.fr/', 'Terrasse au top! Cadre et ambiance sympas. Musiques au choix! Situé juste à côté du Métro Croix-Rousse');
-INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (8, 8, 'Moi j''m''en fous, je triche !', '0469701300', 'www.debitdejeux.fr', 'Des jeux de plateau adaptés à tous âges, des pépites comme on n’en trouve nulle part ailleurs.
-Tarif adulte : 6 € /an - Carte famille : 12 € /an pour 2 adultes et 2 enfant - Tarif enfant : 3 € /an');
-INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (9, 9, 'Péniche Loupika', '0984362821', 'www.loupka.com', 'Venez profiter de la vue panoramique de la terrasse du Loupika tout le week-end, et n''hésitez pas à laisser vos avis !');
+INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (6, 6, 'Le Florian', '0478422437', 'www.le-florian.fr', 'Les jupes virevoltent, les esprits se dÃ©chaÃ®nent et s''abandonnent sur des rythmes jazzy. Les serveurs, complices de lâ€™organisation, donnent le ton et arment les lyonnais dÃ©sabusÃ©s de cocktails dÃ©tonnants.');
+INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (7, 7, 'DrÃ´le de ZÃ¨bre', '0472070289', 'http://www.droledezebre-cafe.fr/', 'Terrasse au top! Cadre et ambiance sympas. Musiques au choix! SituÃ© juste Ã  cÃ´tÃ© du MÃ©tro Croix-Rousse');
+INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (8, 8, 'Moi j''m''en fous, je triche !', '0469701300', 'www.debitdejeux.fr', 'Des jeux de plateau adaptÃ©s Ã  tous Ã¢ges, des pÃ©pites comme on nâ€™en trouve nulle part ailleurs.
+Tarif adulte : 6 â‚¬ /an - Carte famille : 12 â‚¬ /an pour 2 adultes et 2 enfant - Tarif enfant : 3 â‚¬ /an');
+INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (9, 9, 'PÃ©niche Loupika', '0984362821', 'www.loupka.com', 'Venez profiter de la vue panoramique de la terrasse du Loupika tout le week-end, et n''hÃ©sitez pas Ã  laisser vos avis !');
 
 
 --
@@ -154,13 +154,13 @@ SELECT pg_catalog.setval('criteresbars_idcriterebar_seq', 22, true);
 
 INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (1, 1, 'Superbe', '9999-12-31 23:59:59');
 INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (2, 4, 'Bonne ambiance, les serveuses sont souriantes. Et le concept est original! ', '2015-01-16 10:12:28.41');
-INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (3, 5, 'Bar à tapas très sympas', '2015-01-16 10:17:05.882');
+INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (3, 5, 'Bar Ã  tapas trÃ¨s sympas', '2015-01-16 10:17:05.882');
 INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (4, 5, 'Ambiance conviviale', '2015-01-16 10:20:38.055');
-INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (5, 6, 'Des cocktails qui font rêver, une ambiance très cosy et baroque.', '2015-01-16 10:38:57.207');
-INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (6, 6, 'Bar très cosy', '2015-01-16 10:39:20.208');
-INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (7, 7, 'L''intérieur est super mimi, un peu cosy, très girly. J''ai adoré la déco des toilettes des dames .... venez y jeter un œil ...', '2015-01-16 10:58:38.951');
-INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (8, 8, 'Concept de bar très sympas !', '2015-01-16 11:06:15.794');
-INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (9, 8, 'Moi, j''men fous j''adore la triche! Ce lieu est parfait pour les jeux de société, ils sont tous récents et bien expliqués. L''ambiance est joyeuse et un peu bruyante mais pouvoir manger et boire un coup en jouant, ça c''est cool ', '2015-01-16 11:07:08.074');
+INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (5, 6, 'Des cocktails qui font rÃªver, une ambiance trÃ¨s cosy et baroque.', '2015-01-16 10:38:57.207');
+INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (6, 6, 'Bar trÃ¨s cosy', '2015-01-16 10:39:20.208');
+INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (7, 7, 'L''intÃ©rieur est super mimi, un peu cosy, trÃ¨s girly. J''ai adorÃ© la dÃ©co des toilettes des dames .... venez y jeter un Å“il ...', '2015-01-16 10:58:38.951');
+INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (8, 8, 'Concept de bar trÃ¨s sympas !', '2015-01-16 11:06:15.794');
+INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (9, 8, 'Moi, j''men fous j''adore la triche! Ce lieu est parfait pour les jeux de sociÃ©tÃ©, ils sont tous rÃ©cents et bien expliquÃ©s. L''ambiance est joyeuse et un peu bruyante mais pouvoir manger et boire un coup en jouant, Ã§a c''est cool ', '2015-01-16 11:07:08.074');
 
 
 --

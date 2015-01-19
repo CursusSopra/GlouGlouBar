@@ -1,4 +1,4 @@
-
+﻿
 -- Creation du trigger sur critiques
 
 CREATE OR REPLACE FUNCTION on_insert()
@@ -15,7 +15,7 @@ CREATE TRIGGER on_before_insert
   FOR EACH ROW
   EXECUTE PROCEDURE on_insert();
   
-  -- cr�ation du trigger sur images
+  -- création du trigger sur images
   
   
   CREATE OR REPLACE FUNCTION on_insert_image()
@@ -36,7 +36,7 @@ EXECUTE 'SELECT count(*) FROM images WHERE idbar= $1'
 	return new;
 END;
 $BODY$
-  LANGUAGE plpgsql
+  LANGUAGE plpgsql;
   
   
   CREATE TRIGGER on_before_insert
