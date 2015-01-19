@@ -35,7 +35,7 @@ public class Evaluation {
 			psAddEval.setInt(3, note);
 
 			int result = psAddEval.executeUpdate();
-
+			psAddEval.close();
 			return result;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

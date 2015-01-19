@@ -49,6 +49,7 @@ public class CategorieBar {
 			psCategories.setInt(1, idBar);
 			psCategories.setInt(2, idCategorie);
 			psCategories.executeUpdate();
+			psCategories.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -92,7 +93,7 @@ public class CategorieBar {
 		Connection cnx = PostgresConnection.GetConnexion();
 
 		// requete de selection de tous les bars
-		String query = "SELECT idcategorie, categoriebar FROM categoriesbars inner join bars using (idbar) inner join categories using (idcategorie) WHERE idbar = ?";
+		String query = "SELECT * FROM v_listcategoriebar WHERE idbar = ?";
 
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);

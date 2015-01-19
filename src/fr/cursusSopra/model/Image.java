@@ -27,15 +27,15 @@ public class Image {
 	
 	public int SaveImage() {
 		Connection cnx = PostgresConnection.GetConnexion();
-		String queryAddEval = "INSERT INTO images (idbar, nomimage) VALUES (?,?)";
-		PreparedStatement psAddEval;
+		String queryImage = "INSERT INTO images (idbar, nomimage) VALUES (?,?)";
+		PreparedStatement psImage;
 		try {
-			psAddEval = cnx.prepareStatement(queryAddEval);
-			psAddEval.setInt(1, idBar);
-			psAddEval.setString(2, nomImage.toString());
+			psImage = cnx.prepareStatement(queryImage);
+			psImage.setInt(1, idBar);
+			psImage.setString(2, nomImage.toString());
 
-			int result = psAddEval.executeUpdate();
-
+			int result = psImage.executeUpdate();
+			psImage.close();
 			return result;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

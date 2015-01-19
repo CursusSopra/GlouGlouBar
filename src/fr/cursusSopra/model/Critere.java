@@ -47,6 +47,7 @@ public class Critere {
 			psCriteres.setInt(1, idBar);
 			psCriteres.setInt(2, idCritere);
 			psCriteres.executeUpdate();
+			psCriteres.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -89,7 +90,7 @@ public class Critere {
 		Connection cnx = PostgresConnection.GetConnexion();
 		
 		//requete de selection de tous les bars
-		String query = "SELECT idcritere, critere FROM criteresbars inner join bars using (idbar) inner join criteresspeciaux using (idcritere) WHERE idbar =?";
+		String query = "SELECT * FROM v_listcriterebar WHERE idbar =?";
 		
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);

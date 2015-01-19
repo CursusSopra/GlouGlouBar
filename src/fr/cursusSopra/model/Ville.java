@@ -27,6 +27,7 @@ public class Ville {
 			ps.setString(1, cp);
 			ps.setString(2, nom);
 			ps.executeUpdate();
+			ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,6 +47,7 @@ public class Ville {
 			while(rsLstChampVille.next()){
 				lstChampVille.add(rsLstChampVille.getString("ville"));
 			}
+			rsLstChampVille.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,7 +98,8 @@ public class Ville {
 			PreparedStatement psCp = cnx.prepareStatement(queryCp);
 			psCp.setString(1, nom);
 			ResultSet rsCp = psCp.executeQuery();
-			rsCp.next();	
+			rsCp.next();
+			rsCp.close();
 			return rsCp.getString("cp");
 		} catch (SQLException e) {
 			e.printStackTrace();

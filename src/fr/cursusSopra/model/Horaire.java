@@ -110,7 +110,7 @@ public class Horaire {
 			PreparedStatement ps = cnx.prepareStatement(query);
 			ps.setInt(1, idBar);
 			ps.setInt(2, idJour);
-
+			ps.close();
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -131,6 +131,7 @@ public class Horaire {
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);
 			ps.setInt(1, idHoraire);
+			ps.close();
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
