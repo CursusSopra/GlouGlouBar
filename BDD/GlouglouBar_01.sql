@@ -109,4 +109,17 @@ create table criteresbars (
 	CONSTRAINT fk_criteresbars_criteresspeciaux FOREIGN KEY (idcritere) REFERENCES criteresspeciaux(idcritere)
 );
 
+CREATE TABLE images
+(
+  idimage serial NOT NULL,
+  idbar integer NOT NULL,
+  nomimage character varying(50) NOT NULL,
+  isprincipal boolean NOT NULL,
+  CONSTRAINT pk_images PRIMARY KEY (idimage),
+  CONSTRAINT fk_images_bars FOREIGN KEY (idbar)
+      REFERENCES bars (idbar) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT unique_nomimage UNIQUE (nomimage)
+)
+
 
