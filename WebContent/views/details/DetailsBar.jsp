@@ -102,11 +102,12 @@
 				<font size="4px"><b>Informations pratiques</b> </font>
 			</div>
 			<div class="panel-body">
-				<div style="width: 300px; height: 300px;">
-					<div id="map_canvas" style="width: 100%; height: 100%;"></div>
+				<div id="map_container" class="map_container">
+					<div id="map_canvas" class="map_canvas"></div>
 				</div>
-
 				<br />
+				<a href="<s:property value='#dir'/>"><button
+							id="buttonDirections">Comment y aller !</button></a> <br />
 
 				<s:property value="leBar.nom" />
 				<br />
@@ -247,4 +248,12 @@
 		</div>
 	</div>
 </div>
-</div>
+
+<script>
+// var lat = '<s:property value="leBar.adresse.latitude"/>';
+// var longi = '<s:property value="leBar.adresse.longitude"/>';
+// var mapTitle = '<s:property value="leBar.adresse.longitude"/>';
+var lat = <s:property value="leBar.adresse.latitude"/>;
+var longi = <s:property value="leBar.adresse.longitude"/>;
+var mapTitle = <s:property value="leBar.adresse.longitude"/>;
+</script>

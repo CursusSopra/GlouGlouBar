@@ -13,6 +13,11 @@
 			method="execute">
 			<result name="success" type="tiles">detailsBar</result>
 		</action>
+		
+		<action name="directions" class="fr.cursusSopra.action.DirectionsAction"
+			method="execute">
+			<result name="success" type="tiles">directions</result>
+		</action>
 
 	</package>
 </struts>
