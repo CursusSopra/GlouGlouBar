@@ -93,17 +93,24 @@ public class Ville {
 	public static String getCpWithVille (String nom) {
 		Connection cnx = PostgresConnection.GetConnexion();
 		String queryCp = "SELECT cp FROM villes WHERE ville=?";
+		ResultSet rsCp = null;
 		try {
 			// Récupération du code postal de la ville sélectionnée
 			PreparedStatement psCp = cnx.prepareStatement(queryCp);
 			psCp.setString(1, nom);
-			ResultSet rsCp = psCp.executeQuery();
+			rsCp = psCp.executeQuery();
 			rsCp.next();
-			rsCp.close();
 			return rsCp.getString("cp");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			if (rsCp != null) {
+				try {
+					rsCp.close();
+				} catch (SQLException e) {
+				}
+			}
 		}
 	}
 	

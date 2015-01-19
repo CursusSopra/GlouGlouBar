@@ -105,16 +105,23 @@ public class Horaire {
 
 		String query = "INSERT INTO horaires (idbar, idjour, heuredebut, heurefin) VALUES (?,?,TIME '"
 				+ heureDebut + "',TIME '" + heureFin + "')";
+		PreparedStatement ps = null;
 
 		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
+			ps = cnx.prepareStatement(query);
 			ps.setInt(1, idBar);
 			ps.setInt(2, idJour);
-			ps.close();
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+				}
+			}
 		}
 	}
 
@@ -127,15 +134,22 @@ public class Horaire {
 	public int Delete() {
 		Connection cnx = PostgresConnection.GetConnexion();
 		String query = "DELETE FROM horaires WHERE idhoraire = ?";
-
+		PreparedStatement ps = null;
+		
 		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
+			ps = cnx.prepareStatement(query);
 			ps.setInt(1, idHoraire);
-			ps.close();
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+				}
+			}
 		}
 	}
 

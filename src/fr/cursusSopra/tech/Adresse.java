@@ -48,6 +48,7 @@ public class Adresse {
 			ResultSet rsAdresse = psAdresse.executeQuery();
 			rsAdresse.next();
 			setIdAdresse(rsAdresse.getInt(1));
+			rsAdresse.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
