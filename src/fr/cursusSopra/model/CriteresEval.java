@@ -22,7 +22,7 @@ public class CriteresEval {
 		Connection cnx = PostgresConnection.GetConnexion();
 		try {
 
-			String queryCand = "SELECT idcriteval, libcourt, liblong FROM critereseval";
+			String queryCand = "SELECT idcriteval, libcourt, liblong FROM critereseval ORDER BY tri";
 			PreparedStatement ps = cnx.prepareStatement(queryCand);
 			ResultSet rs = ps.executeQuery();
 
