@@ -10,7 +10,7 @@
 		<form method="post" class="col-md-10"
 			action="<s:url action='addBar' />" id="addBar">
 
-			<div class="form-inline">
+			<div class="row form-inline">
 				<fieldset class="scheduler-border-crit form-group">
 					<legend class="scheduler-border">Bar</legend>
 					<div class="form-group">
@@ -48,14 +48,14 @@
 					<input type="hidden" id="longitude" name="longitude"/>			
 				</fieldset>
 			</div>
-			<div class="form-group">
+			<div class="row">
 				<fieldset class="scheduler-border-crit form-group">
 					<legend class="scheduler-border">Description du bar</legend>
 					<textarea class="form-control" rows="5" cols="220"
 						name="description">Entrez la description...</textarea>
 				</fieldset>
 			</div>
-			<div class="form-inline">
+			<div class="row form-inline">
 				<fieldset class="scheduler-border-crit form-group">
 					<legend class="scheduler-border">Caractéristiques</legend>
 					<div class="table">

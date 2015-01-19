@@ -28,6 +28,9 @@
 		<put-list-attribute name="moreScripts">
 			<add-attribute value="_js/modifyBar.js"></add-attribute>
 		</put-list-attribute>
+		<put-list-attribute name="moreStyles">
+			<add-attribute value="_css/modifyBarStyle.css"></add-attribute>
+		</put-list-attribute>
 	</definition>
 	
 	<definition name="formAddImage" extends="baseLayout">
