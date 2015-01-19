@@ -14,6 +14,26 @@ public class Ville {
 	private String cp;
 	private String nom;
 	
+	public Ville(String cp, String nom){
+		setNom(nom);
+		setCp(cp);
+	}
+	
+	public void SaveVille(){
+		Connection cnx = PostgresConnection.GetConnexion();
+		Statement state;
+		String queryVille = "INSERT INTO villes (cp, ville) VALUES (?,?) ";
+		try {
+			PreparedStatement ps = cnx.prepareStatement(queryVille);
+			ps.setString(1, cp);
+			ps.setString(2, nom);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+	
 	public static List<String> getLstChampVille() {
 		List<String> lstChampVille = new ArrayList<String>();
 		Connection cnx = PostgresConnection.GetConnexion();
@@ -48,9 +68,7 @@ public class Ville {
 			//remplissage tant qu'on trouve des ville
 			while (rs.next())
 			{
-				Ville newVille = new Ville();
-				newVille.cp = rs.getString("cp");
-				newVille.nom = rs.getString("ville");
+				Ville newVille = new Ville(rs.getString("cp"), rs.getString("ville"));
 				lstVille.add(newVille);
 			}		
 			rs.close();		
