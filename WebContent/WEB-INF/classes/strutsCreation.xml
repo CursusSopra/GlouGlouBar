@@ -18,5 +18,25 @@
 			<result name="success">index.jsp</result>
 			<result name="error" type="redirectAction">creationBar</result>
 		</action>
+		<action name="formAddImage" class="fr.cursusSopra.action.FormAddImageAction"
+			method="execute">
+			<result name="success" type="tiles">formAddImage</result>
+		</action>
+		
+		<action name="userImage"
+			class="fr.cursusSopra.action.FileUploadAction">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/pjpeg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirectAction">/</result>
+<!-- 			<result name="success">SuccessUserImage.jsp</result> -->
+<!-- 			<result name="input">UserImage.jsp</result> -->
+		</action>
+		
+		
 	</package>
 </struts>

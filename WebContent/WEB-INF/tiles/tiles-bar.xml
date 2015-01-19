@@ -29,4 +29,18 @@
 			<add-attribute value="_js/modifyBar.js"></add-attribute>
 		</put-list-attribute>
 	</definition>
+	
+	<definition name="formAddImage" extends="baseLayout">
+		<put-attribute name="title" value="Ajout d'image" />
+		<put-attribute name="body" value="/views/creation/FormAddImage.jsp" />
+		<put-list-attribute name="moreScripts">
+		</put-list-attribute>
+		<put-list-attribute name="moreStyles">
+		</put-list-attribute>
+		<put-list-attribute name="moreHttpScripts">
+			</put-list-attribute>
+	</definition>
+	
+	
+	
 </tiles-definitions>
