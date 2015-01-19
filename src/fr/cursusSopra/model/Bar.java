@@ -28,7 +28,7 @@ public class Bar {
 	private List<BarEvaluation> lstEvals;
 	private List<BarCommentaire> lstComms;
 	private Image mainImage;
-	private List<Image> allImage;
+	private List<Image> lstImage;
 	
 	public Bar() {
 	}
@@ -46,6 +46,8 @@ public class Bar {
 		lstCategorie = CategorieBar.listeCategorie(idBar);
 		lstCritere = Critere.listeCritere(idBar);
 		adresse = Adresse.getAdresse(idBar);
+		mainImage = Image.getMainImage(idBar);
+		setLstImage(Image.getAllImage(idBar));
 		// requete de selection du bar d'idbar = id
 		String query = "SELECT nom, numtel, site, description FROM bars WHERE idbar = ?";
 
@@ -150,6 +152,8 @@ public class Bar {
 				newBar.idBar = rs.getInt("idbar");
 				fillBar(newBar, rs);
 				newBar.lstHoraires = Horaire.getListeHoraires(newBar.idBar);
+				newBar.mainImage=Image.getMainImage(newBar.idBar);
+				newBar.lstImage=Image.getAllImage(newBar.idBar);
 				lstBar.add(newBar);
 			}
 			rs.close();
@@ -326,5 +330,22 @@ public class Bar {
 
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
+	}
+
+
+	public Image getMainImage() {
+		return mainImage;
+	}
+
+	public void setMainImage(Image mainImage) {
+		this.mainImage = mainImage;
+	}
+
+	public List<Image> getLstImage() {
+		return lstImage;
+	}
+
+	public void setLstImage(List<Image> lstImage) {
+		this.lstImage = lstImage;
 	}
 }
