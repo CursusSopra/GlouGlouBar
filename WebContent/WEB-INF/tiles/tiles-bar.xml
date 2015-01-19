@@ -13,6 +13,9 @@
 			<add-attribute value="_js/maps.js"></add-attribute>
 			<add-attribute value="_js/creationBar.js"></add-attribute>
 		</put-list-attribute>
+		<put-list-attribute name="moreStyles">
+			<add-attribute value="_css/creationBarStyle.css"></add-attribute>
+		</put-list-attribute>
 		<put-list-attribute name="moreHttpScripts">
 			<add-attribute
 				value="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIXm3hVBQgLwOmmsORoaxue1ZSqYx4rc0	"></add-attribute>

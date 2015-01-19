@@ -23,7 +23,7 @@ public class Critique {
 	}
 
 	//Ajout critique et evaluations correpsondante dans la BDD
-	public int AddCritique(List<Integer> listnotes, List<Integer> listcriteres, String commentaire, int idbarfromAction) {
+	public int AddCritique(String commentaire, int idbarfromAction) {
 		Connection cnx = PostgresConnection.GetConnexion();
 		String queryAddCrit = "INSERT INTO critiques (idbar,comm) VALUES (?,?) RETURNING idcritique";
 		PreparedStatement psAddCrit;
@@ -31,22 +31,13 @@ public class Critique {
 			psAddCrit = cnx.prepareStatement(queryAddCrit);
 			psAddCrit.setInt(1, idbarfromAction);
 			psAddCrit.setString(2, commentaire);
-
 			// Ajoute une critique et retoure le numéro de la critique
 			ResultSet rs = psAddCrit.executeQuery();
 			rs.next();
-
-			int result = 0;
 			
-			//Ajout des evaluation correspondant a cette critique
-			for (int i = 0; i < listnotes.size(); i++) {
-
-				Evaluation evalTest = new Evaluation(rs.getInt("idcritique"),listcriteres.get(i), listnotes.get(i) );
-				result=evalTest.AddEval();
-			}
+			int idcritique=rs.getInt("idcritique");
 			rs.close();
-
-			return result;
+			return idcritique;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;

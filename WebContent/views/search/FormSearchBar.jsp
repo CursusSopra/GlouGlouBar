@@ -8,7 +8,7 @@
 		<p><em>Localisation</em></p>
 			<s:iterator value="lstVilles">
 				<input type="checkbox" name="cpSelected" value="<s:property value="cp"/>" />
-				<s:property value="ville"/>
+				<s:property value="nom"/>
 			</s:iterator>
 		<br/><br/>	
 		<p><em>Adresse</em></p>
