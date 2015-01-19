@@ -95,7 +95,6 @@ public class CreationBarAction extends ActionSupport {
 		String[] tabHeureDebutOuvert = idHeureDebut.split(",");
 		String[] tabHeureFinOuvert = idHeureFin.split(",");
 		
-		DateFormat formatter = new SimpleDateFormat("hh:mm");
 		List<Horaire> lstHoraires = new ArrayList<>();
 		for (int k = 0; k < tabJoursOuvert.length; k++) {
 			Horaire horaire = new Horaire();
