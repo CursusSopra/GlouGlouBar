@@ -7,6 +7,7 @@ import java.util.*;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.cursusSopra.model.Critique;
+import fr.cursusSopra.model.Evaluation;
 
 public class AddEvalAction extends ActionSupport {
 
@@ -20,23 +21,40 @@ public class AddEvalAction extends ActionSupport {
 	private String commentaire;
 
 	public String execute() {
-		notes = new ArrayList<Integer>();
-		criteres = new ArrayList<Integer>();
-		String[] party = idNotes.split(",");
-		String[] critTab= idCriteres.split(",");
+		StringToList();
+		AddCritqueEvaluation();
 
-		for (int i = 0; i < party.length ; i++) {
-			notes.add(  Integer.parseInt( party[i] ) );
-			criteres.add(  Integer.parseInt( critTab[i] )  );
-		}
 
-		Critique critTest = new Critique();
-		critTest.AddCritique(notes,criteres, commentaire, idBar);
 
 		return SUCCESS;
 	}
 	
+	
+	public void StringToList(){
+		notes = new ArrayList<Integer>();
+		criteres = new ArrayList<Integer>();
+		String[] party = idNotes.split(",");
+		String[] critTab = idCriteres.split(",");
+		for (int i = 0; i < party.length; i++) {
+			notes.add(Integer.parseInt(party[i]));
+			criteres.add(Integer.parseInt(critTab[i]));
+		}
+	}
 
+	public int AddCritqueEvaluation() {
+		
+		Critique critTest = new Critique();
+		int idcritique=critTest.AddCritique(commentaire, idBar);
+		int result=0;
+		// Ajout des evaluation correspondant a cette critique
+		for (int i = 0; i < notes.size(); i++) {
+			Evaluation evalTest = new Evaluation( idcritique, criteres.get(i), notes.get(i) );
+			result = evalTest.AddEval();
+		}
+		return result;
+	}
+
+	
 	public void setCommentaire(String commentaire) {
 		this.commentaire = commentaire;
 	}
@@ -48,7 +66,6 @@ public class AddEvalAction extends ActionSupport {
 	public void setIdNotes(String idNotes) {
 		this.idNotes = idNotes;
 	}
-
 
 	public void setIdCriteres(String idCriteres) {
 		this.idCriteres = idCriteres;
