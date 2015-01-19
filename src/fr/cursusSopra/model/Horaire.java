@@ -83,7 +83,7 @@ public class Horaire {
 						.getDouble("heurefermeture"));
 				String minuteFermeture = Integer.toString((int) rs
 						.getDouble("minutefermeture"));
-				newHoraire.heureFin = heureFermeture + ":" + minuteOuverture;
+				newHoraire.heureFin = heureFermeture + ":" + minuteFermeture;
 				lstHoraireBar.add(newHoraire);
 			}
 			rs.close();
