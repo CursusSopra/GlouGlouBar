@@ -18,21 +18,51 @@ public class Bar {
 	private String numTel;
 	private String site;
 	private String description;
+	private String lienImage;
+	private Adresse adresse;
+	private String shortDescription;
+	private List<Double> lstNotes;
+	private List<Horaire> lstHoraires;
+	private List<CategorieBar> lstCategorie;
+	private List<Critere> lstCritere;
+	private List<BarEvaluation> lstEvals;
+	private List<BarCommentaire> lstComms;
 	private Image mainImage;
 	private List<Image> allImage;
 	
-	private Adresse adresse;
-	
-	private String shortDescription;
-	private List<Double> lstNotes;
+	public Bar() {
+	}
 
-	private List<Horaire> lstHoraires;
+	/**
+	 * Constructeur de l'objet bar qui récupère le bar correspondant à l'id dans
+	 * la table
+	 * 
+	 * @param id
+	 */
+	public Bar(int id) {
+		Connection cnx = PostgresConnection.GetConnexion();
+		idBar = id;
+		lstHoraires = Horaire.getListeHoraires(idBar);
+		lstCategorie = CategorieBar.listeCategorie(idBar);
+		lstCritere = Critere.listeCritere(idBar);
+		adresse = Adresse.getAdresse(idBar);
+		// requete de selection du bar d'idbar = id
+		String query = "SELECT nom, numtel, site, description FROM bars WHERE idbar = ?";
 
-	private List<CategorieBar> lstCategorie;
-	private List<Critere> lstCritere;
-	
-	private List<BarEvaluation> lstEvals;
-	private List<BarCommentaire> lstComms;
+		try {
+			PreparedStatement ps = cnx.prepareStatement(query);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+
+			// remplissage de l'objet si le bar est trouvé
+			if (rs.next()) {
+				fillBar(this, rs);
+//				buildAdresse();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public List<BarCommentaire> getLstComms() {
 		List<BarCommentaire> lstComms = new ArrayList<BarCommentaire>();
@@ -95,40 +125,6 @@ public class Bar {
 		} else {
 			int index = this.description.indexOf(" ", maxlength);
 			return this.description.substring(0, index) + " [...]";
-		}
-	}
-
-	public Bar() {
-	}
-
-	/**
-	 * Constructeur de l'objet bar qui récupère le bar correspondant à l'id dans
-	 * la table
-	 * 
-	 * @param id
-	 */
-	public Bar(int id) {
-		Connection cnx = PostgresConnection.GetConnexion();
-		idBar = id;
-		lstHoraires = Horaire.getListeHoraires(idBar);
-		lstCategorie = CategorieBar.listeCategorie(idBar);
-		lstCritere = Critere.listeCritere(idBar);
-		adresse = Adresse.getAdresse(idBar);
-		// requete de selection du bar d'idbar = id
-		String query = "SELECT nom, numtel, site, description FROM bars WHERE idbar = ?";
-
-		try {
-			PreparedStatement ps = cnx.prepareStatement(query);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-
-			// remplissage de l'objet si le bar est trouvé
-			if (rs.next()) {
-				fillBar(this, rs);
-//				buildAdresse();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 	}
 

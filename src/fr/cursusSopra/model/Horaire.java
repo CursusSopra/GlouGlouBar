@@ -19,42 +19,6 @@ public class Horaire {
 
 	public Horaire(){}
 	
-	public int getIdHoraire() {
-		return idHoraire;
-	}
-	
-	public int getIdBar() {
-		return idBar;
-	}
-
-	public void setIdBar(int idBar) {
-		this.idBar = idBar;
-	}
-
-	public int getIdJour() {
-		return idJour;
-	}
-
-	public void setIdJour(int idJour) {
-		this.idJour = idJour;
-	}
-	
-	public Time getHeureDebut() {
-		return heureDebut;
-	}
-
-	public void setHeureDebut(Time heureDebut) {
-		this.heureDebut = heureDebut;
-	}
-
-	public Time getHeureFin() {
-		return heureFin;
-	}
-
-	public void setHeureFin(Time heureFin) {
-		this.heureFin = heureFin;
-	}
-	
 	/**
 	 * Récupère le mot associé au numéro de jour
 	 * @return le jour en toute lettre
@@ -124,7 +88,7 @@ public class Horaire {
 	 * 
 	 * @return 1 si la création s'est effectuée correctement, 0 sinon
 	 */
-	public int Create() {
+	public int SaveHoraire() {
 		Connection cnx = PostgresConnection.GetConnexion();
 
 		String query = "INSERT INTO horaires (idbar, idjour, heuredebut, heurefin) VALUES (?,?,?,?)";
@@ -160,5 +124,41 @@ public class Horaire {
 			e.printStackTrace();
 			return 0;
 		}
+	}
+	
+	public int getIdHoraire() {
+		return idHoraire;
+	}
+	
+	public int getIdBar() {
+		return idBar;
+	}
+
+	public void setIdBar(int idBar) {
+		this.idBar = idBar;
+	}
+
+	public int getIdJour() {
+		return idJour;
+	}
+
+	public void setIdJour(int idJour) {
+		this.idJour = idJour;
+	}
+	
+	public Time getHeureDebut() {
+		return heureDebut;
+	}
+
+	public void setHeureDebut(Time heureDebut) {
+		this.heureDebut = heureDebut;
+	}
+
+	public Time getHeureFin() {
+		return heureFin;
+	}
+
+	public void setHeureFin(Time heureFin) {
+		this.heureFin = heureFin;
 	}
 }

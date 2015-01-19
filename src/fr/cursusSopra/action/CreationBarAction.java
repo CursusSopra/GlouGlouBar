@@ -70,8 +70,8 @@ public class CreationBarAction extends ActionSupport {
 		List<Critere> lstCritere = new ArrayList<>();
 		for (int i = 0; i < checkboxCritere.length; i++) {
 			Critere crit = new Critere();
-			crit.setIdCritere(checkboxCritere[i]);
 			crit.setIdBar(leBar.getIdBar());
+			crit.setIdCritere(checkboxCritere[i]);
 			lstCritere.add(crit);
 			//Sauvegarde du critère
 			crit.SaveCritere();
@@ -80,9 +80,10 @@ public class CreationBarAction extends ActionSupport {
 
 		// Récupération de la liste des catégories
 		List<CategorieBar> lstCategorieBar = new ArrayList<>();
-		for (int i = 0; i < checkboxCategorie.length; i++) {
+		for (int j = 0; j < checkboxCategorie.length; j++) {
 			CategorieBar catBar = new CategorieBar();
-			catBar.setIdCategorie(checkboxCategorie[i]);
+			catBar.setIdBar(leBar.getIdBar());
+			catBar.setIdCategorie(checkboxCategorie[j]);
 			lstCategorieBar.add(catBar);
 			//Sauvegarde de la catégorie
 			catBar.SaveCategorie();
@@ -94,19 +95,21 @@ public class CreationBarAction extends ActionSupport {
 		String[] tabHeureDebutOuvert = idHeureDebut.split(",");
 		String[] tabHeureFinOuvert = idHeureFin.split(",");
 		
-//		DateFormat formatter = new SimpleDateFormat("hh:mm");
-//		List<Horaire> lstHoraires = new ArrayList<>();
-//		Horaire horaire = new Horaire();
-//		for (int j = 0; j < tabJoursOuvert.length; j++) {
-//			horaire.setIdBar(leBar.getIdBar());
-//			horaire.setIdJour(Integer.parseInt(idJour));
-//			Date heureDebut = (Date)formatter.parse(tabHeureDebutOuvert[j]);
-//			horaire.setHeureDebut((Time) heureDebut);
-//			Date heureFin = (Date)formatter.parse(tabHeureDebutOuvert[j]);
-//			horaire.setHeureFin((Time) heureFin);
-//			lstHoraires.add(horaire);
-//		}
-//		leBar.setLstHoraires(lstHoraires);
+		DateFormat formatter = new SimpleDateFormat("hh:mm");
+		List<Horaire> lstHoraires = new ArrayList<>();
+		for (int k = 0; k < tabJoursOuvert.length; k++) {
+			Horaire horaire = new Horaire();
+			horaire.setIdBar(leBar.getIdBar());
+			horaire.setIdJour(Integer.parseInt(tabJoursOuvert[k]));
+			Date heureDebut = (Date)formatter.parse(tabHeureDebutOuvert[k]);
+			horaire.setHeureDebut((Time) heureDebut);
+			Date heureFin = (Date)formatter.parse(tabHeureDebutOuvert[k]);
+			horaire.setHeureFin((Time) heureFin);
+			lstHoraires.add(horaire);
+			//Sauvegarde de l'horaire
+			horaire.SaveHoraire();
+		}
+		leBar.setLstHoraires(lstHoraires);
 
 		return result == 0 ? ERROR : SUCCESS;
 	}
