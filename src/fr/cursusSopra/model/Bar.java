@@ -109,7 +109,7 @@ public class Bar {
 		List<BarEvaluation> lstEval = new ArrayList<BarEvaluation>();
 
 		Connection cnx = PostgresConnection.GetConnexion();
-		String query = "SELECT * from v_evalbar WHERE idbar = ? GROUP BY libcourt, liblong, tri ORDER BY tri";
+		String query = "SELECT * from v_evalbar WHERE idbar = ? GROUP BY libcourt, liblong, tri, note, idbar ORDER BY tri";
 		PreparedStatement ps=null;
 		try {
 			ps = cnx.prepareStatement(query);

@@ -8,10 +8,9 @@
 </s:url>
 
 <div class="row">
-	<div class="col-md-2"></div>
-	<div class="col-md-7">
+	<div class="col-md-7 col-md-offset-2">
 		<div class="panel panel-primary">
-			<div class="panel-heading" style="text-align: center">
+			<div class="panel-heading">
 
 				<b><font size="20px" face="Mistral"> <s:property
 							value="leBar.nom.toUpperCase()" />
@@ -36,7 +35,7 @@
 							<s:if test='%{#idx.index != 0}'>
 								<div class="item">
 							</s:if>
-							<img src="<s:property value="lien"/>" />
+							<img src="<s:property value="lien"/>"/>
 							</div>
 						</s:iterator>
 					</div>
@@ -60,8 +59,8 @@
 			<br />
 			<s:property value="leBar.description" />
 			<br />
-		
-			<div class="col-md-4">
+		<br/><br/>
+			<div class="col-md-6">
 				<s:if test="%{leBar.lstHoraires.size > 0}">
 					<table class="table table-striped table-hover"
 						style="text-align: center;">
@@ -84,52 +83,20 @@
 					</table>
 				</s:if>
 			</div>
-
-			<div class="col-md-4 col-md-offset-1">
+			
+			
+			<div class="col-md-5 col-md-offset-1">
 				Résumé des notes :
 				<s:property value="leBar.lstComms.size()" />
 				avis <br /> <br />
 
 				<s:iterator value="leBar.lstEvals">
-
 					<s:property value="libCourt" />
 					<input disabled type="number" class="rating " min=0 max=5 step=1
 						data-size="sm" data-rtl="false" value="<s:property value="note"/>"
 						data-show-caption="false" data-show-clear="false"
 						data-read-only="true" data-hover-enabled="false" />
-
 				</s:iterator>
-
-			</div>
-
-			<div class="col-md-3">
-				<a href="<s:url action='' />">Retour aux bars</a> <br /> <br />
-
-				<s:url action="formAddEval" var="GoToformEval">
-					<s:param name="idBar">
-						<s:property value="idBar" />
-					</s:param>
-				</s:url>
-				<s:url action="formAddImage" var="GoToformImage">
-					<s:param name="idBar">
-						<s:property value="idBar" />
-					</s:param>
-				</s:url>
-
-				<a href="<s:property value='#GoToformEval'/> "> Donnez votre
-					avis </a> <br /> <br />
-
-				<s:url action="modifyBar" var="GoToFormModify">
-					<s:param name="idBar">
-						<s:property value="idBar" />
-					</s:param>
-				</s:url>
-
-				<a href="<s:property value='GoToFormModify'/> "> Modifiez les
-					informations </a> <br /> <br /> <a
-					href="<s:property value='GoToformImage'/> "> Ajouter une image
-				</a>
-
 			</div>
 		</div>
 		</div>
@@ -138,7 +105,7 @@
 
 <div class="col-md-3">
 	<div class="panel panel-info">
-		<div class="panel-heading" style="text-align: center">
+		<div class="panel-heading">
 			<font size="4px"><b>Informations pratiques</b> </font>
 		</div>
 		<div class="panel-body">
@@ -163,7 +130,7 @@
 	</div>
 
 	<div class="panel panel-info">
-		<div class="panel-heading" style="text-align: center">
+		<div class="panel-heading">
 			<font size="4px"><b>Caractéristiques</b> </font>
 		</div>
 
@@ -180,6 +147,36 @@
 			</ul>
 		</div>
 	</div>
+	
+	<div class="panel panel-info">
+		<div class="panel-body">
+			<s:url action="formAddEval" var="GoToformEval">
+					<s:param name="idBar">
+						<s:property value="idBar" />
+					</s:param>
+				</s:url>
+				<s:url action="formAddImage" var="GoToformImage">
+					<s:param name="idBar">
+						<s:property value="idBar" />
+					</s:param>
+				</s:url>
+
+				<a href="<s:property value='#GoToformEval'/> "> Donnez votre
+					avis </a> <br /> <br />
+
+				<s:url action="modifyBar" var="GoToFormModify">
+					<s:param name="idBar">
+						<s:property value="idBar" />
+					</s:param>
+				</s:url>
+
+				<a href="<s:property value='GoToFormModify'/> "> Modifiez les
+					informations </a> <br /> <br /> <a
+					href="<s:property value='GoToformImage'/> "> Ajouter une image
+				</a>
+		</div>
+	</div>
+	
 
 </div>
 </div>
@@ -193,7 +190,7 @@
 	<div class="col-md-2"></div>
 	<div class="col-md-7">
 		<div class="panel panel-info">
-			<div class="panel-heading" style="text-align: center">
+			<div class="panel-heading">
 				<h2>
 					Votre avis sur
 					<s:property value="leBar.nom" />
@@ -206,7 +203,6 @@
 							action="<s:url action='addEval' />">
 
 							<s:iterator value="lstCriteresEval" status="idx">
-
 								<label class="col-lg-4 control-label"> <s:property
 										value="libcourt" />
 								</label>
@@ -264,7 +260,7 @@
 	<div class="col-md-2"></div>
 	<div class="col-md-7">
 		<div class="panel panel-info">
-			<div class="panel-heading" style="text-align: center">
+			<div class="panel-heading">
 				<h2>L'avis des internautes</h2>
 			</div>
 
