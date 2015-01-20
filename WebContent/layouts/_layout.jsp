@@ -9,19 +9,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
-<link href="_css/glouglouStyle.css" media="all" rel="stylesheet" type="text/css" />	
-	
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<link href="css/star-rating.min.css" media="all" rel="stylesheet"
+	type="text/css" />
+<link href="_css/glouglouStyle.css" media="all" rel="stylesheet"
+	type="text/css" />
+
 <tiles:useAttribute name="moreStyles" scope="request" ignore="true" />
 <c:if test="${not empty moreStyles}">
 	<c:forEach items="${moreStyles}" var="cssFile">
 		<link href="./${cssFile}" media="all" rel="stylesheet" type="text/css" />
 	</c:forEach>
 </c:if>
-	
+
 <tiles:useAttribute name="moreHttpStyles" scope="request" ignore="true" />
 <c:if test="${not empty moreHttpStyles}">
 	<c:forEach items="${moreHttpStyles}" var="cssFile">
@@ -31,7 +34,8 @@
 <title><tiles:getAsString name="title" /></title>
 </head>
 <body>
-<img class="imgtop" src="content/images/glougloulogo.jpg" width="300px;" height="60px;" />
+	<img class="imgtop" src="content/images/glougloulogo.jpg"
+		width="300px;" height="60px;" />
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -43,17 +47,19 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="<s:url action='' />">Accueil</a>
-				<a class="navbar-brand navbar-center" href="<s:url action='creationBar' />">Créer un bar</a>
-				<a class="navbar-brand" href="<s:url action='formSearchBar' />">Rechercher un bar</a>
+				<a class="navbar-brand" href="<s:url action='' />">Accueil</a> <a
+					class="navbar-brand navbar-center"
+					href="<s:url action='creationBar' />">Créer un bar</a> <a
+					class="navbar-brand" href="<s:url action='formSearchBar' />">Rechercher
+					un bar</a>
 			</div>
 
-				<form class="navbar-form navbar-right" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
-					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
+			<form class="navbar-form navbar-right" role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search">
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</form>
 
 			<!-- /.navbar-collapse -->
 		</div>
@@ -62,9 +68,13 @@
 	<tiles:insertAttribute name="body" />
 
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/star-rating.min.js"></script>
 
-	<tiles:useAttribute name="moreHttpScripts" scope="request" ignore="true" />
+	<tiles:useAttribute name="moreHttpScripts" scope="request"
+		ignore="true" />
 	<c:if test="${not empty moreHttpScripts}">
 		<c:forEach items="${moreHttpScripts}" var="jsFile">
 			<script type="text/javascript" src="${jsFile}"></script>
@@ -77,6 +87,6 @@
 			<script type="text/javascript" src="./${jsFile}"></script>
 		</c:forEach>
 	</c:if>
-	
+
 </body>
 </html>
