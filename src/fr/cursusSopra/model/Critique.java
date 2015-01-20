@@ -21,20 +21,23 @@ public class Critique {
 	//Constructeur Vide
 	public Critique() {
 	}
+	public Critique(String commentaireExt,int idBarExt) {
+		comm=commentaireExt;
+		idbar=idBarExt;
+	}
 
 	//Ajout critique et evaluations correpsondante dans la BDD
-	public int AddCritique(String commentaire, int idbarfromAction) {
+	public int AddCritique() {
 		Connection cnx = PostgresConnection.GetConnexion();
 		String queryAddCrit = "INSERT INTO critiques (idbar,comm) VALUES (?,?) RETURNING idcritique";
-		PreparedStatement psAddCrit;
+		PreparedStatement psAddCrit=null;
 		try {
 			psAddCrit = cnx.prepareStatement(queryAddCrit);
-			psAddCrit.setInt(1, idbarfromAction);
-			psAddCrit.setString(2, commentaire);
+			psAddCrit.setInt(1, idbar);
+			psAddCrit.setString(2, comm);
 			// Ajoute une critique et retoure le numéro de la critique
 			ResultSet rs = psAddCrit.executeQuery();
 			rs.next();
-			
 			int idcritique=rs.getInt("idcritique");
 			rs.close();
 			return idcritique;

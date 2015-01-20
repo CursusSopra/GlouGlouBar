@@ -44,8 +44,8 @@ public class AddEvalAction extends ActionSupport {
 
 	public int AddCritqueEvaluation() {
 		
-		Critique critTest = new Critique();
-		int idcritique=critTest.AddCritique(commentaire, idBar);
+		Critique critTest = new Critique(commentaire, idBar);
+		int idcritique=critTest.AddCritique();
 		int result=0;
 		// Ajout des evaluation correspondant a cette critique
 		for (int i = 0; i < notes.size(); i++) {
