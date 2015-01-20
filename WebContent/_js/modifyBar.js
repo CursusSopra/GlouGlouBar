@@ -51,7 +51,7 @@ $(function() {
 		$('#selectFinTousLesJours').children().change(changeTousLesHorairesFin);
 	});
 	
-	$('#addBar').submit(function() {
+	$('#updateBar').submit(function() {
 		// Format l'adresse à partir des infos du formulaire
 		var geocoder = new google.maps.Geocoder();		
 		

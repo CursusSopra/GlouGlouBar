@@ -27,9 +27,7 @@ public class FormModifyBarAction extends ActionSupport {
 	private List<String> champVille;
 	private List<Jour> lstJours;
 	private List<Horaire> lstHoraires;
-		
-
-
+	
 	public String execute() {
 		setLeBar(new Bar(idBar));
 		return SUCCESS;
@@ -40,68 +38,54 @@ public class FormModifyBarAction extends ActionSupport {
 		setChampVille(Ville.getLstChampVille());
 		setLstCategories(CategorieBar.getListeCategoriesBar());
 		setLstJours(Jour.getLstJours());
-		setLstCriteres(Critere.getListeCriteres());		
+		setLstCriteres(Critere.getListeCriteres());	
+		
 		return SUCCESS;
-	}
-	
+		
+	}	
 	public void setLstCategories(List<CategorieBar> lstCategories) {
 		this.lstCategories = lstCategories;
 	}
-
 	public void setLstCriteres(List<Critere> lstCriteres) {
 		this.lstCriteres = lstCriteres;
 	}
-
 	public void setLstJours(List<Jour> lstJours) {
 		this.lstJours = lstJours;
-	}
-	
+	}	
 	public List<Horaire> getLstHoraires() {
 		return lstHoraires;
 	}
-
 	public void setLstHoraires(List<Horaire> lstHoraires) {
 		this.lstHoraires = lstHoraires;
 	}
-
 	public int getIdBar() {
 		return idBar;
 	}
-
 	public void setIdBar(int idBar) {
 		this.idBar = idBar;
 	}
-
 	public Bar getLeBar() {
 		return leBar;
 	}
-
 	public void setLeBar(Bar leBar) {
 		this.leBar = leBar;
 	}
 	public void setChampVille(List<String> champVille) {
 		this.champVille = champVille;
 	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 	public List<CategorieBar> getLstCategories() {
 		return lstCategories;
 	}
-
 	public List<Critere> getLstCriteres() {
 		return lstCriteres;
 	}
-
 	public List<String> getChampVille() {
 		return champVille;
 	}
-
 	public List<Jour> getLstJours() {
 		return lstJours;
 	}
-	
-
 }
