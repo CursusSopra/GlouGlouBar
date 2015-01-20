@@ -1,4 +1,9 @@
 TRUNCATE categories RESTART IDENTITY CASCADE;
+TRUNCATE criteresspeciaux RESTART IDENTITY CASCADE;
+TRUNCATE critereseval RESTART IDENTITY CASCADE;
+TRUNCATE villes RESTART IDENTITY CASCADE;
+TRUNCATE jours RESTART IDENTITY CASCADE;
+
 insert into categories (categoriebar) VALUES ('Bar festif');
 insert into categories (categoriebar) VALUES ('Pub');
 insert into categories (categoriebar) VALUES ('Bar à vin');
@@ -17,7 +22,7 @@ insert into categories (categoriebar) VALUES ('Bar after work');
 insert into categories (categoriebar) VALUES ('Bar gay');
 insert into categories (categoriebar) VALUES ('Bar lesbien');
 
-TRUNCATE criteresspeciaux RESTART IDENTITY CASCADE;
+
 insert into criteresspeciaux(critere) VALUES ('Terrasse');
 insert into criteresspeciaux(critere) VALUES ('Accès Handicapé');
 insert into criteresspeciaux(critere) VALUES ('Brunch');
@@ -38,14 +43,14 @@ insert into criteresspeciaux(critere) VALUES ('Sportifs');
 insert into criteresspeciaux(critere) VALUES ('Avec piscine');
 insert into criteresspeciaux(critere) VALUES ('Connexion Wifi');
 
-TRUNCATE critereseval RESTART IDENTITY CASCADE;
+
 INSERT INTO critereseval(libcourt, liblong, tri) VALUES ('Accueil', 'Accueil',1);
 INSERT INTO critereseval(libcourt, liblong, tri) VALUES ('Ambiance', 'Ambiance générale du bar',2);
 INSERT INTO critereseval(libcourt, liblong, tri) VALUES ('Tarif', 'Tarif ',3);
 INSERT INTO critereseval(libcourt, liblong, tri) VALUES ('Qualite', 'Qualité du service et des consommations',4);
 INSERT INTO critereseval(libcourt, liblong, tri) VALUES ('Note Globale', 'Appréciation générale du bar',5);
 
-TRUNCATE villes;
+
 INSERT INTO villes(ville, cp) VALUES ('Lyon 1', '69001');
 INSERT INTO villes(ville, cp) VALUES ('Lyon 2', '69002');
 INSERT INTO villes(ville, cp) VALUES ('Lyon 3', '69003');
@@ -56,7 +61,7 @@ INSERT INTO villes(ville, cp) VALUES ('Lyon 7', '69007');
 INSERT INTO villes(ville, cp) VALUES ('Lyon 8', '69008');
 INSERT INTO villes(ville, cp) VALUES ('Lyon 9', '69009');
 
-TRUNCATE jours RESTART IDENTITY CASCADE;
+
 INSERT INTO jours(jour) VALUES ('Lundi');
 INSERT INTO jours(jour) VALUES ('Mardi');
 INSERT INTO jours(jour) VALUES ('Mercredi');
