@@ -44,6 +44,7 @@ body{
 
 .vignette {
 	background-color: white;
+	width: 250px;
 }
 
 vignette, .lead:hover {
