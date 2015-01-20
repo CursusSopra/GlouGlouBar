@@ -24,7 +24,7 @@ public class FormModifyBarAction extends ActionSupport {
 	private Bar leBar;
 	private List<CategorieBar> lstCategories;
 	private List<Critere> lstCriteres;
-	private List<String> champVille;
+	private List<Ville> champVille;
 	private List<Jour> lstJours;
 	private List<Horaire> lstHoraires;
 	
@@ -35,7 +35,7 @@ public class FormModifyBarAction extends ActionSupport {
 
 	public String accessFormModify(){
 		setLeBar(new Bar(idBar));
-		setChampVille(Ville.getLstChampVille());
+		setChampVille(Ville.getListeVilles());
 		setLstCategories(CategorieBar.getListeCategoriesBar());
 		setLstJours(Jour.getLstJours());
 		setLstCriteres(Critere.getListeCriteres());	
@@ -70,8 +70,8 @@ public class FormModifyBarAction extends ActionSupport {
 	public void setLeBar(Bar leBar) {
 		this.leBar = leBar;
 	}
-	public void setChampVille(List<String> champVille) {
-		this.champVille = champVille;
+	public void setChampVille(List<Ville> list) {
+		this.champVille = list;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -82,7 +82,7 @@ public class FormModifyBarAction extends ActionSupport {
 	public List<Critere> getLstCriteres() {
 		return lstCriteres;
 	}
-	public List<String> getChampVille() {
+	public List<Ville> getChampVille() {
 		return champVille;
 	}
 	public List<Jour> getLstJours() {

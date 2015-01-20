@@ -45,8 +45,8 @@
 					<div class="form-group">
 						<label for="ville">Ville</label> <select class="form-control"
 							id="ville" name="ville">							
-							<s:iterator var="i" value="champVille" status="idx">
-								<option selected="<s:property value="leBar.adresse.ville.nom"/>" value="<s:property />"><s:property /></option>
+							<s:iterator value="champVille">
+								<option <s:if test="%{nom==leBar.adresse.ville.nom}">selected</s:if> value="<s:property value="nom"/>"><s:property value="nom" /></option>
 							</s:iterator>
 						</select>
 					</div>
