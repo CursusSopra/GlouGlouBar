@@ -72,10 +72,8 @@
 								<s:iterator value="leBar.lstHoraires">
 									<tr>
 										<td><s:property value="getNomJour()" /></td>
-										<td><s:property value="heureDebut" />
-											<s:if test="heureDebut.endsWith(':0')">0</s:if> - <s:property
-												value="heureFin" />
-											<s:if test="heureDebut.endsWith(':0')">0</s:if></td>
+										<td><s:property value="heureDebut" /><s:if test="heureDebut.endsWith(':0')">0</s:if> - <s:property
+												value="heureFin" /><s:if test="heureDebut.endsWith(':0')">0</s:if></td>
 									</tr>
 								</s:iterator>
 							</tbody>
