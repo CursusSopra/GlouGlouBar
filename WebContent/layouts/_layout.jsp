@@ -12,8 +12,8 @@
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="css/star-rating.min.css" media="all" rel="stylesheet"
-	type="text/css" />
+<link href="css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+<link href="_css/glouglouStyle.css" media="all" rel="stylesheet" type="text/css" />	
 	
 <tiles:useAttribute name="moreStyles" scope="request" ignore="true" />
 <c:if test="${not empty moreStyles}">
@@ -62,6 +62,7 @@
 	<tiles:insertAttribute name="body" />
 
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/star-rating.min.js"></script>
 
 	<tiles:useAttribute name="moreHttpScripts" scope="request" ignore="true" />
 	<c:if test="${not empty moreHttpScripts}">
