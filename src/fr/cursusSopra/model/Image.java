@@ -14,6 +14,8 @@ public class Image {
 	private int idBar;
 	private String nomImage;
 	private boolean isPrincipal;
+	private String lien;
+	private String repertoire="content/images/";
 	
 	// Constructeur vide
 	public Image() {
@@ -68,6 +70,7 @@ public class Image {
 			if (rs.next()) {
 				image.idBar=idBarExt;
 				image.nomImage=rs.getString("nomimage");
+				image.lien=image.repertoire+image.nomImage;
 			}
 			rs.close();
 		} catch (SQLException e) {
@@ -101,6 +104,7 @@ public class Image {
 				Image image = new Image();
 				image.idBar=idBarExt;
 				image.nomImage=rs.getString("nomimage");
+				image.lien=image.repertoire+image.nomImage;
 				lstImages.add(image);
 			}
 			rs.close();
@@ -142,6 +146,22 @@ public class Image {
 
 	public void setIdBar(int idBar) {
 		this.idBar = idBar;
+	}
+
+	public String getLien() {
+		return lien;
+	}
+
+	public void setLien(String lien) {
+		this.lien = lien;
+	}
+
+	public String getRepertoire() {
+		return repertoire;
+	}
+
+	public void setRepertoire(String repertoire) {
+		this.repertoire = repertoire;
 	}
 
 
