@@ -7,7 +7,7 @@
 <tiles-definitions>
 
 	<definition name="detailsBar" extends="baseLayout">
-		<put-attribute name="title" value="Détails d''un Bar" />
+		<put-attribute name="title" value="Détails d'un Bar" />
 		<put-attribute name="body" value="/views/details/DetailsBar.jsp" />
 		<put-list-attribute name="moreScripts">
 			<add-attribute value="_js/maps.js"></add-attribute>
@@ -23,7 +23,6 @@
 		<put-list-attribute name="moreStyles">
 			<add-attribute value="_css/maps.css"></add-attribute>
 			<add-attribute value="_css/glouglouStyle.css"></add-attribute>
-			<add-attribute value="_css/detailsStyle.css"></add-attribute>
 		</put-list-attribute>
 	</definition>
 

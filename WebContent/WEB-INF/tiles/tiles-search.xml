@@ -27,7 +27,6 @@
 		</put-list-attribute>
 		<put-list-attribute name="moreStyles">
 			<add-attribute value="_css/glouglouStyle.css"></add-attribute>
-			<add-attribute value="_css/detailsStyle.css"></add-attribute>
 			<add-attribute value="_css/searchBarStyle.css"></add-attribute>
 		</put-list-attribute>
 	</definition>
