@@ -55,8 +55,7 @@ public class ResultBarAction extends ActionSupport {
 
 	public String execute() {
 
-
-		if (adresse.isEmpty() && nom.isEmpty() && cpSelected != null && catSelected == null && selectedCritere==null ) {
+		if (  adresse.isEmpty() &&  nom.isEmpty() && cpSelected != null && catSelected == null && selectedCritere==null ) {
 			ExecuteSearchByCP();
 		}
 		if (!adresse.isEmpty() && nom.isEmpty() && cpSelected == null && catSelected == null && selectedCritere==null) {
@@ -75,7 +74,6 @@ public class ResultBarAction extends ActionSupport {
 		else{
 			ExecuteMultiSearch();
 		}
-	
 		return SUCCESS;
 
 	}
