@@ -64,3 +64,20 @@ INSERT INTO jours(jour) VALUES ('Vendredi');
 INSERT INTO jours(jour) VALUES ('Samedi');
 INSERT INTO jours(jour) VALUES ('Dimanche');
 
+-- TOC entry 2020 (class 0 OID 43845)
+-- Dependencies: 194
+-- Data for Name: images; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (1, 1, '1.jpg', true);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (2, 1, '1-ec530172-3e2a-4a48-86bc-7da8306836b0.jpg', false);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (6, 4, '4.jpg', true);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (7, 4, '4-bdcdcada-3554-45f4-a614-5f94797ba755.jpg', false);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (8, 5, '5.jpg', true);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (9, 5, '5-f6ed1688-819c-4215-a5c1-e7b5eff3c4a4.jpg', false);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (10, 7, '7.jpg', true);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (11, 9, '9.jpg', true);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (12, 6, '6.jpg', true);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (13, 8, '8.jpg', true);
+
+
