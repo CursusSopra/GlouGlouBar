@@ -56,25 +56,44 @@
 			</div>
 			<div class="row form-inline">
 				<fieldset class="scheduler-border-crit form-group">
-					<legend class="scheduler-border">Caractéristiques</legend> <br><br>
 					<div class="table">
-						<s:iterator value="lstCriteres">
+						<div class="col-md-4">
+							<s:iterator status="status" value="lstCriteres">
+								<s:if test="%{#status.count==lstCriteres.size()/3 + 1}">
+						</div>
+						<div class="col-md-4">
+							</s:if>
+							<s:if test="%{#status.count==2*lstCriteres.size()/3 + 1}">
+						</div>
+						<div class="col-md-4">
+							</s:if>
 							<input type="checkbox" name="checkboxCritere"
 								value="<s:property value="idCritere"/>">
 							<s:property value="critere" />
 							<br />
-						</s:iterator>
+							</s:iterator>
+						</div>
 					</div>
 				</fieldset>
 				<fieldset class="scheduler-border-ctg form-group"><br>
 					<legend class="scheduler-border">Type de Bar</legend>
 					<div class="table">
-						<s:iterator value="lstCategories">
+						<div class="col-md-4">
+							<s:iterator status="status" value="lstCategories">
+								<s:if test="%{#status.count==lstCategories.size()/3 + 1}">
+						</div>
+						<div class="col-md-4">
+							</s:if>
+							<s:if test="%{#status.count==2*lstCategories.size()/3 + 1}">
+						</div>
+						<div class="col-md-4">
+							</s:if>
 							<input type="checkbox" name="checkboxCategorie"
 								value="<s:property value="idCategorie"/>">
 							<s:property value="categorieBar" />
 							<br />
-						</s:iterator>
+							</s:iterator>
+						</div>
 					</div>
 				</fieldset>
 				<fieldset class="scheduler-border-horaire form-group"><br>
