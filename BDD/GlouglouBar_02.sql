@@ -68,7 +68,8 @@ CREATE OR REPLACE VIEW v_evalbar AS
  SELECT avg(evaluations.note) AS note,
     critereseval.libcourt,
     critereseval.liblong,
-    critiques.idbar
+    critiques.idbar,
+    critereseval.tri
    FROM critiques
      JOIN evaluations USING (idcritique)
      JOIN critereseval USING (idcriteval)
