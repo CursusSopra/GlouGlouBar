@@ -29,7 +29,7 @@
 			<add-attribute value="_js/modifyBar.js"></add-attribute>
 		</put-list-attribute>
 		<put-list-attribute name="moreStyles">
-			<add-attribute value="_css/modifyBarStyle.css"></add-attribute>
+			<add-attribute value="_css/creationBarStyle.css"></add-attribute>
 		</put-list-attribute>
 	</definition>
 	
