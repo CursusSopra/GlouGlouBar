@@ -250,7 +250,7 @@ public class Bar {
 	 */
 	public int Update() {
 		Connection cnx = PostgresConnection.GetConnexion();
-		String query = "UPDATE bars SET nom=?, numtel=?, site=?, description=? WHERE idbar=?";
+		String query = "UPDATE bars SET nom=?, numtel=?, site=?, description=?, idadresse WHERE idbar=?";
 		PreparedStatement ps = null;
 		try {
 			ps = cnx.prepareStatement(query);
@@ -258,9 +258,9 @@ public class Bar {
 			ps.setString(2, numTel);
 			ps.setString(3, site);
 			ps.setString(4, description);
-			ps.setInt(5, idBar);
-			System.out.println("Coucou" + nom + numTel + site + description
-					+ idBar);
+			ps.setInt(5, adresse.getIdAdresse());
+			ps.setInt(6, idBar);
+			
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
