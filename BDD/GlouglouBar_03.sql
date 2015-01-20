@@ -54,7 +54,9 @@ CREATE OR REPLACE VIEW v_adressebar AS
  SELECT bars.idbar,
     adresses.voie,
     cp,
-    villes.ville
+    villes.ville,
+    adresses.latitude,
+    adresses.longitude
    FROM adresses
      JOIN bars USING (idadresse)
      JOIN villes USING (cp);
