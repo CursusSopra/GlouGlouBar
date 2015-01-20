@@ -44,9 +44,12 @@
 					</div>
 					<div class="form-group">
 						<label for="ville">Ville</label> <select class="form-control"
-							id="ville" name="ville">							
+							id="ville" name="ville">
 							<s:iterator value="champVille">
-								<option <s:if test="%{nom==leBar.adresse.ville.nom}">selected</s:if> value="<s:property value="nom"/>"><s:property value="nom" /></option>
+								<option
+									<s:if test="%{nom==leBar.adresse.ville.nom}">selected</s:if>
+									value="<s:property value="nom"/>"><s:property
+										value="nom" /></option>
 							</s:iterator>
 						</select>
 					</div>
@@ -64,23 +67,43 @@
 				<fieldset class="scheduler-border-crit form-group">
 					<legend class="scheduler-border">Caractéristiques</legend>
 					<div class="table">
-						<s:iterator value="lstCriteres">
+						<div class="col-md-4">
+							<s:iterator status="status" value="lstCriteres">
+								<s:if test="%{#status.count==lstCriteres.size()/3 + 1}">
+						</div>
+						<div class="col-md-4">
+							</s:if>
+							<s:if test="%{#status.count==2*lstCriteres.size()/3 + 1}">
+						</div>
+						<div class="col-md-4">
+							</s:if>
 							<input type="checkbox" name="checkboxCritere"
 								value="<s:property value="idCritere"/>">
 							<s:property value="critere" />
 							<br />
-						</s:iterator>
+							</s:iterator>
+						</div>
 					</div>
 				</fieldset>
 				<fieldset class="scheduler-border-ctg form-group">
 					<legend class="scheduler-border">Type de Bar</legend>
 					<div class="table">
-						<s:iterator value="lstCategories">
+						<div class="col-md-4">
+							<s:iterator status="status" value="lstCategories">
+								<s:if test="%{#status.count==lstCategories.size()/3 + 1}">
+						</div>
+						<div class="col-md-4">
+							</s:if>
+							<s:if test="%{#status.count==2*lstCategories.size()/3 + 1}">
+						</div>
+						<div class="col-md-4">
+							</s:if>
 							<input type="checkbox" name="checkboxCategorie"
 								value="<s:property value="idCategorie"/>">
 							<s:property value="categorieBar" />
 							<br />
-						</s:iterator>
+							</s:iterator>
+						</div>
 					</div>
 				</fieldset>
 				<fieldset class="scheduler-border-horaire form-group">
