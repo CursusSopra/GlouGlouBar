@@ -4,8 +4,7 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<h1 class="col-md-offset-1 entete">Ajout d'un super Bar pour les
-			copains</h1>
+		<h1 class="col-md-offset-1 entete">Ajout d'un super Bar pour les copains</h1><br>
 		<div class="col-md-1"></div>
 		<form method="post" class="col-md-10"
 			action="<s:url action='addBar' />" id="addBar">
@@ -29,7 +28,7 @@
 					</div>
 				</fieldset>
 
-				<fieldset class="scheduler-border-crit form-group">
+				<fieldset class="scheduler-border-crit form-group"><br>
 					<legend class="scheduler-border">Adresse</legend>
 					<div class="form-group">
 						<label for="voie">Voie</label> <input type="text"
@@ -49,7 +48,7 @@
 				</fieldset>
 			</div>
 			<div class="row">
-				<fieldset class="scheduler-border-crit form-group">
+				<fieldset class="scheduler-border-crit form-group"><br>
 					<legend class="scheduler-border">Description du bar</legend>
 					<textarea class="form-control" rows="5" cols="220"
 						name="description">Entrez la description...</textarea>
@@ -57,7 +56,7 @@
 			</div>
 			<div class="row form-inline">
 				<fieldset class="scheduler-border-crit form-group">
-					<legend class="scheduler-border">Caractéristiques</legend>
+					<legend class="scheduler-border">Caractéristiques</legend> <br><br>
 					<div class="table">
 						<s:iterator value="lstCriteres">
 							<input type="checkbox" name="checkboxCritere"
@@ -67,7 +66,7 @@
 						</s:iterator>
 					</div>
 				</fieldset>
-				<fieldset class="scheduler-border-ctg form-group">
+				<fieldset class="scheduler-border-ctg form-group"><br>
 					<legend class="scheduler-border">Type de Bar</legend>
 					<div class="table">
 						<s:iterator value="lstCategories">
@@ -78,9 +77,9 @@
 						</s:iterator>
 					</div>
 				</fieldset>
-				<fieldset class="scheduler-border-horaire form-group">
+				<fieldset class="scheduler-border-horaire form-group"><br>
 					<legend class="scheduler-border">Horaires</legend>
-					<div class="table">
+					<div class="table text">
 						<table class="table table-striped">
 							<thead>
 								<tr>
@@ -100,11 +99,12 @@
 					</div>
 					<div class="form-group" id="boutonPlusHoraires"></div>
 				</fieldset>
+				<br><br>
 				<div class="form-group">
-					<button type="reset" class="btn btn-default btn-center">
+					<button type="reset" class="btn-center btn btn-default">
 						<span class="glyphicon glyphicon-refresh"></span> État initial
 					</button>
-					<button type="submit" id="test" class="btn btn-primary btn-center">
+					<button type="submit" id="test" class="btn-center btn btn-primary">
 						<span class="glyphicon glyphicon-ok"></span> Créer Bar
 					</button>
 				</div>
