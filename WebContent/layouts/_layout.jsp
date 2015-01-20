@@ -36,9 +36,9 @@
 <body>
 	<img class="imgtop" src="content/images/glougloulogo.jpg"
 		width="300px;" height="60px;" />
+	<div class="container">
 
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
+		<nav class="navbar navbar-default">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
@@ -62,11 +62,14 @@
 			</form>
 
 			<!-- /.navbar-collapse -->
+		</nav>
+		<div class="row">
+			<div class="col-lg-12 col-sm-12">
+				<tiles:insertAttribute name="body" />
+			</div>
 		</div>
 		<!-- /.container-fluid -->
-	</nav>
-	<tiles:insertAttribute name="body" />
-
+	</div>
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script
