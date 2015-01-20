@@ -35,8 +35,9 @@ public class AddEvalAction extends ActionSupport {
 		criteres = new ArrayList<Integer>();
 		String[] party = idNotes.split(",");
 		String[] critTab = idCriteres.split(",");
-		for (int i = 0; i < party.length; i++) {
+		for (int i = 0; i < critTab.length; i++) {
 			notes.add(Integer.parseInt(party[i]));
+			
 			criteres.add(Integer.parseInt(critTab[i]));
 		}
 	}
