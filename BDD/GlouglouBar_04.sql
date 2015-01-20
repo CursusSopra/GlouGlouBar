@@ -1,21 +1,4 @@
 ﻿--
--- PostgreSQL database dump
---
-
--- Dumped from database version 9.3.5
--- Dumped by pg_dump version 9.3.5
--- Started on 2015-01-16 11:48:27
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET client_encoding = 'UTF-8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-
-SET search_path = public, pg_catalog;
-
---
 -- TOC entry 2035 (class 0 OID 57351)
 -- Dependencies: 172
 -- Data for Name: adresses; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -31,20 +14,11 @@ INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (9, '47, 
 
 
 --
--- TOC entry 2059 (class 0 OID 0)
--- Dependencies: 171
--- Name: adresses_idadresse_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('adresses_idadresse_seq', 9, true);
-
-
---
 -- TOC entry 2037 (class 0 OID 57367)
 -- Dependencies: 174
 -- Data for Name: bars; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
+TRUNCATE bars RESTART IDENTITY CASCADE;
 INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (1, 1, 'The Albion', '0644050479', 'www.thealbion.fr', 'Sans ta Guinness je vacille, ton ambiance est indescriptible.');
 INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (4, 4, 'L''adresse', '0478289755', 'www.ladresselyon.com', 'Importé des grandes capitales nocturnes (Londres, New york, Paris), le premier concept de bar-bourse est né à Lyon, à l''Adresse.
 Oubliés le cac 40, l''indice NIkkai ou les tristes actions Euro-Tunnel, maintenant votre portefeuille boursier s''articule autour d''une coupe de champagne, d''un Martini, ou d''un cocktail.
@@ -63,20 +37,11 @@ INSERT INTO bars (idbar, idadresse, nom, numtel, site, description) VALUES (9, 9
 
 
 --
--- TOC entry 2060 (class 0 OID 0)
--- Dependencies: 173
--- Name: bars_idbar_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('bars_idbar_seq', 9, true);
-
-
---
 -- TOC entry 2045 (class 0 OID 57454)
 -- Dependencies: 188
 -- Data for Name: categoriesbars; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
+TRUNCATE categoriesbars RESTART IDENTITY CASCADE;
 INSERT INTO categoriesbars (idcatbar, idbar, idcategorie) VALUES (1, 1, 2);
 INSERT INTO categoriesbars (idcatbar, idbar, idcategorie) VALUES (2, 1, 4);
 INSERT INTO categoriesbars (idcatbar, idbar, idcategorie) VALUES (3, 4, 1);
@@ -99,20 +64,11 @@ INSERT INTO categoriesbars (idcatbar, idbar, idcategorie) VALUES (19, 9, 15);
 
 
 --
--- TOC entry 2061 (class 0 OID 0)
--- Dependencies: 187
--- Name: categoriesbars_idcatbar_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('categoriesbars_idcatbar_seq', 19, true);
-
-
---
 -- TOC entry 2047 (class 0 OID 57480)
 -- Dependencies: 192
 -- Data for Name: criteresbars; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
+TRUNCATE criteresbars RESTART IDENTITY CASCADE;
 INSERT INTO criteresbars (idcriterebar, idbar, idcritere) VALUES (1, 1, 19);
 INSERT INTO criteresbars (idcriterebar, idbar, idcritere) VALUES (2, 1, 5);
 INSERT INTO criteresbars (idcriterebar, idbar, idcritere) VALUES (3, 4, 1);
@@ -138,20 +94,11 @@ INSERT INTO criteresbars (idcriterebar, idbar, idcritere) VALUES (22, 9, 19);
 
 
 --
--- TOC entry 2062 (class 0 OID 0)
--- Dependencies: 191
--- Name: criteresbars_idcriterebar_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('criteresbars_idcriterebar_seq', 22, true);
-
-
---
 -- TOC entry 2041 (class 0 OID 57409)
 -- Dependencies: 180
 -- Data for Name: critiques; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
+TRUNCATE critiques RESTART IDENTITY CASCADE;
 INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (1, 1, 'Superbe', '9999-12-31 23:59:59');
 INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (2, 4, 'Bonne ambiance, les serveuses sont souriantes. Et le concept est original! ', '2015-01-16 10:12:28.41');
 INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (3, 5, 'Bar à tapas très sympas', '2015-01-16 10:17:05.882');
@@ -164,20 +111,11 @@ INSERT INTO critiques (idcritique, idbar, comm, datecomm) VALUES (9, 8, 'Moi, j'
 
 
 --
--- TOC entry 2063 (class 0 OID 0)
--- Dependencies: 179
--- Name: critiques_idcritique_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('critiques_idcritique_seq', 9, true);
-
-
---
 -- TOC entry 2043 (class 0 OID 57433)
 -- Dependencies: 184
 -- Data for Name: evaluations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
+TRUNCATE evaluations RESTART IDENTITY CASCADE;
 INSERT INTO evaluations (ideval, idcritique, idcriteval, note) VALUES (1, 1, 1, 4);
 INSERT INTO evaluations (ideval, idcritique, idcriteval, note) VALUES (2, 1, 2, 3);
 INSERT INTO evaluations (ideval, idcritique, idcriteval, note) VALUES (3, 1, 3, 5);
@@ -221,20 +159,11 @@ INSERT INTO evaluations (ideval, idcritique, idcriteval, note) VALUES (40, 9, 5,
 
 
 --
--- TOC entry 2064 (class 0 OID 0)
--- Dependencies: 183
--- Name: evaluations_ideval_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('evaluations_ideval_seq', 40, true);
-
-
---
 -- TOC entry 2039 (class 0 OID 57391)
 -- Dependencies: 178
 -- Data for Name: horaires; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
+TRUNCATE horaires RESTART IDENTITY CASCADE;
 INSERT INTO horaires (idhoraire, idbar, idjour, heuredebut, heurefin) VALUES (1, 1, 1, '12:30:00', '23:30:00');
 INSERT INTO horaires (idhoraire, idbar, idjour, heuredebut, heurefin) VALUES (2, 1, 2, '09:30:00', '12:30:00');
 INSERT INTO horaires (idhoraire, idbar, idjour, heuredebut, heurefin) VALUES (3, 1, 2, '14:30:00', '23:30:00');
@@ -244,18 +173,18 @@ INSERT INTO horaires (idhoraire, idbar, idjour, heuredebut, heurefin) VALUES (6,
 INSERT INTO horaires (idhoraire, idbar, idjour, heuredebut, heurefin) VALUES (7, 1, 6, '14:30:00', '01:30:00');
 INSERT INTO horaires (idhoraire, idbar, idjour, heuredebut, heurefin) VALUES (8, 1, 7, '14:30:00', '01:30:00');
 
-
+-- TOC entry 2020 (class 0 OID 43845)
+-- Dependencies: 194
+-- Data for Name: images; Type: TABLE DATA; Schema: public; Owner: postgres
 --
--- TOC entry 2065 (class 0 OID 0)
--- Dependencies: 177
--- Name: horaires_idhoraire_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('horaires_idhoraire_seq', 8, true);
-
-
--- Completed on 2015-01-16 11:48:28
-
---
--- PostgreSQL database dump complete
---
+TRUNCATE images RESTART IDENTITY CASCADE;
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (1, 1, '1.jpg', true);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (2, 1, '1-ec530172-3e2a-4a48-86bc-7da8306836b0.jpg', false);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (6, 4, '4.jpg', true);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (7, 4, '4-bdcdcada-3554-45f4-a614-5f94797ba755.jpg', false);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (8, 5, '5.jpg', true);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (9, 5, '5-f6ed1688-819c-4215-a5c1-e7b5eff3c4a4.jpg', false);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (10, 7, '7.jpg', true);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (11, 9, '9.jpg', true);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (12, 6, '6.jpg', true);
+INSERT INTO images (idimage, idbar, nomimage, isprincipal) VALUES (13, 8, '8.jpg', true);
