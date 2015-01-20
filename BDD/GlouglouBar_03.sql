@@ -31,7 +31,7 @@ insert into criteresspeciaux(critere) VALUES ('Musique live');
 insert into criteresspeciaux(critere) VALUES ('Ouvert le dimanche');
 insert into criteresspeciaux(critere) VALUES ('Retransmission foot');
 insert into criteresspeciaux(critere) VALUES ('Apéros/Planches');
-insert into criteresspeciaux(critere) VALUES ('Au bord de l eau');
+insert into criteresspeciaux(critere) VALUES ('Au bord de l''eau');
 insert into criteresspeciaux(critere) VALUES ('Décoration originale');
 insert into criteresspeciaux(critere) VALUES ('Privatisation pour groupes');
 insert into criteresspeciaux(critere) VALUES ('Enterrement de vie de garçon/jeune fille');
