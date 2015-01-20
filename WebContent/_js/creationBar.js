@@ -62,7 +62,6 @@ $(function() {
 		//calcul de la latitude et longitude à partir de l'adresse
 		var geocoder = new google.maps.Geocoder();
 		var address = $("#voie").val() + " " + $("#ville").val();
-		alert(address);
 		geocoder.geocode({
 			'address' : address
 		}, function(results, status) {
@@ -70,9 +69,7 @@ $(function() {
 
 				lat = results[0].geometry.location.lat();
 				long = results[0].geometry.location.lng();
-				
-				alert(lat);
-				alert(long);
+
 				$("#latitude").val(lat);
 				$("#longitude").val(long);			
 			}
@@ -80,7 +77,6 @@ $(function() {
 			//récupération des chaines de caractères liées au traitement des horaires ajoutés
 			getHoraires();
 			
-			alert("oui");
 			//soumission du formulaire
 			$('#addBar').trigger('submit');
 		});

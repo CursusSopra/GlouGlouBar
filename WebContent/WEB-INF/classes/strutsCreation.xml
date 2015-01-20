@@ -15,7 +15,7 @@
 		</action>
 		<action name="addBar" class="fr.cursusSopra.action.CreationBarAction"
 			method="execute">
-			<result name="success">index.jsp</result>
+			<result name="success" type="redirectAction">/</result>
 			<result name="error" type="redirectAction">creationBar</result>
 		</action>
 		<action name="formAddImage" class="fr.cursusSopra.action.FormAddImageAction"
