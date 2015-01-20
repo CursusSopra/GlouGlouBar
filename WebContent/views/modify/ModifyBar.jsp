@@ -96,7 +96,7 @@
 									<th>Fermé</th>
 								</tr>
 							</thead>
-							<tbody id="lstHoraires">
+							<tbody id="inputHoraires">
 							</tbody>
 						</table>
 						<input type="hidden" name="idJour" id="idJour" /> <input

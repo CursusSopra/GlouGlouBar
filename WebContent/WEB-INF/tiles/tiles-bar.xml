@@ -26,13 +26,18 @@
 		<put-attribute name="title" value="Modification d'un bar" />
 		<put-attribute name="body" value="/views/modify/ModifyBar.jsp" />
 		<put-list-attribute name="moreScripts">
+			<add-attribute value="_js/maps.js"></add-attribute>
 			<add-attribute value="_js/modifyBar.js"></add-attribute>
 		</put-list-attribute>
 		<put-list-attribute name="moreStyles">
 			<add-attribute value="_css/creationBarStyle.css"></add-attribute>
 		</put-list-attribute>
+		<put-list-attribute name="moreHttpScripts">
+			<add-attribute
+				value="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIXm3hVBQgLwOmmsORoaxue1ZSqYx4rc0	"></add-attribute>
+		</put-list-attribute>
 	</definition>
-	
+
 	<definition name="formAddImage" extends="baseLayout">
 		<put-attribute name="title" value="Ajout d'image" />
 		<put-attribute name="body" value="/views/creation/FormAddImage.jsp" />
@@ -41,9 +46,9 @@
 		<put-list-attribute name="moreStyles">
 		</put-list-attribute>
 		<put-list-attribute name="moreHttpScripts">
-			</put-list-attribute>
+		</put-list-attribute>
 	</definition>
-	
-	
-	
+
+
+
 </tiles-definitions>
