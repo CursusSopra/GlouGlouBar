@@ -11,7 +11,8 @@
 		<div class="col-md-1"></div>
 		<form method="post" class="col-md-10"
 			action="<s:url action='updateBar' />" id="updateBar">
-			<input type="hidden" name="idBar" value="<s:property value="leBar.idBar"/>"/>
+			<input type="hidden" name="idBar"
+				value="<s:property value="leBar.idBar"/>" />
 			<div class="row form-inline">
 				<fieldset class="scheduler-border-crit form-group">
 					<legend class="scheduler-border">Bar</legend>
@@ -44,8 +45,7 @@
 					<div class="form-group">
 						<label for="ville">Ville</label> <select class="form-control"
 							id="ville" name="ville">
-							<option
-								value="<s:property value="leBar.adresse.ville.nom"/>"><s:property
+							<option value="<s:property value="leBar.adresse.ville.nom"/>"><s:property
 									value="leBar.adresse.ville.nom" /></option>
 							<s:iterator var="i" value="champVille" status="idx">
 								<option value="<s:property />"><s:property /></option>
@@ -62,7 +62,7 @@
 							value="leBar.description" /></textarea>
 				</fieldset>
 			</div>
-			<%-- <div class="row form-inline">
+			<div class="row form-inline">
 				<fieldset class="scheduler-border-crit form-group">
 					<legend class="scheduler-border">Caractéristiques</legend>
 					<div class="table">
@@ -98,7 +98,7 @@
 									<th>Fermé</th>
 								</tr>
 							</thead>
-							<tbody id="leBar.lstHoraires">
+							<tbody id="lstHoraires">
 							</tbody>
 						</table>
 						<input type="hidden" name="idJour" id="idJour" /> <input
@@ -106,16 +106,17 @@
 							type="hidden" name="idHeureFin" id="idHeureFin" />
 					</div>
 					<div class="form-group" id="boutonPlusHoraires"></div>
-				</fieldset>--%>
-			<div class="form-group">
-				<button type="reset" class="btn btn-default btn-center">
-					<span class="glyphicon glyphicon-refresh"></span> État initial
-				</button>
-				<button type="submit" id="test" class="btn btn-primary btn-center">
-					<span class="glyphicon glyphicon-ok"></span> Modifier Bar
-				</button>
+				</fieldset>
+				<div class="form-group">
+					<button type="reset" class="btn btn-default btn-center">
+						<span class="glyphicon glyphicon-refresh"></span> État initial
+					</button>
+					<button type="submit" id="test" class="btn btn-primary btn-center">
+						<span class="glyphicon glyphicon-ok"></span> Modifier Bar
+					</button>
+				</div>
 			</div>
-		</form>	
+		</form>
 	</div>
 	<div class="col-md-1"></div>
 </div>

@@ -24,27 +24,36 @@ public class ModifyBarAction extends ActionSupport {
 	private String description;
 	private double latitude;
 	private double longitude;
+	private int idAdresse;
 	
 	
 	
+	
+	
+
 	public String execute() throws ParseException{
-		
+			
 		Bar leBar = new Bar(idBar);
-		
 		// Récupération de l'adresse
 
-//		Ville villeBar = new Ville(Ville.getCpWithVille(ville), ville);
+		Ville villeBar = new Ville(Ville.getCpWithVille(ville), ville);
 
-//		Adresse adresse = new Adresse(villeBar, voie, latitude, longitude);
-//		//Sauvegarde de l'adresse
-//		adresse.SaveAdresse();
+		Adresse adresse = new Adresse(villeBar, voie, latitude, longitude);
+		
+	    //Sauvegarde de l'adresse
+		adresse.SaveAdresse();
+		
 
 		// Infos de base
+		
+		
 		leBar.setNom(nom);
 		leBar.setNumTel(numTel);
 		leBar.setSite(site);
 		leBar.setDescription(description);
-		//leBar.setAdresse(adresse);
+		leBar.setAdresse(adresse);
+
+		
 		
 		
 
@@ -53,6 +62,14 @@ public class ModifyBarAction extends ActionSupport {
 		int result = leBar.Update();		
 		result = 1;
 		return result == 0 ? ERROR : SUCCESS;
+	}
+
+	public int getIdAdresse() {
+		return idAdresse;
+	}
+
+	public void setIdAdresse(int idAdresse) {
+		this.idAdresse = idAdresse;
 	}
 
 	public int getIdBar() {
@@ -167,4 +184,6 @@ public class ModifyBarAction extends ActionSupport {
 	public double getLongitude() {
 		return longitude;
 	}
+	
+
 }

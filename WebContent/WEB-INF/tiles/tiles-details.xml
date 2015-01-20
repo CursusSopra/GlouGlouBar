@@ -12,7 +12,6 @@
 		<put-list-attribute name="moreScripts">
 			<add-attribute value="_js/maps.js"></add-attribute>
 			<add-attribute value="_js/addeval.js"></add-attribute>
-			<add-attribute value="js/star-rating.min.js"></add-attribute>
 		</put-list-attribute>
 
 		<put-list-attribute name="moreHttpScripts">
@@ -22,7 +21,6 @@
 
 		<put-list-attribute name="moreStyles">
 			<add-attribute value="_css/maps.css"></add-attribute>
-			<add-attribute value="_css/glouglouStyle.css"></add-attribute>
 		</put-list-attribute>
 	</definition>
 

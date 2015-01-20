@@ -8,6 +8,7 @@ import fr.cursusSopra.model.Bar;
 import fr.cursusSopra.model.CategorieBar;
 import fr.cursusSopra.model.Critere;
 import fr.cursusSopra.model.CriteresEval;
+import fr.cursusSopra.model.Horaire;
 import fr.cursusSopra.model.Jour;
 import fr.cursusSopra.model.Ville;
 import fr.cursusSopra.tech.Adresse;
@@ -25,7 +26,10 @@ public class FormModifyBarAction extends ActionSupport {
 	private List<Critere> lstCriteres;
 	private List<String> champVille;
 	private List<Jour> lstJours;
+	private List<Horaire> lstHoraires;
 		
+
+
 	public String execute() {
 		setLeBar(new Bar(idBar));
 		return SUCCESS;
@@ -34,12 +38,32 @@ public class FormModifyBarAction extends ActionSupport {
 	public String accessFormModify(){
 		setLeBar(new Bar(idBar));
 		setChampVille(Ville.getLstChampVille());
-		lstCategories = CategorieBar.getListeCategoriesBar();
-		lstCriteres = Critere.getListeCriteres();
-		lstJours = Jour.getLstJours();
+		setLstCategories(CategorieBar.getListeCategoriesBar());
+		setLstJours(Jour.getLstJours());
+		setLstCriteres(Critere.getListeCriteres());		
 		return SUCCESS;
 	}
 	
+	public void setLstCategories(List<CategorieBar> lstCategories) {
+		this.lstCategories = lstCategories;
+	}
+
+	public void setLstCriteres(List<Critere> lstCriteres) {
+		this.lstCriteres = lstCriteres;
+	}
+
+	public void setLstJours(List<Jour> lstJours) {
+		this.lstJours = lstJours;
+	}
+	
+	public List<Horaire> getLstHoraires() {
+		return lstHoraires;
+	}
+
+	public void setLstHoraires(List<Horaire> lstHoraires) {
+		this.lstHoraires = lstHoraires;
+	}
+
 	public int getIdBar() {
 		return idBar;
 	}

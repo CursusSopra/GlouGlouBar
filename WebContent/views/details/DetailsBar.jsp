@@ -9,8 +9,38 @@
 
 				<b><font size="20px" face="Mistral"> <s:property
 							value="leBar.nom.toUpperCase()" />
-				</font></b> <img class="tailleimage"
-					src="<s:property value="leBar.lienImage"/>" />
+				</font></b> 
+				
+				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  					<!-- Indicators -->
+					  <ol class="carousel-indicators">
+					    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+					    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+					    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+					  </ol>
+					
+					  <!-- Wrapper for slides -->
+					  <div class="carousel-inner" role="listbox">
+					    <div class="item active">
+						    <s:iterator value="leBar.lstImage">					    
+						      <img src="<s:property value="lien"/>"/>
+						     </s:iterator >
+					    </div>
+					  </div>
+					
+					  <!-- Controls -->
+					  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+					    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					    <span class="sr-only">Previous</span>
+					  </a>
+					  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+					    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					    <span class="sr-only">Next</span>
+					  </a>
+					</div>
+				
+			<!--  	<img class="tailleimage"
+					src="<s:property value="leBar.mainImage.lien"/>" /> -->
 
 
 			</div>
@@ -35,8 +65,8 @@
 								<s:iterator value="leBar.lstHoraires">
 									<tr>
 										<td><s:property value="getNomJour()" /></td>
-										<td><s:property value="heureDebut" /> - <s:property
-												value="heureFin" /></td>
+										<td><s:property value="heureDebut" /><s:if test="heureDebut.endsWith(':0')">0</s:if> - <s:property
+												value="heureFin" /><s:if test="heureDebut.endsWith(':0')">0</s:if></td>
 									</tr>
 								</s:iterator>
 							</tbody>
