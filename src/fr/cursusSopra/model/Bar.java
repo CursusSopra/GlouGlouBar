@@ -250,7 +250,7 @@ public class Bar {
 	 */
 	public int Update() {
 		Connection cnx = PostgresConnection.GetConnexion();
-		String query = "UPDATE bars SET nom=?, numtel=?, site=?, description=?, idadresse WHERE idbar=?";
+		String query = "UPDATE bars SET nom=?, numtel=?, site=?, description=?, idadresse=? WHERE idbar=?";
 		PreparedStatement ps = null;
 		try {
 			ps = cnx.prepareStatement(query);
