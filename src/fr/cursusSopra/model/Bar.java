@@ -340,6 +340,26 @@ public class Bar {
 			}
 		}
 	}
+	
+	public void razHoraires() {
+		Connection cnx = PostgresConnection.GetConnexion();
+		String query = "DELETE FROM horaires WHERE idbar = ?";
+		PreparedStatement ps = null;
+		try {
+			ps = cnx.prepareStatement(query);
+			ps.setInt(1, idBar);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+	}
 
 	public void setLstHoraires(List<Horaire> lstHoraires) {
 		this.lstHoraires = lstHoraires;
