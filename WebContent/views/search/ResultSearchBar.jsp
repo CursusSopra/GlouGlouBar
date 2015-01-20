@@ -1,8 +1,9 @@
+
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<div class="container-fluid">
 
-
-	<div class="row bars">
-		<div class="col-md-8 col-sm-10">
+<div class="row bars">
+		<div class="col-lg-9 col-md-9 col-sm-9">
 			<div class="panel panel-primary panel-danger">
 					<div class="panel-heading"">
 						Où boire un verre ce soir ?
@@ -16,9 +17,8 @@
 								</s:url>
 								<div class="vignette col-md-4 col-sm-2">
 <!-- 								col-lg-3 col-sm-4 -->
-									<a href="<s:property value='#db'/>" class="linkStyle"> <img
-										src="<s:property value="mainImage.lien"/>" class="vignetteImage"
-										title="<s:property value="nom" />" />
+									<a href="<s:property value='#db'/>" class="linkStyle"> <div class="crop"><img
+										src="<s:property value="mainImage.lien"/>" title="<s:property value="nom" />" /></div>
 					
 										<p class="lead">
 											<s:property value="nom" />
