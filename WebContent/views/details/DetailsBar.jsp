@@ -40,6 +40,7 @@
 							</div>
 						</s:iterator>
 					</div>
+				
 
 				<!-- Controls -->
 				<a class="left carousel-control" href="#carousel-example-generic"
@@ -51,20 +52,15 @@
 					class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 					<span class="sr-only">Next</span>
 				</a>
+				</div>
 			</div>
-
-			<!--  	<img class="tailleimage"
-					src="<s:property value="leBar.mainImage.lien"/>" /> -->
-
-
-		</div>
+		
 		<div class="panel-body">
 			<h3>L'avis de GlouGlouBar</h3>
 			<br />
 			<s:property value="leBar.description" />
 			<br />
-		</div>
-		<div class="panel-body">
+		
 			<div class="col-md-4">
 				<s:if test="%{leBar.lstHoraires.size > 0}">
 					<table class="table table-striped table-hover"
@@ -136,8 +132,9 @@
 
 			</div>
 		</div>
+		</div>
 	</div>
-</div>
+
 
 <div class="col-md-3">
 	<div class="panel panel-info">
