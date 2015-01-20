@@ -100,7 +100,7 @@ public class Image {
 			ResultSet rs = ps.executeQuery();
 
 			// remplissage tant qu'on trouve des criteres
-			if (rs.next()) {
+			while (rs.next()) {
 				Image image = new Image();
 				image.idBar=idBarExt;
 				image.nomImage=rs.getString("nomimage");
