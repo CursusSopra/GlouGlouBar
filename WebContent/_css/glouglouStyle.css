@@ -25,9 +25,21 @@ body{
 	cursor: pointer !important;
 }
 
-.vignetteImage {
-	width: 300px;
-	height: 200px;
+/* .vignetteImage { */
+/* 	width: 300px; */
+/* 	height: 200px; */
+/* /*     overflow: hidden; */ */
+/* } */
+.crop {
+    width: 250px;
+    height: 125px;
+    overflow: hidden;
+}
+
+.crop img {
+    width: 250px;
+    height: 125px;
+/*     margin: -75px 0 0 -100px; */
 }
 
 .vignette {
