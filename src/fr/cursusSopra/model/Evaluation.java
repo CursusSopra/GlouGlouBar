@@ -27,7 +27,7 @@ public class Evaluation {
 	public int AddEval() {
 		Connection cnx = PostgresConnection.GetConnexion();
 		String queryAddEval = "INSERT INTO evaluations (idcritique,idcriteval,note ) VALUES (?,?, ?)";
-		PreparedStatement psAddEval;
+		PreparedStatement psAddEval=null;;
 		try {
 			psAddEval = cnx.prepareStatement(queryAddEval);
 			psAddEval.setInt(1, idcritique);
