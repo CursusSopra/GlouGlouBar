@@ -18,7 +18,6 @@ public class Bar {
 	private String numTel;
 	private String site;
 	private String description;
-	private String lienImage;
 	private Adresse adresse;
 	private String shortDescription;
 	private List<Double> lstNotes;
@@ -131,10 +130,6 @@ public class Bar {
 		}
 
 		return lstEval;
-	}
-
-	public String getLienImage() {
-		return ("content/images/" + String.valueOf(idBar) + ".jpg");
 	}
 
 	public String getShortDescription() {
