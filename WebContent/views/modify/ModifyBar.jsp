@@ -7,7 +7,7 @@
 		<h1 class="col-md-offset-1 entete">
 			Modification du Bar
 			<s:property value="leBar.nom" />
-		</h1>
+		</h1>		
 		<div class="col-md-1"></div>
 		<form method="post" class="col-md-10"
 			action="<s:url action='updateBar' />" id="updateBar">

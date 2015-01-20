@@ -10,7 +10,7 @@
 			action="<s:url action='addBar' />" id="addBar">
 
 			<div class="row form-inline">
-				<fieldset class="scheduler-border-crit form-group">
+				<fieldset class="scheduler-border form-group">
 					<legend class="scheduler-border">Bar</legend>
 					<div class="form-group">
 						<label for="nom">Nom du bar</label> <input type="text"
@@ -28,7 +28,7 @@
 					</div>
 				</fieldset>
 
-				<fieldset class="scheduler-border-crit form-group"><br>
+				<fieldset class="scheduler-border form-group"><br>
 					<legend class="scheduler-border">Adresse</legend>
 					<div class="form-group">
 						<label for="voie">Voie</label> <input type="text"
@@ -48,7 +48,7 @@
 				</fieldset>
 			</div>
 			<div class="row">
-				<fieldset class="scheduler-border-crit form-group"><br>
+				<fieldset class="scheduler-border form-group"><br>
 					<legend class="scheduler-border">Description du bar</legend>
 					<textarea class="form-control" rows="5" cols="220"
 						name="description">Entrez la description...</textarea>
