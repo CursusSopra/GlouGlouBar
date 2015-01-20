@@ -1,5 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-
+<s:url action="directions" var="dir">
+	<s:param name="idBar">
+		<s:property value="idBar" />
+	</s:param>
+</s:url>
 
 <div class="row">
 	<div class="col-md-2"></div>
@@ -9,37 +13,40 @@
 
 				<b><font size="20px" face="Mistral"> <s:property
 							value="leBar.nom.toUpperCase()" />
-				</font></b> 
-				
-				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  					<!-- Indicators -->
-					  <ol class="carousel-indicators">
-					    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-					    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-					    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-					  </ol>
-					
-					  <!-- Wrapper for slides -->
-					  <div class="carousel-inner" role="listbox">
-					    <div class="item active">
-						    <s:iterator value="leBar.lstImage">					    
-						      <img src="<s:property value="lien"/>"/>
-						     </s:iterator >
-					    </div>
-					  </div>
-					
-					  <!-- Controls -->
-					  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-					    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-					    <span class="sr-only">Previous</span>
-					  </a>
-					  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-					    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-					    <span class="sr-only">Next</span>
-					  </a>
+				</font></b>
+
+				<div id="carousel-example-generic" class="carousel slide"
+					data-ride="carousel">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#carousel-example-generic" data-slide-to="0"
+							class="active"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+					</ol>
+
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner" role="listbox">
+						<div class="item active">
+							<s:iterator value="leBar.lstImage">
+								<img src="<s:property value="lien"/>" />
+							</s:iterator>
+						</div>
 					</div>
-				
-			<!--  	<img class="tailleimage"
+
+					<!-- Controls -->
+					<a class="left carousel-control" href="#carousel-example-generic"
+						role="button" data-slide="prev"> <span
+						class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a> <a class="right carousel-control" href="#carousel-example-generic"
+						role="button" data-slide="next"> <span
+						class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+
+				<!--  	<img class="tailleimage"
 					src="<s:property value="leBar.mainImage.lien"/>" /> -->
 
 
@@ -65,8 +72,10 @@
 								<s:iterator value="leBar.lstHoraires">
 									<tr>
 										<td><s:property value="getNomJour()" /></td>
-										<td><s:property value="heureDebut" /><s:if test="heureDebut.endsWith(':0')">0</s:if> - <s:property
-												value="heureFin" /><s:if test="heureDebut.endsWith(':0')">0</s:if></td>
+										<td><s:property value="heureDebut" />
+											<s:if test="heureDebut.endsWith(':0')">0</s:if> - <s:property
+												value="heureFin" />
+											<s:if test="heureDebut.endsWith(':0')">0</s:if></td>
 									</tr>
 								</s:iterator>
 							</tbody>
@@ -76,9 +85,10 @@
 
 				<div class="col-md-4 col-md-offset-1">
 					Résumé des notes :
-					<s:property value="leBar.lstComms.size()" /> avis
-					<br/><br/>
-					
+					<s:property value="leBar.lstComms.size()" />
+					avis <br />
+					<br />
+
 					<s:iterator value="leBar.lstEvals">
 
 						<s:property value="libCourt" />
@@ -116,10 +126,9 @@
 					</s:url>
 
 					<a href="<s:property value='GoToFormModify'/> "> Modifiez les
-						informations </a> 
-					<br/><br/>	
-					<a href="<s:property value='GoToformImage'/> ">
-						Ajouter une image </a>
+						informations </a> <br />
+					<br /> <a href="<s:property value='GoToformImage'/> "> Ajouter
+						une image </a>
 
 				</div>
 			</div>
@@ -135,9 +144,8 @@
 				<div id="map_container" class="map_container">
 					<div id="map_canvas" class="map_canvas"></div>
 				</div>
-				<br />
-				<a href="<s:property value='#dir'/>"><button
-							id="buttonDirections">Comment y aller !</button></a> <br />
+				<br /> <a href="<s:property value='#dir'/>"><button
+						id="buttonDirections">Comment y aller !</button></a> <br />
 
 				<s:property value="leBar.nom" />
 				<br />
@@ -153,7 +161,7 @@
 			</div>
 		</div>
 
-		<div class="panel panel-info" >
+		<div class="panel panel-info">
 			<div class="panel-heading" style="text-align: center">
 				<font size="4px"><b>Caractéristiques</b> </font>
 			</div>
@@ -219,8 +227,8 @@
 										<div class="row">
 											<br> <br> <label for="idCommentaire"
 												class="col-lg-4 control-label">Commentaire</label>
-												<textarea class="form-control" id="idCommentaire" name="commentaire"
-												cols="30" rows="5">
+											<textarea class="form-control" id="idCommentaire"
+												name="commentaire" cols="30" rows="5">
 												</textarea>
 											<br />
 										</div>
@@ -279,11 +287,6 @@
 	</div>
 </div>
 
-<script>
-// var lat = '<s:property value="leBar.adresse.latitude"/>';
-// var longi = '<s:property value="leBar.adresse.longitude"/>';
-// var mapTitle = '<s:property value="leBar.adresse.longitude"/>';
-var lat = <s:property value="leBar.adresse.latitude"/>;
-var longi = <s:property value="leBar.adresse.longitude"/>;
-var mapTitle = <s:property value="leBar.adresse.longitude"/>;
-</script>
+<input type="hidden" name = "nomMap" id="nomMap" value='<s:property value="leBar.nom"/>'/>
+<input type="hidden" name = "lat" id="lat" value='<s:property value="leBar.adresse.latitude"/>'/>
+<input type="hidden" name = "longi" id="longi" value='<s:property value="leBar.adresse.longitude"/>'/>

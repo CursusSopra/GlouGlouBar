@@ -1,5 +1,10 @@
 google.maps.event.addDomListener(window, 'load', initialize);
 
+//Récupération des informations du bar
+var mapTitle = $("#nomMap").val();
+var lat = $("#lat").val();
+var longi = $("#longi").val();
+
 // Initialisation à la fin du redimensionnement de la page
 var rtime = new Date(1, 1, 2000, 12,00,00);
 var timeout = false;

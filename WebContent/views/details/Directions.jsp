@@ -4,8 +4,6 @@
 	<div id="map_canvas" class="map_canvas"></div>
 </div>
 
-<script>
-var lat = '<s:property value="leBar.adresse.latitude"/>';
-var longi =' <s:property value="leBar.adresse.longitude"/>';
-var mapTitle =' <s:property value="leBar.adresse.longitude"/>';
-</script>
+<input type="hidden" name = "nomMap" id="nomMap" value='<s:property value="leBar.nom"/>'/>
+<input type="hidden" name = "lat" id="lat" value='<s:property value="leBar.adresse.latitude"/>'/>
+<input type="hidden" name = "longi" id="longi" value='<s:property value="leBar.adresse.longitude"/>'/>
