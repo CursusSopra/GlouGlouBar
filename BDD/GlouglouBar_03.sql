@@ -57,8 +57,7 @@ CREATE OR REPLACE VIEW v_adressebar AS
     villes.ville
    FROM adresses
      JOIN bars USING (idadresse)
-     JOIN villes USING (cp)
-  ORDER BY bars.idbar;
+     JOIN villes USING (cp);
 
 -- View: v_evalbar
 
@@ -71,8 +70,7 @@ CREATE OR REPLACE VIEW v_evalbar AS
    FROM critiques
      JOIN evaluations USING (idcritique)
      JOIN critereseval USING (idcriteval)
-  GROUP BY critereseval.libcourt, critereseval.liblong, critereseval.tri, critiques.idbar
-  ORDER BY critereseval.tri;
+  GROUP BY critereseval.libcourt, critereseval.liblong, critereseval.tri, critiques.idbar;
 
 
 -- View: v_listcategoriebar
@@ -83,8 +81,7 @@ CREATE OR REPLACE VIEW v_listcategoriebar AS
     categories.categoriebar
    FROM categoriesbars
      JOIN bars USING (idbar)
-     JOIN categories USING (idcategorie)
-  ORDER BY categoriesbars.idbar;
+     JOIN categories USING (idcategorie);
   
 
 -- View: v_listcriterebar
@@ -95,8 +92,7 @@ CREATE OR REPLACE VIEW v_listcriterebar AS
     criteresspeciaux.critere
    FROM criteresbars
      JOIN bars USING (idbar)
-     JOIN criteresspeciaux USING (idcritere)
-  ORDER BY criteresbars.idbar;
+     JOIN criteresspeciaux USING (idcritere);
 
 -- View: v_comm_notes
 
@@ -108,8 +104,7 @@ CREATE OR REPLACE VIEW v_comm_notes AS
     to_char(critiques.datecomm, 'dd MonthYYYY'::text) AS datecomm,
     evaluations.note
    FROM critiques
-     JOIN evaluations USING (idcritique)
-  ORDER BY critiques.idbar;
+     JOIN evaluations USING (idcritique);
      
 
 

@@ -93,7 +93,7 @@ public class CategorieBar {
 		Connection cnx = PostgresConnection.GetConnexion();
 
 		// requete de selection de tous les bars
-		String query = "SELECT * FROM v_listcategoriebar WHERE idbar = ?";
+		String query = "SELECT * FROM v_listcategoriebar WHERE idbar = ?    ORDER BY idbar";
 
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);

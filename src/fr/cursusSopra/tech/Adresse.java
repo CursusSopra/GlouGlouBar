@@ -96,7 +96,7 @@ public class Adresse {
 		Connection cnx = PostgresConnection.GetConnexion();
 
 		// requete de selection de tous les bars
-		String query = "SELECT * FROM v_adressebar WHERE idbar =?";
+		String query = "SELECT * FROM v_adressebar WHERE idbar =?   ORDER BY idbar";
 
 		try {
 			PreparedStatement ps = cnx.prepareStatement(query);

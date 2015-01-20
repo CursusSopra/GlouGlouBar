@@ -77,7 +77,7 @@ public class Bar {
 		List<BarCommentaire> lstComms = new ArrayList<BarCommentaire>();
 
 		Connection cnx = PostgresConnection.GetConnexion();
-		String query = "SELECT * FROM v_comm_notes where idbar=? and idcriteval=5";
+		String query = "SELECT * FROM v_comm_notes where idbar=? and idcriteval=5 ORDER BY idbar";
 		PreparedStatement ps=null;
 		try {
 			ps = cnx.prepareStatement(query);
@@ -109,7 +109,7 @@ public class Bar {
 		List<BarEvaluation> lstEval = new ArrayList<BarEvaluation>();
 
 		Connection cnx = PostgresConnection.GetConnexion();
-		String query = "SELECT AVG(note) as note, libcourt, liblong FROM critiques INNER JOIN evaluations USING (idcritique)     INNER JOIN critereseval USING (idcriteval) WHERE idbar = ? GROUP BY libcourt, liblong, tri ORDER BY tri";
+		String query = "SELECT * from v_evalbar WHERE idbar = ? GROUP BY libcourt, liblong, tri ORDER BY tri";
 		PreparedStatement ps=null;
 		try {
 			ps = cnx.prepareStatement(query);
