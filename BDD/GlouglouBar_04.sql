@@ -5,12 +5,12 @@
 --
 TRUNCATE adresses RESTART IDENTITY CASCADE;
 INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (1, '12 rue Sainte Catherine', '69001', 45.768081, 4.833417);
-INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (4, '41, quai P. Scize', '69009', NULL, NULL);
-INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (5, '20, Quai Arloing', '69009', NULL, NULL);
-INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (6, '3, rue de la Baleine', '69005', NULL, NULL);
-INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (7, '6 rue de Cuire', '69004', NULL, NULL);
-INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (8, '8, rue R. Leynaud', '69001', NULL, NULL);
-INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (9, '47, quai Rambaud', '69002', NULL, NULL);
+INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (4, '41, quai P. Scize', '69009', 45.766228, 4.818367);
+INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (5, '20, Quai Arloing', '69009', 45.772367, 4.810386);
+INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (6, '3, rue de la Baleine', '69005', 45.763296, 4.828444);
+INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (7, '6 rue de Cuire', '69004', 45.775033, 4.831083);
+INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (8, '8, rue R. Leynaud', '69001', 45.769738, 4.832066);
+INSERT INTO adresses (idadresse, voie, cp, latitude, longitude) VALUES (9, '47, quai Rambaud', '69002', 45.737194, 4.81495);
 
 
 --
