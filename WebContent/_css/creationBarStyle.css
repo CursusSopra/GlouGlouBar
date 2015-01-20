@@ -24,6 +24,10 @@ legend{
 div.text{
 	color:black;
 }
+table.table{
+	color:black;
+}
+
 fieldset.scheduler-border-ctg {
 	
     border: 4px inset #2A32CB ;
@@ -57,4 +61,10 @@ legend.scheduler-border {
     font-weight: normal ;
     text-align: center ;
 
+}
+
+legend.scheduler-border1 {
+    font-size: 1.2em ;
+    font-weight: normal ;
+    text-align: center ;	
 }
