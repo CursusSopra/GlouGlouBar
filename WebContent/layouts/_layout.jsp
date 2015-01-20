@@ -36,7 +36,7 @@
 <body>
 	<img class="imgtop" src="content/images/glougloulogo.jpg"
 		width="300px;" height="60px;" />
-	<div class="container">
+	<div class="container-fluid">
 
 		<nav class="navbar navbar-default">
 			<!-- Brand and toggle get grouped for better mobile display -->
