@@ -32,9 +32,6 @@ function initialize() {
 
 	var geocoder = new google.maps.Geocoder();
 	var address = "12 Rue Sainte-Catherine, 69001 Lyon, FRANCE";
-	console.log(lat);
-	console.log(longi);
-	console.log(mapTitle);
 
 	var myLatlng = new google.maps.LatLng(lat, longi);
 	var mapOptions = {

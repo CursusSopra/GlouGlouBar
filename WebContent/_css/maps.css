@@ -12,4 +12,7 @@
     left: 0;
     margin: 0;
     padding: 0;
+    background: url(../content/images/ajax-loader.gif);
+    background-repeat: no-repeat;
+    background-position: center;
 }
