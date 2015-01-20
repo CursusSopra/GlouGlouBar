@@ -30,4 +30,12 @@
 			<add-attribute value="_css/searchBarStyle.css"></add-attribute>
 		</put-list-attribute>
 	</definition>
+	
+	<definition name="formSearchHoraire" extends="baseLayout">
+		<put-attribute name="title" value="Recherche par horaire" />
+		<put-attribute name="body" value="/views/search/FormSearchHoraire.jsp" />
+		<put-list-attribute name="moreScripts">
+			<add-attribute value="_js/formSearchHoraire.js"></add-attribute>
+		</put-list-attribute>
+	</definition>
 </tiles-definitions>

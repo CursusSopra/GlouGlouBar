@@ -17,6 +17,10 @@
 			<result name="success" type="tiles">resultSearchBar</result>
 		</action>
 		
+		<action name="formSearchHoraire" class="fr.cursusSopra.action.FormSearchHoraireAction" method="execute">
+			<result name="success" type="tiles">formSearchHoraire</result>
+			
+		</action>
 	</package>
 </struts>
 		

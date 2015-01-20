@@ -47,13 +47,10 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="<s:url action='' />">Accueil</a> <a
-					class="navbar-brand navbar-center"
-					href="<s:url action='creationBar' />">Créer un bar</a> <a
-					class="navbar-brand" href="<s:url action='formSearchBar' />">Rechercher
-					un bar</a>
-			</div>
-
+				<a class="navbar-brand" href="<s:url action='' />">Accueil</a> 
+				<a class="navbar-brand navbar-center" href="<s:url action='creationBar' />">Créer un bar</a> 
+				<a class="navbar-brand" href="<s:url action='formSearchBar' />">Rechercher un bar</a>
+				<a class="navbar-brand" href="<s:url action='formSearchHoraire' />">Rechercher par horaire</a>
 			<form class="navbar-form navbar-right" role="search">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Search">
