@@ -1,6 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 
+<s:url action="directions" var="dir">
+	<s:param name="idBar">
+		<s:property value="idBar" />
+	</s:param>
+</s:url>
+
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-7">
@@ -285,11 +291,6 @@
 	</div>
 </div>
 
-<script>
-	// var lat = '<s:property value="leBar.adresse.latitude"/>';
-	// var longi = '<s:property value="leBar.adresse.longitude"/>';
-	// var mapTitle = '<s:property value="leBar.adresse.longitude"/>';
-	var lat = <s:property value="leBar.adresse.latitude"/>;
-	var longi = <s:property value="leBar.adresse.longitude"/>;
-	var mapTitle = <s:property value="leBar.adresse.longitude"/>;
-</script>
+<input type="hidden" name = "nomMap" id="nomMap" value='<s:property value="leBar.nom"/>'/>
+<input type="hidden" name = "lat" id="lat" value='<s:property value="leBar.adresse.latitude"/>'/>
+<input type="hidden" name = "longi" id="longi" value='<s:property value="leBar.adresse.longitude"/>'/>
